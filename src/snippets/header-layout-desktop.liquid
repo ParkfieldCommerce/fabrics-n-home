@@ -1,0 +1,21 @@
+<header class="theme-header desktop" role="banner">
+  <div class="container l">
+    <div class="row">
+      <div class="column l6 m12">
+
+        {% include 'header-logo-desktop' %}
+
+      </div>
+      <div class="column l6 m12">
+
+        {% include 'header-menu-desktop' %}
+        
+        {% if enable_search %}
+          <div class="header-search">
+            {% include 'form-search' %} 
+          </div>
+        {% endif %}
+      </div>
+    </div>  
+  </div>
+</header>

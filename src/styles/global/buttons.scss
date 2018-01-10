@@ -1,0 +1,29 @@
+.btn {
+	@include ptSerif(14px, normal, normal);
+	display: inline-block;
+	padding: 7px 12px;
+	text-align: center;
+	white-space: nowrap;
+	cursor: pointer;
+	text-decoration: none;
+	text-transform: uppercase;
+	@include transition();
+
+	&.primary-btn {
+		background: #88beb4;
+		color: #fff;
+		&:hover {
+			background: darken(#88beb4, 10%);
+			color: #fff;
+		}
+	}
+
+	&.secondary-btn {
+		background: #fff;
+		color: #88beb4;
+		&:hover {
+			background: darken(#fff, 5%);
+			color: #88beb4;
+		}
+	}
+}

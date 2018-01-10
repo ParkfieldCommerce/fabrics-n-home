@@ -1,0 +1,10 @@
+{% capture banner_menu %}
+	<ul class="banner">
+		{% for link in linklists['header-menu-row-1'].links %}
+			<li class="banner-item">
+				<a href="{{ link.url }}">{{ link.title }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endcapture%}
+

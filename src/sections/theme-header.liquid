@@ -1,6 +1,7 @@
 <!-- /snippets/theme-header.liquid -->
 
 {% assign logo = section.settings.logo %}
+{% assign logo_mobile = section.settings.logo_mobile %}
 {% assign logo_width = section.settings.logo_width %}
 {% assign enable_search = section.settings.enable_search %}
 {% assign include_results = '' %}
@@ -15,66 +16,8 @@
 {% endif %}
 {% assign include_results = include_results | append: '[last]' | remove: ',[last]' | remove: '[last]' %}
 
-
-<header class="theme-header" role="banner">
-  <div class="container">
-
-    <div class="row l-table m-table">
-      <div class="column l8 m8 s12 l-left m-left s-middle">
-
-        {% if template == 'index' %}
-          <h1 class="logo" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        {% else %}
-          <div class="h1 logo" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        {% endif %}
-          <meta itemprop="name" content="{{ shop.name }}">
-          {% if logo != nil %}
-            <a href="/" itemprop="url" title="{{ shop.name }}" class="logo-image">
-              <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-                <img src="{{ logo | img_url: logo_width, scale: 2 }}" alt="{{ shop.name }}" title="{{ shop.name }}" itemprop="image" width="{{ logo_width | replace: 'x', 'px' }}">
-              </span>
-            </a>
-          {% else %}
-            <a href="/" itemprop="url" title="{{ shop.name }}">{{ shop.name }}</a>
-          {% endif %}
-        {% if template == 'index' %}
-          </h1>
-        {% else %}
-          </div>
-        {% endif %}
-
-      </div>
-      <div class="column l4 m4 s12 l-right m-right s-middle">
-        {% if customer %}
-          <a href="/account">{{ 'account.title' | t }}</a>
-        {% else %}
-          <a href="/account">{{ 'account.login' | t }}</a>
-        {% endif %}
-
-        <a href="/cart" id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" class="v-middle">
-          {{ 'cart.title' | t }}
-          <span data-cart-item-count>{{ cart.item_count }}</span>
-          (<span data-cart-total>{{ cart.total_price | money_with_currency }}</span>)
-        </a>
-
-      </div>
-    </div>
-
-    <div class="row l-table m-table s-hide">
-      <div class="column{% if enable_search %} l9 m9 {% else %} l12{% endif %} s12 l-left m-left s-v-middle">
-        {% include 'theme-nav-main' %}
-      </div>
-      {% if enable_search %}
-        <div class="column l3 m3 s12 l-right m-right">
-          {% include 'form-search' %}
-        </div>
-      {% endif %}
-    </div>
-
-    <hr>
-
-  </div>
-</header>
+{% include 'header-layout-desktop' %}
+{% include 'header-layout-mobile' %}
 
 {% schema %}
   {
@@ -93,6 +36,11 @@
         "type": "image_picker",
         "id": "logo",
         "label": "Logo image"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_mobile",
+        "label": "Mobile Logo image"
       },
       {
         "type": "text",

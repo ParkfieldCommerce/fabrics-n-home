@@ -1,0 +1,31 @@
+<!-- snippets/header-menu -->
+<ul class="menu row-1">
+  <li class="menu-item">
+    <a href="/cart" id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" class="v-middle">
+      <i class="fa fa-shopping-bag"></i>
+      <span data-cart-item-count>({{ cart.item_count }})</span>
+    </a>
+  </li>
+  {% for link in linklists['header-menu-row-1'].links  %}
+    <li class="menu-item">
+      <a href="{{link.url}}">{{link.title}}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+<ul class="menu row-2">
+  {% for link in linklists['header-menu-row-2'].links  %}
+    <li class="menu-item">
+      {% if forloop.index == 1 %}
+        <i class="fa fa-graduation-cap"></i>
+      {% endif %}
+      {% if forloop.index == 2 %}
+        <i class="fa fa-star-o"></i>
+      {% endif %}
+      <a href="{{link.url}}">{{link.title}}</a>
+    </li>
+  {% endfor %}
+  <li class="menu-item">
+    <a href="tel:(800)582-2624">(800)582-2624</a>
+  </li>
+</ul>

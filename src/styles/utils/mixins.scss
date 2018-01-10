@@ -148,3 +148,30 @@
     }
   }
 }
+
+// Fonts 
+@font-face {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin ptSans($font-size, $font-weight, $font-style) {
+  font-family: 'PT Sans', sans-serif;
+  font-size: $font-size;
+  font-style: $font-style;
+  font-weight: $font-weight;
+}
+
+@mixin ptSerif($font-size, $font-weight, $font-style) {
+  font-family: 'PT Serif', serif;
+  font-size: $font-size;
+  font-style: $font-style;
+  font-weight: $font-weight;
+}

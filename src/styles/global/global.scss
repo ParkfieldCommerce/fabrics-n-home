@@ -20,7 +20,7 @@ img {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: sans-serif;
+  font-family: 'PT Serif', serif;
   font-weight: $fontBold;
   line-height: $lineHeight;
   display: block;
@@ -100,8 +100,8 @@ input[type="password"],
 input[type="search"],
 textarea {
   max-width: 100%;
-  height: $gutter;
-  line-height: ($gutter - $borderWeight*2);
+  height: auto;
+  line-height: normal;
   padding: 0 $gutter/2;
   font-size: 1.125rem;
   border: $borderWeight $borderStyle $colorAlternate;
@@ -179,10 +179,6 @@ select {
     clear: both;
     margin-bottom: $gutter/3;
   }
-}
-a.button {
-  display: inline-block;
-  text-decoration: none;
 }
 .select-wrapper {
   display: inline-block;

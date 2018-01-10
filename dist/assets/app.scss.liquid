@@ -15,6 +15,61 @@
 
 /* Settings ==================================================================*/
 /* Variables =================================================================*/
+// Font URLs
+@font-face {
+  font-family: 'PT Serif';
+  font-style: italic;
+  font-weight: 700;
+  src: local('PT Serif Bold Italic'), local('PTSerif-BoldItalic'), url(https://fonts.gstatic.com/s/ptserif/v9/Foydq9xJp--nfYIx2TBz9fEr6Hm6RMS0v1dtXsGir4g.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: local('PT Serif Bold'), local('PTSerif-Bold'), url(https://fonts.gstatic.com/s/ptserif/v9/QABk9IxT-LFTJ_dQzv7xpJ0EAVxt0G0biEntp43Qt6E.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  font-style: italic;
+  font-weight: 400;
+  src: local('PT Serif Italic'), local('PTSerif-Italic'), url(https://fonts.gstatic.com/s/ptserif/v9/03aPdn7fFF3H6ngCgAlQzC3USBnSvpkopQaUR-2r7iU.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Serif'), local('PTSerif-Regular'), url(https://fonts.gstatic.com/s/ptserif/v9/EgBlzoNBIHxNPCMwXaAhYPesZW2xOQ-xsNqO47m55DA.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('PT Sans Italic'), local('PTSans-Italic'), url(https://fonts.gstatic.com/s/ptsans/v9/PIPMHY90P7jtyjpXuZ2cLKCWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Sans'), local('PTSans-Regular'), url(https://fonts.gstatic.com/s/ptsans/v9/FUDHvzEKSJww3kCxuiAo2A.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('PT Sans Bold Italic'), local('PTSans-BoldItalic'), url(https://fonts.gstatic.com/s/ptsans/v9/lILlYDvubYemzYzN7GbLkInF5uFdDttMLvmWuJdhhgs.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('PT Sans Bold'), local('PTSans-Bold'), url(https://fonts.gstatic.com/s/ptsans/v9/0XxGQsSc1g4rdRdjJKZrNC3USBnSvpkopQaUR-2r7iU.ttf) format('truetype');
+}
+
+
+
 
 // Colors
 $colorBrand: {{ settings.color_brand }};
@@ -31,7 +86,7 @@ $fontBold: 700;
 $lineHeight: 1.75;
 
 // Space & Borders
-$gutter: 50px;
+$gutter: 2px;
 $borderRadius: 2px;
 $borderWeight: 2px;
 $borderStyle: solid;
@@ -203,6 +258,32 @@ $iconLinecap: sqaure;
   }
 }
 
+// Fonts 
+@font-face {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin ptSans($font-size, $font-weight, $font-style) {
+  font-family: 'PT Sans', sans-serif;
+  font-size: $font-size;
+  font-style: $font-style;
+  font-weight: $font-weight;
+}
+
+@mixin ptSerif($font-size, $font-weight, $font-style) {
+  font-family: 'PT Serif', serif;
+  font-size: $font-size;
+  font-style: $font-style;
+  font-weight: $font-weight;
+}
 
 /* Global ====================================================================*/
 /* Reset =====================================================================*/
@@ -302,7 +383,7 @@ img {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: sans-serif;
+  font-family: 'PT Serif', serif;
   font-weight: $fontBold;
   line-height: $lineHeight;
   display: block;
@@ -382,8 +463,8 @@ input[type="password"],
 input[type="search"],
 textarea {
   max-width: 100%;
-  height: $gutter;
-  line-height: ($gutter - $borderWeight*2);
+  height: auto;
+  line-height: normal;
   padding: 0 $gutter/2;
   font-size: 1.125rem;
   border: $borderWeight $borderStyle $colorAlternate;
@@ -461,10 +542,6 @@ select {
     clear: both;
     margin-bottom: $gutter/3;
   }
-}
-a.button {
-  display: inline-block;
-  text-decoration: none;
 }
 .select-wrapper {
   display: inline-block;
@@ -675,16 +752,190 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   width: 100%;
 }
 
+.btn {
+	@include ptSerif(14px, normal, normal);
+	display: inline-block;
+	padding: 7px 12px;
+	text-align: center;
+	white-space: nowrap;
+	cursor: pointer;
+	text-decoration: none;
+	text-transform: uppercase;
+	@include transition();
+
+	&.primary-btn {
+		background: #88beb4;
+		color: #fff;
+		&:hover {
+			background: darken(#88beb4, 10%);
+			color: #fff;
+		}
+	}
+
+	&.secondary-btn {
+		background: #fff;
+		color: #88beb4;
+		&:hover {
+			background: darken(#fff, 5%);
+			color: #88beb4;
+		}
+	}
+}
 
 /* Modules ===================================================================*/
 /* Header ====================================================================*/
 
 .theme-header {
-  padding: $gutter/2 0;
+  padding: 25px 0;
   .logo {
+  	@include m() {
+  		text-align: center;
+  	}
     img {
-      max-width: $logoMaxWidth;
+      max-width: 100%;
     }
+  }
+
+  &.desktop {
+  	@include s() {
+  		display: none;
+  	}
+		.menu {
+			@include m() {
+				float: none;
+				margin: 20px auto;
+			}
+			@include flex();
+			flex-direction: row;
+			margin-bottom: 20px;
+			width: 80%;
+			float: right;
+			a {
+				text-decoration: none;
+				vertical-align: middle;
+				cursor: pointer;
+			}
+			i {
+				color: #b9b4a7;
+				font-size: 16px;
+			}
+			.menu-item {
+				@include ptSans(14px, $fontRegular, normal);
+				flex: auto;
+				text-align: center;
+				padding: 0 5px;
+				border-right: 1px solid #000;
+			}
+			&.row-1 {
+				.menu-item {
+					&:first-child,
+					&:last-child {
+						border-right: none;
+					}
+					&:last-child {
+						@include m() {
+							text-align: center;
+							flex: auto;
+						}
+						font-weight: $fontBold;
+						text-align: right;
+						flex: 5;
+						a {
+							color: #808080;
+						}
+					}
+					@include m() {
+						&:first-child {
+							border-right: 1px solid #000;
+						}
+					}
+				}
+			}
+			&.row-2 {
+				.menu-item {
+					&:last-child {
+						@include m() {
+							text-align: center;
+							flex: auto;
+						}
+						font-weight: $fontBold;
+						text-align: right;
+						border-right: none;
+						flex: 4.5;
+						a {
+							color: #88beb4;
+						}
+					}
+				}
+			}
+		}
+		.header-search {
+			float: right;
+			width: 50%;
+			text-align: right;
+			position: relative;
+			@include m() {
+				float: none;
+				margin: 10px auto;
+			}
+			form,
+			input {
+				@include ptSans(14px, $fontRegular, normal);
+				width: 100%;
+			}
+			input[type="text"] {
+				border: 0;
+				border-bottom: 1px solid #e5e5e5;
+				padding: 10px 50px 10px 0px;
+				color: #a2a6b4;
+			}
+			&:after {
+				position: absolute;
+				font-family: 'FontAwesome';
+				content: '\f002';
+				right: 10px;
+				top: 7px;
+				color: #e5e5e5;
+				font-size: 20px;
+				line-height: 1;
+				cursor: pointer;
+				pointer-events: none;
+			}
+		}
+  } // &.desktop
+  &.mobile {
+  	padding: 0 0 25px 0;
+  	@include m() {
+  		display: none;
+  	}
+  	@include l() {
+  		display: none;
+  	}
+  	.banner {
+  		@include flex();
+  		flex-direction: row;
+  		background: #f2f2f2;
+  		padding: 10px 5px;
+  		.banner-item {
+  			@include ptSans(14px, $fontRegular, normal);
+  			flex: auto;
+  			text-align: center;
+  			border-right: 1px solid #888888;
+  			&:last-child {
+  				border-right: none;
+  				font-weight: bold;
+  			}
+  			a {
+  				text-decoration: none;
+  				vertical-align: middle;
+  				color: #888888;
+  			}
+  		}
+  	}
+  	.main {
+  		padding: 10px;
+  		
+  	}
   }
 }
 

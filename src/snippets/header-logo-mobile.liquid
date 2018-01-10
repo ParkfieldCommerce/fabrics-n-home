@@ -1,0 +1,20 @@
+{% if template == 'index' %}
+  <h1 class="logo" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+{% else %}
+  <div class="h1 logo" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+{% endif %}
+  <meta itemprop="name" content="{{ shop.name }}">
+  {% if logo != nil %}
+    <a href="/" itemprop="url" title="{{ shop.name }}" class="logo-image">
+      <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+        <img src="{{ logo_mobile | img_url: 'master' }}" alt="{{ shop.name }}" title="{{ shop.name }}" itemprop="image">
+      </span>
+    </a>
+  {% else %}
+    <a href="/" itemprop="url" title="{{ shop.name }}">{{ shop.name }}</a>
+  {% endif %}
+{% if template == 'index' %}
+  </h1>
+{% else %}
+  </div>
+{% endif %}
