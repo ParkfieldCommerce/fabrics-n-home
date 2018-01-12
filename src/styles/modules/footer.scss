@@ -139,5 +139,113 @@
   	@include m() {
   		display: none;
   	}
-  }
+  	.container {
+  		position: relative;
+  	}
+  	.logo {
+	  	text-align: center;
+	  	position: absolute;
+	  	top: -40px;
+	  	width: 100%;
+	  	a {
+	  		background: #fff;
+	  		width: 110px;
+	  		display: block;
+	  		margin: auto;
+	  	}
+	  	img {
+	  		width: 81px;
+	  		height: 71px;
+	  	}
+	  }
+	  .lead {
+	  	@include ptSans(14px, $fontBold, normal);
+	  	color: #888888;
+	  	text-transform: uppercase;
+	  	text-align: center;
+	  	margin-bottom: 10px;
+	  }
+	  .menu-outer {
+	  	border-top: 1px solid #e5e5e5;
+	  	border-bottom: 1px solid #e5e5e5;
+	  	padding: 50px 0 20px 0;
+	  	z-index: 1;
+	  	margin-bottom: 10px;
+	  	.menu-inner {
+	  		@include flex();
+	  		flex-direction: row;
+	  		padding: 0 2%;
+	  		.menu-item {
+	  			flex: 1;
+	  			text-align: center;
+	  			a {
+	  				@include ptSans(14px, $fontRegular, normal);
+	  				text-transform: uppercase;
+	  				text-decoration: none;
+	  				color: #888888;
+	  			}
+	  		}
+	  	}
+	  }
+	  .contact-info {
+	  	text-align: center;
+	  	color: #888888;
+	  	border-bottom: 1px solid #e5e5e5;
+	  	padding-bottom: 20px;
+	  	p {
+	  		margin: 0;
+	  		@include ptSans(14px, $fontRegular, normal);
+	  		line-height: 24px;
+	  	}
+	  }
+		.subscribe-form {
+			padding: 20px 10px;
+			margin-bottom: 10px;
+			.subscribe-container {
+				position: relative;
+			}
+			input[type="email"] {
+				padding: 14px 60px 10px 20px;
+				border-radius: 3px;
+				border: 1px solid #e5e5e5;
+				color: #888888;
+				margin-top: 10px;
+				@include inputPlaceholder(#888888);
+			}
+			button {
+				position: absolute;
+				right: 0;
+				top: 10px;
+				width: 40px;
+				height: 47px;
+				background: #b9b4a7;
+				color: #fff;
+				border: none;
+			}
+		}
+
+		.social-icons {
+			@include flex();
+			flex-direction: row;
+			padding: 0 10%;
+			margin-bottom: 15px;
+			li {
+				flex: 1;
+				text-align: center;
+				a {
+					font-size: 24px;
+					color: #888888;
+				}
+			}
+		}
+		.copyrights {
+			text-align: center;
+			color: #888888;
+			margin-top: 40px;
+			a {
+				color: #888888;
+				text-decoration: none;
+			}
+		}
+  } //&.mobile
 }

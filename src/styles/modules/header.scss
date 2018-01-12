@@ -103,6 +103,7 @@
 				border-bottom: 1px solid #e5e5e5;
 				padding: 10px 50px 10px 0px;
 				color: #a2a6b4;
+				@include inputPlaceholder(#888888);
 			}
 			&:after {
 				position: absolute;
@@ -154,6 +155,7 @@
   		}
   		.logo {
   			margin: 0 7% 0 15%;
+  			padding-top: 5px;
   		}
   		#mb-actions {
   			@include flex();

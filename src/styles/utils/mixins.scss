@@ -19,6 +19,21 @@
   }
 }
 
+@mixin inputPlaceholder($placeholderColor) {
+  &::-webkit-input-placeholder {
+    color: $placeholderColor !important;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $placeholderColor !important;  
+  }
+  &::-moz-placeholder {  /* Firefox 19+ */
+    color: $placeholderColor !important;  
+  }
+  &:-ms-input-placeholder {  
+    color: $placeholderColor !important;  
+  }
+}
+
 // Clearfix
 @mixin clearfix() {
   display: block; // TBC - is this OK? Seems to help

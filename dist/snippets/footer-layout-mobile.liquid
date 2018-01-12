@@ -1,5 +1,16 @@
+{% include 'footer-menu-mobile' %}
+
 <footer class="theme-footer mobile">
 	<div class="container">
-		ln;ljk;lafjks;
+		{% include 'footer-logo-mobile' %}
+		{{ footer_menu }}
+		{{ contact_us }}
+		{{ subscribe_form }}
+		{{ social_icons }}
+
+		<div class="copyrights">   
+      <small>&copy; {{ 'now' | date: "%Y" }} <a href="/">{{ shop.name }}</a> </small>
+    </div>
+
 	</div>
 </footer>
