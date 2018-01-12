@@ -1,0 +1,39 @@
+{% capture footer_menu %}
+	<ul class="menu-inner">
+		{% for link in linklists['footer'].links %}
+		  <li class="menu-item">
+		    <a href="{{ link.url }}">{{ link.title }}</a>
+		  </li>
+		{% endfor %}
+	</ul>
+{% endcapture %}
+
+{% capture footer_contact %}
+	<div class="column l4 m4">
+	  {% if section.settings.enable_subscribe %}
+	    <p class="lead">{{ heading }}</p>
+	    <div class="subscribe-container">
+	    	{% include 'section-subscribe-form' %}
+	    </div>
+	  {% endif %}
+	</div>
+
+	<div class="column l4 m4">
+		<div class="footer-logo-container">
+			{% include 'footer-logo-desktop' %}
+		</div>
+	</div>
+
+	<div class="column l4 m4">
+	  <p class="lead">Customer Service</p>
+	  <div class="contact-info">
+	    <p>(800)582-2624</p>
+	    <p>Mon - Fri 10AM-5PM EST</p>
+	    <p>info@fabricsandhome.com</p>
+	    <a href="#" class="footer-message-link">Send us a message</a>
+	    {% if section.settings.enable_social %}
+		    {% include 'social-links' %}
+	    {% endif %}
+	  </div>
+	</div>
+{% endcapture %}

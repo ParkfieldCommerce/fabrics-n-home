@@ -8,3 +8,22 @@
 	</ul>
 {% endcapture%}
 
+{% capture hamburger %}
+	<input type="checkbox" id="change-hamburguer" />
+  <a class="hamburguer" href="#">
+    <span></span>
+    <label for="change-hamburguer"></label>
+  </a>
+{% endcapture %}
+
+{% capture mobile_actions %}
+	<div class="cart">
+		<a href="/cart" id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" class="v-middle">
+	    <img src="{{ 'icon-shopping-bag.svg' | asset_url }}" alt="">
+	  </a>
+	</div>
+
+	<div class="search">
+		<img src="{{ 'icon-search.svg' | asset_url }}" alt="">
+	</div>
+{% endcapture %}

@@ -933,8 +933,24 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   		}
   	}
   	.main {
-  		padding: 10px;
-  		
+  		padding: 0 10px;
+  		#main-menu {
+  			padding: 18px 0;
+  		}
+  		.logo {
+  			margin: 0 7% 0 15%;
+  		}
+  		#mb-actions {
+  			@include flex();
+  			flex-direction: row;
+  			.cart,
+  			.search {
+  				flex: 1;
+  				font-size: 1.5em;
+  				padding: 15px 6px;
+  				text-align: center;
+  			}
+  		}
   	}
   }
 }
@@ -1017,7 +1033,145 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 /* Footer ====================================================================*/
 
 .theme-footer {
-  padding: $gutter/2 0;
+  padding: 25px 0;
+  &.desktop {
+  	@include s() {
+  		display: none;
+  	}
+  	.footer-lead {
+  		border-top: 1px solid #e5e5e5;
+  		@include ptSerif(40px, $fontRegular, normal);
+  		color: #b9b4a7;
+  		text-align: center;
+  		padding: 26px 0;
+  	}
+  	.menu-outer {
+  		border: 1px solid #e5e5e5;
+  		padding: 20px;
+  		.menu-inner {
+  			@include flex();
+  			flex-direction: row;
+  			width: 80%;
+  			margin: auto;
+  			.menu-item {
+  				flex: 1;
+  				text-align: center;
+  				a {
+						@include ptSans(14px, $fontRegular, normal);
+						color: #888888;
+						text-decoration: none;
+						text-transform: uppercase;
+  				}
+  			}
+  		}
+  	}
+		.footer-info {
+			padding: 25px 0;
+			.lead {
+				@include ptSans(14px, $fontBold, normal);
+				padding: 10px 0;
+				margin: 0;
+				text-align: center;
+				color: #888888;
+				text-transform: uppercase;
+			}
+			.subscribe-container {
+				position: relative;
+				input[type="email"] {
+					@include ptSans(12px, $fontRegular, normal);
+					border: 1px solid rgba(122,125,128,0.3);
+					border-radius: 3px;
+					padding: 15px 40px 10px 16px;
+					display: block;
+					width: 70%;
+					margin: auto;
+					color: #989DAC;
+				}
+				button[type="submit"] {
+					position: absolute;
+			    right: 15%;
+			    top: 0;
+			    height: 42px;
+			    padding: 0 21px;
+			    line-height: normal;
+			    background: #B9B4A7;
+			    color: #fff;
+			    border: none;
+			    border-radius: 3px;
+			    width: 50px;
+			    &:hover {
+			    	background: darken(#B9B4A7, 10%);
+			    	transition: 0.3s;
+			    }
+				}
+			}
+			.footer-logo-container {
+				padding: 48px 10% 100px;
+		    border-left: 1px solid #e5e5e5;
+		    border-right: 1px solid #e5e5e5;
+			}
+			.contact-info {
+				text-align: center;
+				p {
+					@include ptSans(14px, $fontRegular, normal);
+					color: #888888;
+					margin-bottom: 10px;
+				}
+				.footer-message-link {
+					text-decoration: underline;
+					color: #88BEB4;
+					margin-bottom: 20px;
+					display: block;
+				}
+				.social-icons {
+					@include flex();
+					flex-direction: row;
+					width: 55%;
+					margin: auto;
+					li {
+						flex: 1;
+						text-align: center;
+						a {
+							color: #888888;
+							font-size: 25px;
+						}
+					}
+				}
+			}
+		}
+		.copyrights {
+			border-top: 1px solid #e5e5e5;
+			text-align: center;
+			.payment-icons {
+				@include flex();
+				flex-direction: row;
+				li {
+					flex: 1;
+					padding: 10px 0;
+					color: #888888;
+					font-size: 24px;
+				}
+			}
+			small {
+				display: inline-block;
+				margin-top: 20px;
+				color: #888888;
+				a {
+					color: #888888;
+					text-decoration: none;
+				}
+			}
+		}
+  } // &.desktop
+  &.mobile {
+  	padding: 25px 0;
+  	@include l() {
+  		display: none;
+  	}
+  	@include m() {
+  		display: none;
+  	}
+  }
 }
 
 /* Cart ======================================================================*/
@@ -1321,6 +1475,79 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 }
 
+$button-size: 25px;
+$button-color: #000;
+
+@function calc-line-height($n) {
+  @return $n / 5;
+}
+
+@mixin css3-rotation($n){
+  -ms-transform:rotate($n);
+  -webkit-transform:rotate($n);
+  transform: rotate($n);
+}
+
+.hamburguer{
+  width: $button-size;
+  height: $button-size;
+  display: block;
+  position: relative;
+  background: none;
+  margin: 0 0 0px 0;
+  
+  &:after, &:before, span, label{
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: calc-line-height( $button-size );
+    background: $button-color;
+    left:0;
+    position: absolute;
+    -webkit-transition: all 300ms ease-in-out; 
+    transition: all 300ms ease-in-out;
+  }
+  &:before{
+    top: 0;
+  }
+  &:after{
+    bottom: 0; 
+  }
+  &:focus{
+    outline: none;
+  }
+  label{
+    width: 100%;
+    height: 100%;
+    background: none;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  span{
+    top: calc-line-height( $button-size ) * 2;
+  }
+}
+
+#change-hamburguer{
+  display:none;
+  
+  &:checked ~ .hamburguer:before, &:checked ~ .hamburguer:after {
+    top: $button-size / 2;
+    margin-top: -10%;
+  }
+  &:checked ~ .hamburguer:before{
+		@include css3-rotation(-45deg);
+  }
+  &:checked ~ .hamburguer:after{
+		@include css3-rotation(45deg);
+  }
+  &:checked ~ .hamburguer span{
+		opacity: 0;
+  }
+  &:checked ~ .menu{
+    max-height: 200px;
+  }
+}
 
 /* Helpers ===================================================================*/
 // Alignment Helpers
@@ -1432,6 +1659,9 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .padding-bottom {
   padding-bottom: $gutter;
 }
+
+
+/* Vendor ===================================================================*/
 
 
 /* =============================================================================

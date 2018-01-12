@@ -10,27 +10,16 @@
 		<div class="main">
 			<div class="row">
 
-				<div class="column s3">
-					<div class="mb-menu">
-						<i class="fa fa-bars fa-2x"></i>
-					</div>
+				<div class="column s1" id="main-menu">
+					{{ hamburger }}
 				</div>
 
-				<div class="column s6">
+				<div class="column s8">
 					{% include 'header-logo-mobile' %}
 				</div>
 
-				<div class="column s3">
-
-					<div class="cart">
-						<a href="/cart" id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" class="v-middle">
-				      <i class="fa fa-shopping-bag"></i>
-				    </a>
-					</div>
-					<div class="search">
-						<a class="fa fa-search" id="mb-header-search"></a>
-					</div>
-
+				<div class="column s3" id="mb-actions">
+					{{ mobile_actions }}
 				</div>
 				
 			</div>

@@ -1,42 +1,16 @@
 <!-- /snippets/theme-footer.liquid -->
 
 {% assign heading = section.settings.heading %}
+{% assign logo = section.settings.logo %}
 {% assign email_placeholder = section.settings.email_placeholder %}
 {% assign button_text = section.settings.button_text %}
 {% assign success = section.settings.success %}
 {% assign show_button = section.settings.show_button %}
 
-<footer class="theme-footer" role="contentinfo">
-  <div class="container center">
-    <div class="row l-table">
-      <div class="column l5 m12 s12 l-left v-middle">
-        {% if section.settings.enable_social %}
-          {% include 'social-links' %}
-        {% endif %}
-      </div>
-      <div class="column l7 m12 s12 l-right v-middle">
-        {% if section.settings.enable_subscribe %}
-          <h5>{{ heading }}</h5>
-          {% include 'section-subscribe-form' %}
-        {% endif %}
-      </div>
-    </div>
-  </div>
 
-  <div class="container center">
-    <div class="row l-table">
-      <div class="column l7 m12 s12 l-left v-middle">
-        {% if section.settings.enable_gateway_icons %}
-          {% include 'payment-gateways' %}
-        {% endif %}
-      </div>
-      <div class="column l5 m12 s12 l-right v-middle">
-        <small>&copy; {{ 'now' | date: "%Y" }} <a href="/">{{ shop.name }}</a> | site by <a href="https://elkfox.com?ref={{ shop.name | handleize }}" title="Digital Commerce Agency Elkfox.com">{% include 'icon' with 'elkfox' %}</a> &amp; <a href="http://shopify.com?ref=elkfox" title="Shopify.com" class="icon-small">{% include 'icon' with 'shopify' %} Shopify</a></small>
-      </div>
-    </div>
-  </div>
+{% include 'footer-layout-desktop' %}
+{% include 'footer-layout-mobile' %}
 
-</footer>
 {% schema %}
   {
     "name": "Footer",
@@ -44,6 +18,16 @@
       {
         "type": "header",
         "content": "General"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_mobile",
+        "label": "Mobile Logo image"
       },
       {
         "type": "checkbox",

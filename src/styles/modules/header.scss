@@ -148,8 +148,24 @@
   		}
   	}
   	.main {
-  		padding: 10px;
-  		
+  		padding: 0 10px;
+  		#main-menu {
+  			padding: 18px 0;
+  		}
+  		.logo {
+  			margin: 0 7% 0 15%;
+  		}
+  		#mb-actions {
+  			@include flex();
+  			flex-direction: row;
+  			.cart,
+  			.search {
+  				flex: 1;
+  				font-size: 1.5em;
+  				padding: 15px 6px;
+  				text-align: center;
+  			}
+  		}
   	}
   }
 }
