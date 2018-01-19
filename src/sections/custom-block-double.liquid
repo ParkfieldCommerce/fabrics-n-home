@@ -1,0 +1,136 @@
+<style>
+	{% for block in section.blocks %}
+		{% assign settings = block.settings %}
+		.double .block-{{ forloop.index }} {
+			background: linear-gradient(
+				rgba(0,0,0,0.5),
+				rgba(0,0,0,0.5)
+				),
+			{% if settings.image_bg %}
+			url({{ settings.image_bg | img_url: 'master' }});
+			{% else %}
+			#fff
+			{% endif %}
+			background-position: 50% 50%;
+			background-size: cover;
+		}
+
+		.double .block-{{ forloop.index }} .style-{{ settings.block_style }} {
+			background: {{ settings.block_text_bg | color_modify: 'alpha', 1 }};
+		}
+
+		.double .block-{{ forloop.index }} .style-bottom {
+			background: {{ settings.block_text_bg | color_modify: 'alpha', 0.8 }};
+		}
+
+	{% endfor %}
+</style>
+<section class="custom-block double">
+	<div class="container l">
+		<div class="row">
+			{% for block in section.blocks %}
+				{% assign settings = block.settings %}
+				<div class="column l6 m6 s12">
+					<div class="block-{{ forloop.index }} main">
+						<div class="content-container style-{{ settings.block_style }}">
+
+							<h1 class="lead">{{ settings.block_heading }}</h1>
+
+							{% if settings.block_content %}
+								<p class="content">{{ settings.block_content }}</p>
+							{% endif %}
+
+							{% if settings.block_btn %}
+								<a href="{{ settings.btn_url }}" class="btn 
+								{% if settings.block_style == 'left' or settings.block_style == 'right' %}
+									secondary-btn
+								{% else %}
+									primary-btn
+								{% endif %}">{{ settings.block_btn }}</a>
+							{% endif %}
+
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% schema %}
+	{
+		"name": "Custom Double Column",
+		"class": "custom-block-double",
+		"max_blocks": 6,
+		"blocks": [
+			{
+				"type": "custom_block_double",
+				"name": "Custom Double Column",
+				"settings": [
+					{
+						"type": "header",
+						"content": "Basics"
+					},
+					{
+						"type": "image_picker",
+						"id": "image_bg",
+						"label": "Background Image"
+					},
+					{
+						"type": "text",
+						"id": "block_heading",
+						"label": "Heading"
+					},
+					{
+						"type": "textarea",
+						"id": "block_content",
+						"label": "Content"
+					},
+					{
+						"type": "text",
+						"id": "block_btn",
+						"label": "Button Text"
+					},
+					{
+						"type": "url",
+						"id": "btn_url",
+						"label": "Button URL"
+					},
+					{
+						"type": "header",
+						"content": "Styles"
+					},
+					{
+						"type": "select",
+						"id": "block_style",
+						"label": "Block Style",
+						"options": [
+							{ "value": "left", "label": "Left Aligned" },
+							{ "value": "right", "label": "Right Aligned" },
+							{ "value": "center", "label": "Center Aligned" },
+							{ "value": "bottom", "label": "Bottom Placement" }
+						]
+					},
+					{
+						"type": "color",
+						"id": "block_text_bg",
+						"label": " Background color for Text"
+					}
+				]
+			}
+		],
+		"presets": [
+			{
+				"name": "Custom Block Double",
+				"category": "Custom",
+				"blocks": [
+					{
+						"type": "custom_block_double"
+					},
+					{
+						"type": "custom_block_double"
+					}
+				]
+			}
+		]
+	}
+{% endschema %}

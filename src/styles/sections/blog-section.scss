@@ -1,0 +1,97 @@
+.blog-section {
+	padding-bottom: 5em;
+	@include s() {
+		padding-bottom: 1em;
+	}
+	.blog-main {
+		position: relative;
+		@include s() {
+			margin-bottom: 15px;
+		}
+	}
+	.title {
+		@include ptSerif(40px, 400, normal);
+		text-align: center;
+		margin-bottom: 10px;
+		display: block;
+		@include s() {
+			font-size: 30px;
+		}
+	}
+	.article-link {
+		@include ptSans(15px, 400, normal);
+		text-decoration: none;
+		color: #84bbb3;
+		position: absolute;
+		right: 0;
+		top: 40px;
+		@include s() {
+			position: relative;
+			display: block;
+			top: 0;
+			text-align: center;
+		}
+	}
+
+	.blog-block {
+		width: 97%;
+		height: 300px;
+		position: relative;
+		z-index: 1;
+		&:after {
+			position: absolute;
+			content: '';
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: -1;
+			background-image: linear-gradient(-183deg, rgba(0,0,0,0.00) 50%, #555555 100%);
+		}
+		a {
+			@include ptSerif(20px, 400, normal);
+			color: #fff;
+			display: block;
+			width: 100%;
+			text-align: left;
+			text-decoration: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			&:hover {
+				text-decoration: underline;
+			}
+			p {
+				margin: 0;
+				position: absolute;
+				padding: 20px 20px 10px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
+		}
+		&.blog-1,
+		&.blog-4,
+		&.blog-7 {
+			margin-right: auto;
+		}
+
+		&.blog-3,
+		&.blog-6,
+		&.blog-9 {
+			margin-left: auto;
+		}
+
+		&.blog-2,
+		&.blog-5,
+		&.blog-8 {
+			margin: auto;
+		}
+		@include s() {
+			width: 100%;
+			margin-bottom: 10px!important;
+		}
+	}
+}

@@ -705,4 +705,91 @@ $(document).ready(function() {
   var sections = new concrete.Sections();
   sections.register('product', concrete.Product);
   sections.register('collection', concrete.Collection);
+
+  // Mobile Search Actions
+  $('#mb-actions .search').on('click', function() {
+  	$('.search-bar').slideToggle();
+  });
+
+  $('.mb-search-close').on('click', function() {
+  	$('.search-bar').slideToggle();
+  });
+
+  $('.mb-search-action').on('click', function() {
+  	$('.search-bar').find('form').submit();
+  });
+
+  // Init Slick Slider for sections/hero-slider.liquid
+  $('#hero-slider').slick({
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: false,
+    prevArrow: '<a class="hero-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+    nextArrow: '<a class="hero-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
+    dots: true,
+    appendDots: '.nav-dots',
+    customPaging: function(slider, i) {
+      var thumb = $(slider.$slides[i]).data();
+      return '<a><i class="fa fa-circle-thin" data-index="'+i+'"></i></a>'
+    },
+    useCSS: false
+  });
+
+  // Init Slick Slider for sections/brand-slider.liquid
+  $('#brand-slider').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: true,
+    prevArrow: '<a class="brand-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+    nextArrow: '<a class="brand-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
+    dots: false,
+    useCSS: false,
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+          prevArrow: '<a class="brand-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+          nextArrow: '<a class="brand-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
+          dots: false,
+          useCSS: false,
+        }
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: true,
+          prevArrow: '<a class="brand-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+          nextArrow: '<a class="brand-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
+          draggable: true,
+          dots: false,
+          useCSS: false,
+        }
+      }
+    ]
+  }); // $('#brand-slider').slick();
+
+  // Menu items logic
+  $('.secondary-item, .mobile-item').each(function() {
+    var childUrl = $(this).data('child-url'),
+        childTitle = $(this).data('child-title'),
+        mainTitle = $(this).data('main-title');
+
+    if (childUrl == window.location.href) {
+      $(this).addClass('active');
+      $(this).parent().removeClass('inactive').addClass('active');
+      $('.main-menu .item[data-main-title="'+mainTitle+'"]').removeClass('inactive').addClass('active');
+    }
+  });
+
+  // Show/Hide Mobile Menu
+  $('.hamburguer').on('click', function() {
+    $('.mobile-menu').slideToggle();
+  });
 })

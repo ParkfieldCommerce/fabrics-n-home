@@ -1,0 +1,48 @@
+.brand-slider {
+	padding-bottom: 3em;
+	.title {
+		padding: 54px 0 .5em;
+		@include ptSerif(40px, $fontRegular, normal);
+		text-align: center;
+	}
+	#brand-slider {
+		position: relative;
+		z-index: 1;
+		.brand-prev,
+		.brand-next {
+			position: absolute;
+			top: 10px;
+			z-index: 5;
+			width: 50px;
+			i {
+				font-size: 30px;
+				color: #b9b4a7;
+			}
+		}
+		.brand-prev {
+			left: -20px;
+			text-align: left;
+			@include m() {
+				left: 20px;
+			} 
+			@include s() {
+				left: 20px;
+			}
+		}
+		.brand-next {
+			right: -20px;
+			text-align: right;
+			@include m() {
+				right: 20px;
+			}
+			@include s() {
+				right: 20px;
+			}
+		}
+	}
+	.slide-item {
+		img {
+			margin: auto;
+		}
+	}
+}

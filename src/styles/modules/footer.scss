@@ -147,6 +147,7 @@
 	  	position: absolute;
 	  	top: -40px;
 	  	width: 100%;
+	  	z-index: 3;
 	  	a {
 	  		background: #fff;
 	  		width: 110px;
@@ -156,6 +157,7 @@
 	  	img {
 	  		width: 81px;
 	  		height: 71px;
+	  		background: #fff;
 	  	}
 	  }
 	  .lead {

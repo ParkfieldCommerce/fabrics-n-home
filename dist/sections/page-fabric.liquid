@@ -1,0 +1,31 @@
+<style>
+	.page-fabric .block-title {
+		background: linear-gradient(
+			rgba(0,0,0,0.3),
+			rgba(0,0,0,0.3)
+			),
+		url({{section.settings.image_bg | img_url:'master' }});
+		background-position: 50% 50%;
+		background-size: cover;
+	}
+</style>
+<section class="page-fabric">
+	<div class="container l">
+		<div class="block-title">
+			<h2 class="title">{{page.title}}</h2>
+		</div>
+	</div>
+</section>
+
+{% schema	%}
+	{
+		"name": "Fabric Page",
+		"settings": [
+			{
+				"type": "image_picker",
+				"id": "image_bg",
+				"label": "Title Block Background"
+			}
+		]
+	}
+{% endschema %}

@@ -1,0 +1,72 @@
+{% assign settings = section.settings %}
+<style>
+	{% for article in blogs[settings.blog_group].articles limit: settings.num_of_articles %}
+		.blog-{{ forloop.index }}.blog-block {
+			background: linear-gradient(
+				rgba(0,0,0,0.1),
+				rgba(0,0,0,0.1)
+				),
+			{% if article.image %}
+			url({{ article.image | img_url: 'master' }});
+			{% else %}
+			#fff
+			{% endif %}
+			background-position: 50% 50%;
+			background-size: cover;
+		}
+	{% endfor %}
+</style>
+<section class="blog-section">
+	<div class="container l">
+		<div class="blog-main">
+			<h2 class="title">{{ settings.blog_heading }}</h2>
+			<a class="article-link" href="{{ shop.url }}/blogs/{{ settings.blog_group }}">View All Articles</a>
+		</div>
+		<div class="row">
+			{% for article in blogs[settings.blog_group].articles limit: settings.num_of_articles %}
+				<div class="column l4 m4 s12">
+					<div class="blog-{{ forloop.index }} blog-block">
+						<a href="{{ article.url }}">
+							<p>{{article.title}}</p>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+{% schema %}
+	{
+		"name": "Blog Section",
+		"settings": [
+			{
+				"type": "text",
+				"id": "blog_heading",
+				"label": "Heading",
+				"default": "What's Trending"
+			},
+			{
+				"type": "blog",
+				"id": "blog_group",
+				"label": "Blog"
+			},
+			{
+				"type": "select",
+				"id": "num_of_articles",
+				"label": "Number of Articles",
+				"options": [
+					{ "value": "3", "label": "3" },
+					{ "value": "6", "label": "6" },
+					{ "value": "9", "label": "9" }
+				]
+			}
+		],
+		"presets": [
+			{
+				"name": "Blog Section",
+				"category": "Blog"
+			}
+		]
+	}
+{% endschema %}

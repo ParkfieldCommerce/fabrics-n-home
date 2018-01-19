@@ -1,0 +1,40 @@
+.featured-products {
+	.featured-product-block {
+		height: 260px;
+		width: 96%;
+		margin: auto;
+		position: relative;
+		.feature-title {
+			color: #fff;
+			text-align: right;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			padding: 20px;
+			line-height: normal;
+			@include dancingScript(40px, 700, normal);
+		}
+	}
+	.product-link {
+		display: block;
+		text-decoration: none;
+		&:hover {
+			.lead {
+				text-decoration: underline;
+			}
+		}
+	}
+	.lead {
+		@include ptSans(16px, 700, normal);
+		text-align: center;
+		text-transform: uppercase;
+		margin: 0;
+		color: #888888;
+		margin-bottom: 10px;
+	}
+	.btn-container {
+		text-align: center;
+		padding: 20px 0 3em;
+	}
+}

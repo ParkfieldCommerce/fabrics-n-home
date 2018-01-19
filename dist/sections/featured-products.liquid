@@ -1,0 +1,118 @@
+<section class="featured-products">
+	<div class="container l">
+		<div class="row">
+
+			{% for block in section.blocks %}
+
+				{% assign settings = block.settings %}
+				{%- assign product = all_products[settings.featured_product] -%}
+
+				{% if forloop.length == 1 %}
+					{% assign column_width = "l12 m12 s12" %}
+				{% elsif forloop.length == 2 %}
+					{% assign column_width = "l6 m6 s6" %}
+				{% elsif forloop.length == 3 %}
+					{% assign column_width = "l4 m4 s12" %}
+				{% elsif forloop.length >= 4 %}
+					{% assign column_width = "l3 m3 s12" %}
+				{% endif %}
+
+				{% for tag in product.tags %}     
+				  {% if tag contains settings.tag_type %}
+				  	{% if tag contains 'menu' %}
+				  	{% else %}
+				  		{% assign tag_type = tag | split: '_' %}
+				  	{% endif %}
+					{% endif %}
+				{% endfor %}
+
+				{% for link in product.collections %}
+					{% assign product_collection_link = link.url %}
+				{% endfor %}
+
+				{% for image in product.images %}
+					{% assign img_url = image.src | product_img_url: 'master' %}
+				{% endfor %}
+
+				<div class="column {{ column_width }}">
+					<a class="product-link" href="{{ product_collection_link }}">
+						<div class="featured-product-block"
+								 style="background: linear-gradient(
+													rgba(0,0,0,0.3),
+													rgba(0,0,0,0.3)
+								 				),
+								 				url({{ img_url }}); 
+												background-position: 50% 50%; 
+												background-size: cover;">
+							{% comment %}<h2 class="feature-title">{{ tag_type[1] }}</h2>{% endcomment %}
+						</div>
+						<p class="lead">Shop By 
+							{% if tag_type[0] contains 'suggested-use' %}
+								{{ tag_type[0] | replace: '-', ' ' }}
+							{% else %}
+						 		{{ tag_type[0] | capitalize }}
+						 	{% endif %}
+						</p>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+		{% if section.settings.shop_text != empty %}
+			<div class="btn-container">
+				<a href="{{ section.settings.shop_url }}" class="btn primary-btn">{{ section.settings.shop_text }}</a>
+			</div>
+		{% endif %}
+	</div>
+</section>
+
+{% schema %}
+	{
+		"name": "Featured Products",
+		"class": "featured-products-section",
+		"max_blocks": 8,
+		"settings": [		
+			{
+				"type": "url",
+				"id": "shop_url",
+				"label": "Button URL"
+			},
+			{
+				"type": "text",
+				"id": "shop_text",
+				"label": "Button Text"
+			}
+		],
+		"blocks": [
+			{
+				"type": "featured-product",
+				"name": "Featured Product",
+				"settings": [
+					{
+		        "type": "product",
+		        "id": "featured_product",
+		        "label": "Product"
+		      },
+					{
+						"type": "select",
+						"id": "tag_type",
+						"label": "Tag Type",
+						"options": [
+							{ "value": "brand", "label": "Brand" },
+							{ "value": "style", "label": "Style" },
+							{ "value": "color", "label": "Color" },
+							{ "value": "suggested-use", "label": "Suggested Use" },
+							{ "value": "collection", "label": "Collection" },
+							{ "value": "origin", "label": "Origin" }
+						]
+					}
+				]
+			}
+		],
+		"presets": [
+			{
+				"name": "Featured Products",
+				"category": "Products"
+			}
+		]
+	}
+{% endschema %}

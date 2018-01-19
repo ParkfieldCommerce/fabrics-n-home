@@ -1,4 +1,3 @@
-
 {% assign sold_out = true %}
 {% assign on_sale = false %}
 {% assign current_variant = product.selected_or_first_available_variant %}
@@ -11,20 +10,24 @@
   {% assign sold_out = false %}
 {% endif %}
 
-<meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-<meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+<section class="product-template">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
-<div class="padding-top padding-bottom">
   <div class="container l" itemscope itemtype="http://schema.org/Product" data-section-type="product" data-section-id="{{ section.id }}" data-enable-history-state="true">
-    <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-    <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
-    <div class="row no-margin">
-      <div class="column l6 m6 s12">
+    <div class="crumbs">
+      {% include 'theme-breadcrumbs' %}
+    </div>
+    
+    <div class="row">
+      <div class="column l8 m6 s12">
 
-        <div id="ProductPhoto">
-          <img src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
+        <div class="img-container">
+          <img src="{{ product.featured_image | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
         </div>
+
+        {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
 
         {% if product.images.size > 1 %}
           <div id="ProductThumbs" class="row collapse">
@@ -37,101 +40,261 @@
         {% endif %}
 
       </div>
+      <div class="column l4 m6 s12">
 
-      <div class="column l6 m6 s12">
+        <div class="title">
+          <h1 itemprop="name">{{ product.title }}</h1>
+          {% if section.settings.show_vendor %}
+            <p itemprop="brand" class="product-single__vendor">{{ product.vendor }}</p>
+          {% endif %}
+        </div>
 
-        <h1 itemprop="name">{{ product.title }}</h1>
+        <p id="ProductPrice" class="product-price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+          Price: {{ current_variant.price | money }} /Yard
+        </p>
 
-        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-          <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-          <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+        <p class="product-msrp product-{{ section.id }}{% unless current_variant.available %} product-price-sold-out{% endunless %}">
+          MSRP: {{ product.price_max | times:2 | money }} /Yard
+        </p>
 
+        {% assign hasFull = false %}
+        {% assign hasSample = false %}
+        {% for variant in product.variants %}
+          {%if variant.title contains "Full" or "Default" %}
+            {% assign hasFull = true %}
+            {%endif %}
+          {% if variant.title contains "Sample" %}
+            {% assign hasSample = true %}
+            {% assign sampleId = variant.id %}
+          {% endif %}
+        {% endfor%}
+
+        {% if hasFull == true %}
           <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-cart-submit>
-            {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
-              {% for option in product.options_with_values %}
-                <label {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
-                  {{ option.name }}
-                </label>
-                <select class="single-option-selector" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
-                  {% for value in option.values %}
-                    <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
-                  {% endfor %}
-                </select>
-              {% endfor %}
-            {% endunless %}
-
-            {% comment %}Original variant selector, the customer will not see this element.{% endcomment %}
-            <select name="id" id="productSelect" class="product-single__variants" data-index="option{{ forloop.index }}" style="display: none;">
+              
+            <select id="variantOptions" name="id" style="display:none">
               {% for variant in product.variants %}
-                {% if variant.available %}
-                  <option
-                    value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}
-                  </option>
-                {% else %}
-                  <option disabled="disabled">
-                    {{ variant.title }} - {{ 'product.sold_out' | t }}
-                  </option>
-                {% endif %}
+                {% unless variant.title contains 'Sample' %}
+                  <option value="{{ variant.id }}">{{ variant.price | times: 2 | money }} /Yard</option>
+                
+                {% endunless %}
               {% endfor %}
             </select>
 
-            <span class="hidden">{{ 'product.regular_price' | t }}</span>
-            <span id="ProductPrice" class="h2 clearfix" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-              {{ current_variant.price | money }}
-            </span>
-
-            {% if on_sale %}
-              <p id="OnSale">
-                <span class="hidden">{{ 'product.original_price' | t }}</span>
-                <span>{{ 'product.original_price' | t }}</span>
-                <s id="ComparePrice">{{ product.compare_at_price | money }}</s>
-              </p>
+            {% if section.settings.show_quantity_selector %}
+              <div class="product-form__item product-form__item--quantity">
+                <label for="Quantity">Yards</label>
+                <input type="number" step="0.5" value="1" id="Quantity" name="quantity" class="product-form__input" pattern="[0-9]*">
+              </div>
             {% endif %}
 
-            <label for="Quantity" class="clearfix">{{ 'product.quantity' | t }}</label>
-            <div class="quantity-adjust">
-              <a class="adjust" data-change="-1">&#8211;</a>
-               <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
-              <a class="adjust" data-change="1">&#43;</a>
-            </div>
             {% if sold_out %}
               <button type="submit" name="add" data-add-to-cart disabled>
                 <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
               </button>
             {% else %}
-              <button type="submit" name="add" data-add-to-cart>
-                <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
+              <button type="submit" class="btn primary-btn" name="add" data-add-to-cart>
+                {{ 'product.add_to_cart' | t }}
               </button>
             {% endif %}
           </form>
+        {%endif%}
 
-        </div>
+        {%if hasSample %}
+          <div class="button-container">
+            <button class="btn primary-btn" type="button" id="orderSample">Order Sample</button>
+          </div>
+        {%endif%}
 
-        <div class="rte" itemprop="description">
-          {{ product.description }}
-        </div>
-
-        <h4 class="margin-top">{{ 'social.share.title' | t }}</h4>
-        {% include 'social-sharing' %}
-
-        {% if collection %}
-          {% if collection.previous_product or collection.next_product %}
-            <p>
-              {% if collection.previous_product %}
-                <span class="left">
-                  {{ 'product.previous_product' | t | link_to: collection.previous_product }}
-                </span>
-              {% endif %}
-              {% if collection.next_product %}
-                <span class="right">
-                  {{ 'product.next_product' | t | link_to: collection.next_product }}
-                </span>
-              {% endif %}
-            </p>
+        {% for tag in product.tags %}
+          {% if tag contains 'brand' %}
+            {% assign brand = tag | split: '_'%}
+            {% assign brand_exists = true %}
+          {% elsif tag contains 'book'%}
+            {% assign book = tag | split: '_' %}
+            {% assign book_name_exists = true %}
+          {% elsif tag contains 'pattern-name'%}
+            {% assign pattern_name = tag| split: '_' %}
+            {% assign pattern_name_exists = true %}
+          {% elsif tag contains 'pattern-number' %}
+            {% assign pattern_number = tag | split: '_' %}
+            {% assign pattern_number_exists = true %}
+          {% elsif tag contains 'style' %}
+            {% assign style = tag | split: '_' %}
+            {% assign style_exists = true %}
+          {% elsif tag contains 'color_' %}
+            {%if tag contains 'menu'%}
+            {%else%}
+              {% assign color = tag | split: '_' %}
+              {% assign color_exists = true %}
+            {%endif%}
+          {% elsif tag contains 'color-number' %}
+            {% assign color_number = tag | split: '_' %}
+            {% assign color_number_exists = true %}
+          {% elsif tag contains 'content_' %}
+            {% assign content = tag | split: '_' %}
+            {% assign content_exists = true %}
+          {% elsif tag contains 'width' %}
+            {% assign width = tag | split: '_' %} 
+            {% assign width_exists = true %}
+          {% elsif tag contains 'vertical' %}
+            {% assign vertical = tag | split: '_' %}
+            {% assign vertical_exists = true %}
+          {% elsif tag contains 'horizontal' %}
+            {% assign horizontal = tag | split: '_' %}  
+            {% assign horizontal_exists = true %}
+          {% elsif tag contains 'suggested' %}
+            {% assign suggested = tag | split: '_' %}
+            {% assign suggested_exists = true %}
+          {% elsif tag contains 'durability' %}
+            {% assign durability = tag | split: '_' %}
+            {% assign durability_exists = true %}
+          {% elsif tag contains 'item-type' %}
+            {% assign item = tag | split: '_' %}    
+            {% assign item_exists = true %}
+          {% elsif tag contains 'unit' %}
+            {% assign unit = tag | split: '_' %}
+            {% assign unit_exists = true %}
+          {% elsif tag contains 'origin' %}
+            {% assign origin = tag | split: '_' %}    
+            {% assign origin_exists = true %}
+          {% elsif tag contains 'collection' %}
+            {% assign collection = tag | split: '_' %}    
+            {% assign collection_exists = true %}
           {% endif %}
-        {% endif %}
+        {% endfor %}
+             
+        <div class="product-description-tags" style ="text-transform: capitalize;">
+          {% if brand_exists %}
+            <p><strong>{{brand[0]}}:</strong> {{brand[1]}}</p>
+          {% endif %}
+          {% if pattern_name_exists %}          
+            <p><strong>{{pattern_name[0] | replace: '-', ' '}}:</strong> {{pattern_name[1]}}</p>
+          {% endif %}
+          {% if pattern_number_exists %}
+            <p><strong>{{pattern_number[0] | replace: '-', ' '}}:</strong> {{pattern_number[1]}}</p>
+          {% endif %}
+          {% if style_exists %}
+            <p><strong>{{style[0]}}:</strong> {{style[1]}}</p>
+          {% endif %}
+          {% if color_exists %}
+            <p><strong>{{color[0] | replace: '-', ' '}}:</strong> {{color[1]}}</p>  
+          {% endif %}
+          {% if color_number_exists %}
+            <p><strong>{{color_number[0] | replace: '-', ' '}}:</strong> {{color_number[1]}}</p>  
+          {% endif %}
+          {% if content_exists %}  
+            <p><strong>{{content[0]}}:</strong> {{content[1]}}</p> 
+          {% endif %}
+          {% if width_exists %}
+            <p><strong>{{width[0]}}:</strong> {{width[1] | replace: '-', ''}}</p>    
+          {% endif %}
+          {% if vertical_exists %}
+            <p><strong>{{vertical[0] | replace: '-', ' '}}:</strong> {{vertical[1] | replace: '-', ''}}</p>
+          {% endif %}
+          {% if horizontal_exists %}
+            <p><strong>{{horizontal[0] | replace: '-', ' '}}:</strong>{{horizontal[1] | replace: '-', ''}}</p>
+          {% endif %}
+          {% if suggested_exists %}
+            <p><strong>{{suggested[0] | replace: '-', ' '}}:</strong> {{suggested[1] | replace: '-', ' '}}</p>
+          {% endif %}
+          {% if durability_exists %}
+            <p><strong>{{durability[0] | replace: '-', ' '}}:</strong> {{durability[1] | replace: '-', ' '}}</p>
+          {% endif %}
+          {% if item_exists %}
+            <p><strong>{{item[0] | replace: '-', ' '}}:</strong> {{item[1]}}</p>     
+          {% endif %}
+          {% if unit_exists %}
+            <p><strong>{{unit[0] | replace: '-', ' '}}:</strong> {{unit[1] | replace: '-', ' '}}</p>
+          {% endif %}
+          {% if origin_exists %}
+            <p><strong>{{origin[0]}}:</strong> {{origin[1]}}</p>
+          {% endif %}
+          {% if collection_exists %}
+            <p><strong>{{collection[0]}}:</strong> {{collection[1] | replace: '-', ' '}}</p>
+          {% endif %}
+          
+          {% if product.description != empty %}
+            <div class="description">
+              <p><strong>Description:</strong>{{ product.description }}</p>
+            </div>
+          {% endif %}
+          
+        </div>
 
       </div>
-    </div>
+    </div> <!--row-->
   </div>
-</div>
+</section>
+
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+{% endunless %}
+
+<script>
+  
+</script>
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "select",
+        "id": "image_size",
+        "label": "Image size",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          },
+          {
+            "value": "full",
+            "label": "Full-width"
+          }
+        ],
+        "default": "medium"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quantity_selector",
+        "label": "Show quantity selector",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_variant_labels",
+        "label": "Show variant labels",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show vendor",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_zoom",
+        "label": "Enable image zoom",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

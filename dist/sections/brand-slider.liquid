@@ -1,0 +1,53 @@
+<section class="brand-slider">
+  <div class="container l">
+    <h2 class="title">Designer Brands</h2>
+    <div class="slider" id="brand-slider">
+      {% for block in section.blocks %}
+        {% assign settings = block.settings %}
+        <div class="slide-item">
+          <div class="img-container">
+            <a href="{{ settings.brand_url }}">
+              <img src="{{ settings.image_feature | img_url: '200x100' }}" alt="">
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Brand Slider",
+    "class": "brand-slider-section",
+    "max_blocks": 20,
+    "blocks": [
+      {
+        "type": "brand_block",
+        "name": "Brand Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image_feature",
+            "label": "Feature Image"
+          },
+          {
+            "type": "url",
+            "id": "brand_url",
+            "label": "Brand Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Brand Slider",
+        "category": "Sliders",
+        "blocks": [
+          {
+            "type": "brand_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

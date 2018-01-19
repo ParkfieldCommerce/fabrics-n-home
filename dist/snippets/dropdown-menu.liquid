@@ -1,0 +1,8 @@
+{% if link.links != blank %}
+	{% include 'icon' with 'chevron-down' %}
+	<ul class="dropdown">
+		{% for childlink in link.links %}
+			<li class="sub-item">{{ childlink.title | link_to: childlink.url }}</li>
+		{% endfor %}
+	</ul>
+{% endif %}

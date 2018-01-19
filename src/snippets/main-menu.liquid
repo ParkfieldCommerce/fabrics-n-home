@@ -1,0 +1,44 @@
+<nav class="main-menu">
+	<div class="container l">
+		<ul class="menu-items">
+			{% for link in linklists['main-menu'].links %}
+
+				{% capture active_link %}
+					{% unless template contains 'index' %}
+				    {% if link.active %}active{% else %}inactive{% endif %}
+				  {% endunless %}
+				{% endcapture %}
+
+				<li class="item {{ active_link }}" data-main-title="{{link.title}}">
+					<a href="{{ link.url }}">
+						<p>{{ link.title }}</p>
+					</a>
+				</li>
+			{% endfor%}
+		</ul>
+	</div>
+</nav>
+
+{% unless template contains 'index' %}
+<nav class="secondary-menu">
+	<div class="container l">
+
+		{% for link in linklists['main-menu'].links %}
+			{% assign handle = link.handle %}
+			<ul class="secondary-items {% if link.active %}active{% else %}inactive{% endif %}" data-main-title="{{link.title}}">
+
+				{% for childlink in linklists[handle].links %}
+					<li class="secondary-item {% if link.links != blank %}item-dropdown{% endif %}" data-main-title="{{link.title}}" data-child-url="https:{{shop.url}}{{childlink.url}}">
+						<a href="{{ childlink.url }}">
+							<p>{{ childlink.title }}</p>
+						</a>
+						{% include 'dropdown-menu' %}
+					</li>
+				{% endfor %}
+
+			</ul>
+		{% endfor %}
+
+	</div>
+</nav>
+{% endunless %}

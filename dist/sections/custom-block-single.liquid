@@ -1,0 +1,123 @@
+<style>
+	{% for block in section.blocks %}
+		{% assign settings = block.settings %}
+		.single .block-{{ forloop.index }} {
+			background: linear-gradient(
+				rgba(0,0,0,0.5),
+				rgba(0,0,0,0.5)
+				),
+			{% if settings.image_bg %}
+			url({{ settings.image_bg | img_url: 'master' }});
+			{% else %}
+			#fff
+			{% endif %}
+			background-position: 50% 50%;
+			background-size: cover;
+		}
+
+		.block-{{ forloop.index }} .style-{{ settings.block_style }} {
+			background: {{ settings.block_text_bg | color_modify: 'alpha', 0.8 }};
+		}
+
+		.block-{{ forloop.index }} .style-{{ settings.block_style }}::before {
+			border-color: transparent transparent {{ settings.block_text_bg | color_modify: 'alpha', 0.8 }};
+		}
+	{% endfor %}
+</style>
+<section class="custom-block single">
+	<div class="container l">
+		{% for block in section.blocks %}
+			{% assign settings = block.settings %}
+			<div class="block-{{ forloop.index }} main">
+				<div class="content-container style-{{ settings.block_style }}">
+
+					<h1 class="lead">{{ settings.block_heading }}</h1>
+
+					{% if settings.block_content %}
+						<p class="content">{{ settings.block_content }}</p>
+					{% endif %}
+
+					{% if settings.block_btn %}
+						<a href="{{ settings.btn_url }}" class="btn {% if settings.block_style == 'left' %}secondary-btn{% else %}primary-btn{% endif %}">{{ settings.block_btn }}</a>
+					{% endif %}
+
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</section>
+{% schema %}
+	{
+		"name": "Custom Single Column",
+		"class": "custom-block-single",
+		"max_blocks": 5,
+		"blocks": [
+			{
+				"type": "custom_block_single",
+				"name": "Custom Single Column",
+				"settings": [
+					{
+						"type": "header",
+						"content": "Basics"
+					},
+					{
+						"type": "image_picker",
+						"id": "image_bg",
+						"label": "Background Image"
+					},
+					{
+						"type": "text",
+						"id": "block_heading",
+						"label": "Heading"
+					},
+					{
+						"type": "textarea",
+						"id": "block_content",
+						"label": "Content"
+					},
+					{
+						"type": "text",
+						"id": "block_btn",
+						"label": "Button Text"
+					},
+					{
+						"type": "url",
+						"id": "btn_url",
+						"label": "Button URL"
+					},
+					{
+						"type": "header",
+						"content": "Styles"
+					},
+					{
+						"type": "select",
+						"id": "block_style",
+						"label": "Block Style",
+						"options": [
+							{ "value": "left", "label": "Left Aligned" },
+							{ "value": "right", "label": "Right Aligned" },
+							{ "value": "center", "label": "Center Aligned" },
+							{ "value": "bottom", "label": "Bottom Placement" }
+						]
+					},
+					{
+						"type": "color",
+						"id": "block_text_bg",
+						"label": " Background color for Text"
+					}
+				]
+			}
+		],
+		"presets": [
+			{
+				"name": "Custom Block Single",
+				"category": "Custom",
+				"blocks": [
+					{
+						"type": "custom_block_single"
+					}
+				]
+			}
+		]
+	}
+{% endschema %}

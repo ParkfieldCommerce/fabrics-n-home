@@ -1,0 +1,117 @@
+<style>
+	{% for block in section.blocks %}
+		{% assign settings = block.settings %}
+		.slide-item.slide-{{ forloop.index }} {
+			background: 
+			linear-gradient(
+				rgba(0, 0, 0, 0.5),
+				rgba(0, 0, 0, 0.5)
+				),
+			url({{ settings.image_feature | img_url:'master' }});
+			background-position: 50% 50%;
+			background-size: cover;
+			z-index: 1;
+		}
+
+		.block-{{settings.text_placement}} {
+			text-align: {{settings.text_placement}};
+		}
+	{% endfor %}
+</style>
+<section class="hero-slider">
+	<div class="slider" id="hero-slider">
+		{% for block in section.blocks %}
+			{% assign settings = block.settings %}
+			<div class="slide-item slide-{{ forloop.index }}">
+				<div class="row">
+
+					{% capture content_box %}
+						<div class="content-box block-{{settings.text_placement}}">
+							<h2 class="main">{{ settings.text_feature }}</h2>
+							{% if settings.button_url %}
+							<a href="{{ settings.button_url }}" class="btn primary-btn">{{ settings.button_text }}</a>
+							{% endif %}
+						</div>
+					{% endcapture %}
+
+					<div class="column l4 m4 s12">
+						{% if settings.text_placement == 'left' %}
+							{{ content_box }}
+						{% endif %}
+					</div>
+
+					<div class="column l4 m4 s12">
+						{% if settings.text_placement == 'center' %}
+							{{ content_box }}
+						{% endif %}
+					</div>
+
+					<div class="column l4 m4 s12">
+						{% if settings.text_placement == 'right' %}
+							{{ content_box }}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="nav-dots"></div>
+</section>
+
+{% schema %}
+  {
+    "name": "Hero Slider",
+    "class": "hero-slider-section",
+    "max_blocks": 9,
+    "blocks": [
+      {
+        "type": "hero_block",
+        "name": "Hero Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image_feature",
+            "label": "Feature Image"
+          },
+          {
+						"type": "radio",
+						"id": "text_placement",
+						"label": "Text Box Placement",
+						"options": [
+							{ "value": "left", "label": "Left" },
+							{ "value": "center", "label": "Center" },
+							{ "value": "right", "label": "Right" }
+						]
+          },
+          {
+            "type": "textarea",
+            "id": "text_feature",
+            "label": "Featured Text",
+            "default": "Some text here"
+          },
+          {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text"
+          },
+          {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Slider",
+        "category": "Sliders",
+        "blocks": [
+          {
+            "type": "hero_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

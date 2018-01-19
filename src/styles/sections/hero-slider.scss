@@ -1,0 +1,81 @@
+.hero-slider {
+	position: relative;
+	.slide-item {
+		height: 480px;
+		width: 100%;
+		margin: 0 auto;
+		@include flex();
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		.row {
+			width: 100%;
+		}
+		&.slick-slide {
+			@include flex();
+		}
+		@include s() {
+			height: 382px;
+			margin-bottom: 10px;
+		}
+	}
+	.content-box {
+		padding: 20px;
+		@include s() {
+			&.block-left,
+			&.block-right,
+			&.block-center {
+				text-align: center;
+			}
+		}
+		.main {
+			@include ptSerif(3em, $fontRegular, normal);
+			line-height: 1.1em;
+			margin-bottom: 0.7em;
+			color: #fff;
+			@include m() {
+				font-size: 2em;
+			}
+		}
+		.btn {
+			padding: 7px 25px;
+		}
+	}
+	.nav-dots {
+		position: absolute;
+		bottom: 10%;
+		left: 0;
+		right: 0;
+		display: block;
+		.slick-dots {
+			@include flex();
+			flex-direction: row;
+			width: 15%;
+			margin: auto;
+			@include s() {
+				width: 50%;
+			}
+			li {
+				flex: 1;
+				text-align: center;
+				a {
+					color: #fff;
+					font-size: 24px;
+				}
+				&.slick-active {
+					i {
+						position: relative;
+						&:after {
+							position: absolute;
+							content: '\f111';
+							left: 0;
+							right: 0;
+							top: 0;
+							bottom: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
