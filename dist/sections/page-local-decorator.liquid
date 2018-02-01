@@ -1,0 +1,138 @@
+{% capture alignment %}
+	{% if section.settings.main_alignment == 'left' %}
+		align-left
+	{% elsif section.settings.main_alignment == 'center' %}
+		align-center
+	{% elsif section.settings.main_alignment == 'right' %}
+		align-right
+	{% endif %}
+{% endcapture %}
+
+<section class="local-decorator">
+	<div class="container l">
+		<div class="banner">
+			<div class="text-container {{ alignment }}">
+				<h1 class="title">{{ section.settings.banner_text }}</h1>		
+			</div>		
+		</div>
+		<div class="">
+			
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Local Decorator",
+	"max_blocks": 50,
+	"settings": [
+		{
+			"type": "header",
+			"content": "Main Banner"
+		},
+		{
+			"type": "select",
+			"id": "main_alignment",
+			"label": "Text Alignment",
+			"options": [
+				{ "value": "left", "label": "Left" },
+				{ "value": "center", "label": "Centered" },
+				{ "value": "right", "label": "Right" }
+			]
+		},
+		{
+			"type": "text",
+			"id": "banner_text",
+			"label": "Banner Heading"
+		},
+		{
+			"type": "image_picker",
+			"id": "banner_img",
+			"label": "Banner Image"
+		}
+	],
+	"blocks": [
+		{
+			"type": "state",
+			"name": "State",
+			"settings": [
+				{
+					"type": "text",
+					"id": "states",
+					"label": "State"
+				},
+				{
+					"type": "header",
+					"content": "Store #1"
+				},
+				{
+					"type": "text",
+					"id": "store_1",
+					"label": "Store Name"
+				},
+				{
+					"type": "url",
+					"id": "store_1_url",
+					"label": "Store Website"
+				},
+				{
+					"type": "header",
+					"content": "Store #2"
+				},
+				{
+					"type": "text",
+					"id": "store_2",
+					"label": "Store Name"
+				},
+				{
+					"type": "url",
+					"id": "store_2_url",
+					"label": "Store Website"
+				},
+				{
+					"type": "header",
+					"content": "Store #3"
+				},
+				{
+					"type": "text",
+					"id": "store_3",
+					"label": "Store Name"
+				},
+				{
+					"type": "url",
+					"id": "store_3_url",
+					"label": "Store Website"
+				},
+				{
+					"type": "header",
+					"content": "Store #4"
+				},
+				{
+					"type": "text",
+					"id": "store_4",
+					"label": "Store Name"
+				},
+				{
+					"type": "url",
+					"id": "store_4_url",
+					"label": "Store Website"
+				},
+				{
+					"type": "header",
+					"content": "Store #5"
+				},
+				{
+					"type": "text",
+					"id": "store_5",
+					"label": "Store Name"
+				},
+				{
+					"type": "url",
+					"id": "store_5_url",
+					"label": "Store Website"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

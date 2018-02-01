@@ -27,10 +27,10 @@
 	<div class="column l4 m4">
 	  <p class="lead">Contact Us</p>
 	  <div class="contact-info">
-	    <p>(800)582-2624</p>
-	    <p>Mon - Fri 10AM-5PM EST</p>
-	    <p>info@fabricsandhome.com</p>
-	    <a href="#" class="footer-message-link">Send us a message</a>
+	    <p><a href="tel:{{section.settings.contact_num}}">{{section.settings.contact_num}}</a></p>
+	    <p>{{section.settings.contact_hours}}</p>
+	    <p><a href="mailto:{{section.settings.contact_email}}">{{section.settings.contact_email}}</a></p>
+	    <a href="{{section.settings.contact_url}}" class="footer-message-link">Send us a message</a>
 	    {% if section.settings.enable_social %}
 		    {% include 'social-links' %}
 	    {% endif %}

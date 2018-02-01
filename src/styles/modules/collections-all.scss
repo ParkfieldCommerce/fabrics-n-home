@@ -1,0 +1,35 @@
+.all-collections {
+	.banner {
+		height: 200px;
+		@include flex();
+		align-items: center;
+  	justify-content: center;
+  	h1 {
+  		@include ptSerif(40px, 400, normal);
+  		color: #fff;
+  	}
+	}
+	.collection-lead {
+		@include flex();
+		flex-flow: row wrap;
+		padding: 20px 0;
+		@include m() {
+			padding: 20px;
+		}
+		@include s() {
+			padding: 20px;
+		}
+		h2 {
+			@include ptSerif(18px, 700, normal);
+			flex: 10;
+			text-transform: uppercase;
+			color: #555555;
+		}
+		.btn {
+			flex: 1;
+		}
+	}
+	hr {
+		border-top: 2px solid #e5e5e5;
+	}
+}

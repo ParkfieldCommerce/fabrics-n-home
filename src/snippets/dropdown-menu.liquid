@@ -1,8 +1,26 @@
-{% if link.links != blank %}
+{% if childlink.links != empty %}
 	{% include 'icon' with 'chevron-down' %}
-	<ul class="dropdown">
-		{% for childlink in link.links %}
-			<li class="sub-item">{{ childlink.title | link_to: childlink.url }}</li>
+	<div class="dropdown-window">
+
+		{% for grandchild in childlink.links %}
+			<ul class="section {{ grandchild.handle }}" >
+				<li class="title">{{ grandchild.title }}</li>
+
+				{% for greatgrandchild in grandchild.links %}
+					<li class="dropdown-item {% if greatgrandchild.active %}active{% else %}inactive{% endif %}">
+						{{ greatgrandchild.title | link_to: greatgrandchild.url }}
+					</li>
+				{% endfor %}
+
+			</ul>
 		{% endfor %}
-	</ul>
+	</div>
 {% endif %}
+
+{% comment %}
+{% if grandchild.handle == 'shop-by-color' %}
+	<i class="fa fa-circle"
+		 aria-hidden="true"
+		 style="color:{{greatgrandchild.title}}"></i>
+{% endif %}
+{% endcomment %}

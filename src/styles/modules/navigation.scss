@@ -1,74 +1,61 @@
 /* Navigation =================================================================*/
 
-// Main Nav
-.theme-nav-main {
-  .nav-link {
-    font-size: 1.1rem;
-    font-weight: $fontBold;
-    margin-right: $gutter/3;
+.dropdown-window {
+  position: absolute;
+  background: #fff;
+  width: 1200px;
+  top: 50px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+  @include flex();
+  flex-flow: row wrap;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  opacity: 0;
+  z-index: -1;
+  @include m() {
+    width: 600px;
   }
-  .dropdown {
+  @include s() {
     position: relative;
-    &:hover {
-      .dropdown_menu {
-        display: block;
-      }
-    }
-    .dropdown_menu {
-      display: none;
-      padding: $gutter/3 0;
-      position: absolute;
-      top: 1.5rem;
-      z-index: 2;
-      li {
-        display: block;
-        padding: $gutter/4 $gutter/1.5;
-        background: lighten($colorBackground, 30%);
-        &:first-of-type {
-          padding-top: $gutter/2;
-        }
-        &:last-of-type {
-          padding-bottom: $gutter/2;
-        }
-      }
-    }
+    width: 100%;
+    top: 20px;
+    display: none;
+    opacity: 1;
+    z-index: 1;
   }
-}
+  .section {
+    flex: 1;
+    padding: 20px;
+    border-right: 1px solid #e5e5e5;
+    &:last-child {
+      border-right: none;
+    }
+    @include s() {
+      border: none;
+      border-bottom: 1px solid #e5e5e5;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    .title {
+      @include ptSans(13px, 700, normal);
+      margin-bottom: 0px;
+      margin-top: 0px;
+      padding-left: 0px;
+      text-align: left;
+      color: #555555;
+    }
+    .dropdown-item {
+      text-align: left;
+      a {
+        color: #888888;
+        @include ptSans(13px, 400, normal);
+        line-height: normal;
+        padding: 5px 0px!important;
+        margin: 0px;
+        text-transform: capitalize!important;
 
-// Pagination
-.pagination {
-  a, .page.current {
-    display: inline-block;
-    min-width: $gutter;
-    height: $gutter;
-    text-align: center;
-    line-height: ($gutter - $borderWeight*2);
-    text-decoration: none;
-    font-size: 1.125rem;
-    color: $colorBrand;
-    padding: 0 $gutter/4;
-    border: $borderWeight $borderStyle $colorBrand;
-    border-radius: $borderRadius;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    &.active, &:hover {
-      color: lighten($colorBrand, 25%);
-      background-color: $colorBrand;
+      }
     }
-  }
-  .page.current {
-    color: lighten($colorBrand, 25%);
-    background-color: $colorBrand;
-  }
-  .deco {
-    display: inline-block;
-    min-width: $gutter;
-    height: $gutter;
-    text-align: center;
-    line-height: ($gutter - $borderWeight*2);
-    text-decoration: none;
-    font-size: 1.125rem;
-    color: $colorBrand;
-    padding: 0 $gutter/4;
   }
 }

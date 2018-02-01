@@ -1,0 +1,19 @@
+<div class="sidebar">
+
+  {% for link in linklists['sidebar-menu'].links %}
+	  <div class="accordion">
+	  	<div class="main">
+	  		<h3>{{ link.title }}</h3>
+	  		{% include 'icon' with 'chevron-down' %}
+	  	</div>
+	    <div class="pane">
+	    	{% for childlink in link.links %}
+	    		<a href="{{shop.url}}{{ childlink.url }}">
+	    			<p>{{ childlink.title }}</p>
+	    		</a>
+	    	{% endfor %}
+	    </div>
+	  </div>
+  {% endfor %}
+
+</div>

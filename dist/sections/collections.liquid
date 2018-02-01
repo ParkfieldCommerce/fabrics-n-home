@@ -1,0 +1,91 @@
+<!-- /sections/collection.liquid -->
+
+{% assign view = '12' %}
+{% paginate collection.products by 12 %}
+
+{% assign column_width = 'column l3 m4 s12' %}
+<style>
+  .banner {
+    background: linear-gradient(
+      rgba(0,0,0,0.3),
+      rgba(0,0,0,0.3)
+      ),
+    url({{section.settings.image_bg | img_url:'master'}});
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+</style>
+<section class="collections-page" data-section-type="collection">
+  <div class="container l">
+    <div class="banner">
+      <h1>{{ collection.title }}</h1>
+    </div>
+    <div class="row">
+      <div class="column l3 m12 s12">
+        {% include 'sidebar' %}
+      </div>
+      <div class="column l9 m12 s12">
+
+        <div class="actions">
+          <div class="search">
+            <form class="search" action="/search">
+              <input type="hidden" name="type" value="product" />
+              <input type="text" placeholder="Search..." name="q" value="{{ search.terms | escape }}"  />
+              <button class="fa fa-search" type="submit" />
+            </form>
+          </div>
+          <div class="sort">
+            {% include 'sort-options' %}
+          </div>
+          <div class="view-opts">
+            {% include 'collection-view' %}
+          </div>
+        </div>
+        
+        <div class="collection-products">
+          <div class="row">
+            {% for product in collection.products %}
+              {% assign column_width = 'column l4 m6 s6' %}
+              {% include 'collection-product' %}
+            {% else %}
+              {% if collection.handle == 'all' and current_tags == '' %}
+                {% unless emptyState %}
+                  {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
+                  {% assign emptyState = true %}
+                {% endunless %}
+                {% include 'onboarding-empty-collection' %}
+              {% else %}
+                <div class="column l12 m12 s12">
+                  <p>{{ 'collection.no_matches' | t }}</p>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% if paginate.pages > 1 %}
+          <div class="container l">
+            <div class="pagination">
+              {{ paginate | default_pagination }}
+            </div>
+          </div>
+        {% endif %}
+        {% comment %}{% include 'pagination-new' %}{% endcomment %}
+
+        {% endpaginate %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Collections",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_bg",
+        "label": "Title Block Background"
+      }
+    ]
+  }
+{% endschema %}

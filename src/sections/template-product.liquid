@@ -23,16 +23,28 @@
     <div class="row">
       <div class="column l8 m6 s12">
 
-        <div class="img-container">
-          <img src="{{ product.featured_image | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
+        <div class="title l-hide m-hide">
+          <h1 itemprop="name">{{ product.title }}</h1>
+          {% if section.settings.show_vendor %}
+            <p itemprop="brand" class="product-single__vendor">{{ product.vendor }}</p>
+          {% endif %}
+          <div class="mobile-share">
+            {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+          </div>
+        </div>
+
+        <div class="img-container" id="ProductImages">
+          {% for image in product.images %}
+            <img src="{{ image.src | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
+          {% endfor %}
         </div>
 
         {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
 
         {% if product.images.size > 1 %}
-          <div id="ProductThumbs" class="row collapse">
+          <div id="ProductThumbs">
             {% for image in product.images %}
-              <div class="column l3 m4 s6">
+              <div class="image-thumbs">
                 <img src="{{ image.src | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
               </div>
             {% endfor %}
@@ -42,7 +54,7 @@
       </div>
       <div class="column l4 m6 s12">
 
-        <div class="title">
+        <div class="title s-hide">
           <h1 itemprop="name">{{ product.title }}</h1>
           {% if section.settings.show_vendor %}
             <p itemprop="brand" class="product-single__vendor">{{ product.vendor }}</p>
@@ -50,11 +62,11 @@
         </div>
 
         <p id="ProductPrice" class="product-price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-          Price: {{ current_variant.price | money }} /Yard
+          Price: {{ current_variant.price | money }}/Yard
         </p>
 
         <p class="product-msrp product-{{ section.id }}{% unless current_variant.available %} product-price-sold-out{% endunless %}">
-          MSRP: {{ product.price_max | times:2 | money }} /Yard
+          MSRP: {{ product.price_max | times:2 | money }}/Yard
         </p>
 
         {% assign hasFull = false %}
@@ -89,11 +101,11 @@
             {% endif %}
 
             {% if sold_out %}
-              <button type="submit" name="add" data-add-to-cart disabled>
+              <button type="submit" name="add" disabled>
                 <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
               </button>
             {% else %}
-              <button type="submit" class="btn primary-btn" name="add" data-add-to-cart>
+              <button type="submit" class="btn primary-btn" id="buy">
                 {{ 'product.add_to_cart' | t }}
               </button>
             {% endif %}
@@ -102,9 +114,9 @@
 
         {%if hasSample %}
           <div class="button-container">
-            <button class="btn primary-btn" type="button" id="orderSample">Order Sample</button>
+            <button class="btn sample-btn" type="button" id="orderSample">Order Sample</button>
           </div>
-        {%endif%}
+        {% endif %}
 
         {% for tag in product.tags %}
           {% if tag contains 'brand' %}
@@ -164,7 +176,7 @@
           {% endif %}
         {% endfor %}
              
-        <div class="product-description-tags" style ="text-transform: capitalize;">
+        <div class="product-description-tags">
           {% if brand_exists %}
             <p><strong>{{brand[0]}}:</strong> {{brand[1]}}</p>
           {% endif %}
@@ -213,15 +225,28 @@
           {% if collection_exists %}
             <p><strong>{{collection[0]}}:</strong> {{collection[1] | replace: '-', ' '}}</p>
           {% endif %}
-          
+        </div>
+        <div class="description">
           {% if product.description != empty %}
-            <div class="description">
-              <p><strong>Description:</strong>{{ product.description }}</p>
-            </div>
+            <span>Description: </span>
+            <p class="truncate">{{ product.description }}</p>
+            {% include 'icon' with 'chevron-down' %}
           {% endif %}
-          
         </div>
 
+      </div>
+
+      <div class="column l6 m6 s12">
+        <div class="yardage-chart">
+          <p>Yardage Chart</p> 
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="column l6 m6 s12">
+        <div class="measure-chart">
+          <p>How to Measure</p>
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+        </div>
       </div>
     </div> <!--row-->
   </div>
@@ -234,37 +259,51 @@
 {% endunless %}
 
 <script>
-  
+  $(document).ready(function() {
+
+    $('#Quantity').on('change', function() {
+      var currentQuantity = $(this).val();
+      $(this).val(Math.round(currentQuantity*2)/2);
+    });
+
+    $('#buy').click(function(e){
+      e.preventDefault();
+      var yards = $('#Quantity').val();
+      var quantity =  yards * 2;
+      var variantId = $('#variantOptions').val();
+
+      cart.addItem(variantId, quantity, {
+        "Length": yards + ' Yards'
+      },
+      {
+        "success": function(data, textStatus, jqXHR) {
+          window.location.href = '/cart';
+        },
+        "error": function(jqXHR, textStatus, errorThrown) {
+          alert('Error: '+ errorThrown + '!');
+        }
+      });
+    });
+
+    $('#orderSample').click(function(){
+      cart.addItem(parseInt('{{sampleId}}'), 1, {
+         "Quantity":1
+      }, {
+          "success": function(data, textStatus, jqXHR) {
+              window.location.href = '/cart';
+          },
+          "error": function(jqXHR, textStatus, errorThrown) {
+              alert('Error: ' + errorThrown + '!');
+          }
+      });        
+    });
+  });
 </script>
 
 {% schema %}
   {
     "name": "Product pages",
     "settings": [
-      {
-        "type": "select",
-        "id": "image_size",
-        "label": "Image size",
-        "options": [
-          {
-            "value": "small",
-            "label": "Small"
-          },
-          {
-            "value": "medium",
-            "label": "Medium"
-          },
-          {
-            "value": "large",
-            "label": "Large"
-          },
-          {
-            "value": "full",
-            "label": "Full-width"
-          }
-        ],
-        "default": "medium"
-      },
       {
         "type": "checkbox",
         "id": "show_quantity_selector",
@@ -273,8 +312,8 @@
       },
       {
         "type": "checkbox",
-        "id": "show_variant_labels",
-        "label": "Show variant labels",
+        "id": "show_related_products",
+        "label": "Show related products",
         "default": true
       },
       {

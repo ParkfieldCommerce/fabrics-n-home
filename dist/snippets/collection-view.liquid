@@ -1,14 +1,17 @@
-<div class="row pagination">
-  <div class="column l12 m12 s12">
-    <p>
-      <span>{{ 'collection.view.title' | t }}</span>
-      {% assign collection_views = '12,24,48' | split: ',' %}
-      {% for collection_view in collection_views %}
-        <a href="collections/{{ collection.handle }}?view={{ collection_view }}"
-           title="View by collection_view products"
-           class="page{% if view == collection_view %} active{% endif %}"
-           data-view="{{ collection_view }}">{{ collection_view }}</a>
-      {% endfor %}
-    </p>
-  </div>
+{% assign collection_views = '12,24,48' | split: ',' %}
+{% for collection_view in collection_views %}
+  <a href="collections/{{ collection.handle }}?view={{ collection_view }}"
+     title="View by collection_view products"
+     class="view-per-page-picker{% if view == collection_view %} active{% endif %}"
+     data-view="{{ collection_view }}"
+     style="display: none;">{{ collection_view }}</a>
+{% endfor %}
+    
+
+<div class="collection-view">
+  <select name="ViewPerPage" id="view-per-page" data-url="{{shop.url}}{{collection.url}}">
+    {% for num in collection_views %}
+      <option value="{{num}}"  {% if view == num %}selected="selected"{% endif %}>{{ num }} Per Page</option>
+    {% endfor %}
+  </select>
 </div>

@@ -6,8 +6,8 @@
     "pagination": {
       "loadmore": "Load More",
       "loading": "Loading...",
-      "previous": "←",
-      "next": "→"
+      "previous": "",
+      "next": ""
     }
   },
   "date_formats": {
@@ -143,7 +143,7 @@
       "other": "{{ count }} items"
     },
     "sort": {
-      "title": "Sort",
+      "title": "Sort by:",
       "manual": "Featured",
       "best-selling": "Best Selling",
       "title-ascending": "Alphabetically, A-Z",
@@ -174,7 +174,7 @@
     "sold_out": "Sold out"
   },
   "home_page": {
-    "title": "Home"
+    "title": "Back to Fabric Store"
   },
   "blog": {
     "title": "Blog",
@@ -184,7 +184,7 @@
       "title": "Home",
       "published": "Published",
       "author_on_date_html": "Posted by {{ author }} on {{ date }}",
-      "read_more": "Read More",
+      "read_more": "More",
       "previous_article": "Previous Article",
       "next_article": "Next Article"
     },

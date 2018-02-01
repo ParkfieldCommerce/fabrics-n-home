@@ -1,0 +1,32 @@
+.crumbs {
+	padding: 10px 0;
+	text-align: left;
+	@include s() {
+
+	}
+	a {
+		@include ptSans(14px, 400, normal);
+		color: #88beb4;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+		@include s() {
+			@include ptSans(12px, 400, normal);
+		}
+	}
+	span {
+		@include ptSans(14px, 400, normal);
+		color: #888888;
+		@include s() {
+			@include ptSans(12px, 400, normal);
+		}
+	}
+	i {
+		font-size: 10px;
+		color: #888888;
+		@include s() {
+			font-size: 8px;
+		}
+	}
+}

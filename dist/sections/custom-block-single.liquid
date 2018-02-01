@@ -37,7 +37,7 @@
 						<p class="content">{{ settings.block_content }}</p>
 					{% endif %}
 
-					{% if settings.block_btn %}
+					{% if settings.block_btn != empty %}
 						<a href="{{ settings.btn_url }}" class="btn {% if settings.block_style == 'left' %}secondary-btn{% else %}primary-btn{% endif %}">{{ settings.block_btn }}</a>
 					{% endif %}
 

@@ -1,0 +1,88 @@
+.related-products {
+	@include s() {
+		padding-bottom: 2em;
+	}
+	.title {
+		@include ptSerif(30px, 400, normal);
+		color: #888888;
+		text-align: left;
+		margin-bottom: 10px;
+		border-top: 1px solid #e5e5e5;
+		padding-top: 10px;
+		@include s() {
+			padding-left: 10px;
+		}
+	}
+	.rel-product-group {
+		@include flex();
+		flex-flow: row wrap;
+		li {
+			flex: 1;
+			position: relative;
+			@include s() {
+				flex: 2 50%;
+			}
+			&:hover {
+				.info {
+					visibility: visible;
+					z-index: 1;
+				}
+			}
+			.image {
+				a {
+					display: block;
+				}
+				img {
+					display: block;
+					width: 85%;
+					margin-right: auto;
+					@include s() {
+						width: 90%;
+						margin: auto;
+						margin-bottom: 15px;
+					}
+				}
+			}
+			.info {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 15%;
+				bottom: 0;
+				width: 85%;
+				margin: auto;
+				visibility: hidden;
+				z-index: -1;
+				background: rgba(0,0,0,0.4);
+				pointer-events: none;
+				cursor: pointer;
+				@include s() {
+					bottom: 15px;
+					width: 90%;
+					right: 0;
+				}
+			}
+			.product-title {
+				@include dancingScript(20px, 700, normal);
+				position: absolute;
+		    bottom: 25px;
+		    left: 0;
+		    right: 0;
+		    text-align: right;
+		    padding: 5px 10px;
+		    a {
+		    	text-decoration: none;
+		    	color: #fff;
+		    }
+			}
+			.money {
+				@include ptSans(12px, 700, normal);
+				color: #fff;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				padding: 5px 10px;
+			}
+		}
+	}
+}

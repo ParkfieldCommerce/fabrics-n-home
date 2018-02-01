@@ -1,0 +1,42 @@
+.article-page {
+	.article {
+		display: block;
+		width: 95%;
+		margin: auto;
+		border-radius: 3px;
+		border: 1px solid #e5e5e5;
+		padding: 1em;
+		@include s() {
+			width: 100%;
+		}
+	}
+	.title {
+		@include ptSerif(30px, 400, normal);
+		text-align: center;
+		color: #555
+	}
+	.social-sharing {
+		justify-content: center;
+		padding: 1em 0 2em;
+		.button.share {
+			flex: 1;
+			text-align: center;
+		}
+	}
+	.body {
+		@include ptSans(15px, 400, normal);
+		color: #888;
+		margin-bottom: 2em;
+	}
+	.action {
+		text-align: center;
+	}
+	.featured-img {
+		img {
+			width: 100%;
+		}
+		@include s() {
+			margin-bottom: 2em;
+		}
+	}
+}

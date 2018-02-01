@@ -38,9 +38,20 @@
 @import url('modules/product.scss');
 @import url('modules/hamburger-menu.scss');
 @import url('modules/main-menu.scss');
+@import url('modules/crumbs.scss');
+@import url('modules/collections-all.scss');
+@import url('modules/sidebar.scss');
+@import url('modules/collection-product.scss');
+@import url('modules/collections.scss');
+@import url('modules/pagination.scss');
 
 /* Pages ======================================================================*/
 @import url('pages/page-fabric.scss');
+@import url('pages/page-designer-brands.scss');
+@import url('pages/page-designer-secrets.scss');
+@import url('pages/page-blog.scss');
+@import url('pages/page-article.scss');
+@import url('pages/page-local-decorator.scss');
 
 /* Sections ===================================================================*/
 @import url('sections/hero-slider.scss');
@@ -48,6 +59,7 @@
 @import url('sections/section-custom-block.scss');
 @import url('sections/blog-section.scss');
 @import url('sections/featured-products.scss');
+@import url('sections/related-products.scss');
 
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');

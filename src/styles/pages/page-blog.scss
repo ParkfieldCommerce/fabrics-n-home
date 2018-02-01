@@ -1,0 +1,48 @@
+.blog-page {
+	.title {
+		text-align: center;
+		padding: 1em 0;
+		color: #555555;
+		@include ptSerif(40px, 400, normal);
+		@include s() {
+			font-size: 25px;
+			padding: 0.3em 0;
+		}
+	}
+	.article-block {
+		width: 95%;
+		margin: auto;
+		paddding: 0.5em 0;
+		border-bottom: 1px solid #e5e5e5;
+		position: relative;
+		padding-bottom: 35px;
+		@include s() {
+			&.last {
+				margin-bottom: 20px;
+			}
+		}
+		.article-title {
+			@include ptSerif(20px, 400, normal);
+			a {
+				text-decoration: none;
+				color: #555;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+		.article-excerpt {
+			@include ptSans(15px, 400, normal);
+			color: #888;
+			p {
+				@include ptSans(15px, 400, normal);
+			}
+		}
+
+		.btn {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+	}
+}

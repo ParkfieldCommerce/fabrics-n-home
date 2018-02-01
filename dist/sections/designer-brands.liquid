@@ -1,0 +1,70 @@
+{% assign brand_filters = 'a-c,d-f,g-i,j-l,m-o,p-r,s-u,v-x,y-z' | split: ',' %}
+
+<style>
+	.banner {
+		background: linear-gradient(
+			rgba(0,0,0,0.4),
+			rgba(0,0,0,0.4)
+			), url({{ section.settings.banner_bg | img_url:'master' }});
+		background-position: 50% 50%;
+		background-size: cover;
+	}
+</style>
+
+<section class="designer-brands">
+	<div class="container l">
+		<div class="banner">
+			<h1 class="title">{{ page.title }}</h1>
+		</div>
+
+		<div class="tabs">
+			<ul class="tab-navigation" data-tabgroup="designer-brands-tabs">
+				{% for brand in brand_filters %}
+					<li class="tab-item {% if forloop.first %}active{% endif %}">{{ brand }}</li>
+				{% endfor %}
+			</ul>
+
+			<ul class="tab-panels" data-tabgroup="designer-brands-tabs">
+				{% for brand in brand_filters %}
+					<li class="tab-panel {% if forloop.first %}active{% endif %}">
+						<ul class="panel-inner">
+
+							{% if collections[brand].products != empty %}
+
+								{% for tag in collections[brand].tags %}
+
+									{% if tag contains 'brand_' %}
+										{% assign brand_name = tag | split: '_' | last %}	
+										<li> 
+											<a href="{{shop.url}}{{collections[brand].url}}">{{brand_name}}</a>
+										</li>
+									{% endif %}
+
+								{% endfor %}
+								
+							{% else %}
+
+								<li class="empty-section">This Section ({{ brand | upcase }}) Is Empty</li>
+
+							{% endif %}
+
+						</ul>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Designer Brands",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "banner_bg",
+			"label": "Banner Background"
+		}
+	]
+}
+{% endschema %}

@@ -15,38 +15,37 @@
  {% assign sold_out = false %}
 {% endif %}
 
-<div class="{{ column_width }} product {% if sold_out %} sold_out {% endif %} {% if on_sale %} on_sale {% endif %}">
+<div class="{{column_width}} product-block {% if sold_out %} sold_out {% endif %} {% if on_sale %} on_sale {% endif %}">
 
-    <a href="{{ product.url | within: collection }}">
-      <img srcset="{{ product.featured_image.src | img_url: 'x960' }} 2x" src="{{ product.featured_image.src | img_url: 'x960' }}" alt="{{ product.featured_image.alt | escape }}">
-    </a>
+  <a class="image" href="{{ product.url | within: collection }}" style="background: url({{ product.featured_image.src | img_url: 'master' }});
+    background-position: 50% 50%;
+    background-size: cover;">
 
     <p>
-      <a href="{{ product.url | within: collection }}" class="product-title">{{ product.title }}</a><br>
       {% if on_sale %}
+
         {% if product.price_varies %}
-          {{ 'product.on_sale_from_html' | t: price: sale_price }}
+          {{ 'product.on_sale_from_html' | t: price: sale_price }}/Yard
         {% else %}
-          <strong>{{ 'product.on_sale_html' | t: price: sale_price }}</strong>
+          <strong>{{ 'product.on_sale_html' | t: price: sale_price }}/Yard</strong>
         {% endif %}
+
       {% else %}
+
         {% if product.price_varies %}
           {% assign price = product.price | money %}
-          {{ 'product.priced_from_html' | t: price: price }}
+          {{ 'product.priced_from_html' | t: price: price }}/Yard
         {% else %}
-          {{ product.price | money }}
+          {{ product.price | money }}/Yard
         {% endif %}
-      {% endif %}
-      {% if on_sale %}
-        <span class="hidden">{{ 'product.original_price' | t }}</span>
-        <s>{{ product.compare_at_price | money }}</s>
+
       {% endif %}
     </p>
 
-    <p>
-      <button {% if sold_out %} class="disabled" disabled{% else %}type="submit" name="add" data-quick-add="{{ product.first_available_variant.id }}"{% endif %}>
-        <span id="AddToCartText">{% if sold_out %}{{ 'product.sold_out' | t }}{% else %}{{ 'product.add_to_cart' | t }}{% endif %}</span>
-      </button>
-    </p>
+  </a>
+
+  <a class="product-title" href="{{ product.url | within: collection }}">
+    <p>{{ product.title }}</p>
+  </a>
 
 </div>

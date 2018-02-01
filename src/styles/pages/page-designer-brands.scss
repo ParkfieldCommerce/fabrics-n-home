@@ -1,0 +1,101 @@
+.designer-brands {
+	.banner {
+		height: 200px;
+		width: 100%;
+		@include flex();
+		justify-content: center;
+		align-items: center;
+		.title {
+			@include ptSerif(40px, 400, normal);
+			color: #fff;
+		}
+	}
+	.tabs {
+		padding: 3em 0 1em;
+		@include s() {
+			padding: 0 0 2em;
+		}
+		.tab-navigation {
+			@include flex();
+			list-style: none;
+			margin-left: 0;
+			justify-content: center;
+			@include s() {
+				justify-content: normal;
+			}
+		}
+		.tab-item {
+			cursor: pointer;
+			margin: 0;
+			padding: 0.5em 1.5em;
+			text-decoration: none;
+			text-transform: uppercase;
+			border: 1px solid #e5e5e5;
+			color: #888;
+			@include ptSans(14px, 400, normal);
+			@include s() {
+				padding: 10px 0;
+				flex: 1;
+				text-align: center;
+			}
+			&.active,
+			&:hover {
+				background: #88beb4;
+				border: 1px solid #88beb4;
+				color: #fff;
+				@include transition();
+			}
+		}
+		.tab-panels {
+			margin-left: 0;
+			padding-top: 2em;
+		}
+		.tab-panel {
+			display: none;
+			&.active {
+				display: block;
+			}
+			.panel-inner {
+				width: 61%;
+				margin: auto;
+				@include s() {
+					width: 100%;
+				}
+				li {
+					@include ptSans(15px, 700, normal);
+					border-bottom: 1px solid #e5e5e5;
+					color: #888;
+					cursor: pointer;
+					a {
+						@include ptSans(15px, 700, normal);
+						color: #888;
+						text-decoration: none;
+						padding: 20px;
+						display: block;
+						&:hover {
+							color: #fff;
+						}
+						@include s() {
+							font-size: 14px;
+							padding: 10px;
+						}
+					}
+					span {
+						float: right;
+						@include ptSans(14px, 400, italic);
+					}
+					&:hover {
+						background: #88beb4;
+						@include transition();
+					}
+				}
+				.empty-section {
+					padding: 20px;
+					&:hover {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+}

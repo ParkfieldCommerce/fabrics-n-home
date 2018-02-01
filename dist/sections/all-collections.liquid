@@ -1,0 +1,64 @@
+<!-- /sections/all-collections.liquid -->
+<style>
+  .banner {
+    background: linear-gradient(
+      rgba(0,0,0,0.3),
+      rgba(0,0,0,0.3)
+      ),
+    url({{section.settings.image_bg | img_url:'master'}});
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+</style>
+<section class="all-collections">
+  <div class="container l">
+    <div class="banner">
+      <h1>We Love Fabrics</h1>
+    </div>
+    <div class="row">
+      <div class="column l3 m12 s12">
+        {% include 'sidebar' %}
+      </div>
+      <div class="column l9 m12 s12">
+
+        {% for collection in collections %}
+          {% unless collection.handle == 'frontpage' %}
+
+            {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+            {% unless collection.products == empty %}
+              <div class="collection-lead">
+                <h2>{{ collection_title }}</h2>
+                <a href="{{ collection.url }}" class="btn primary-btn" title="{{ collection.title }}">More {{ collection_title }}</a>
+              </div>
+
+              <div class="collection-body">
+                <div class="row">
+                  {% for product in collection.products limit: 4 %}
+                    {% assign column_width = 'column l3 m3 s12' %}
+                    {% include 'collection-product' %}
+                  {% endfor %}
+                </div>
+              </div>
+              {% unless forloop.last %}<hr>{% endunless %}
+            {% endunless %}
+
+          {% endunless %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "All Collections",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_bg",
+        "label": "Title Block Background"
+      }
+    ]
+  }
+{% endschema %}

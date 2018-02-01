@@ -1,0 +1,33 @@
+<!-- /templates/article.liquid -->
+
+<section class="article-page">
+  <div class="container l">
+    <div class="row">
+
+      <div class="column l6 m6 s12">
+
+        <article class="article">
+          <h1 class="title">{{ article.title }}</h1>
+          {% include 'social-sharing' %}
+
+          <div class="body" itemprop="articleBody">
+            {{ article.content }}
+          </div>
+
+          <div class="action">
+            <a href="#" class="btn primary-btn">Get a custom quote</a>
+          </div>
+        </article>
+
+      </div> <!-- col l6 m6 s12 -->
+      <div class="column l6 m6 s12">
+        <div class="featured-img">
+          {% if article.image %}
+            <img src="{{ article.image | img_url:'master' }}" alt="">
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
