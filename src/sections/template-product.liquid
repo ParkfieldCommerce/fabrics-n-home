@@ -21,7 +21,7 @@
     </div>
     
     <div class="row">
-      <div class="column l8 m6 s12">
+      <div class="column l6 m6 s12">
 
         <div class="title l-hide m-hide">
           <h1 itemprop="name">{{ product.title }}</h1>
@@ -52,7 +52,7 @@
         {% endif %}
 
       </div>
-      <div class="column l4 m6 s12">
+      <div class="column l6 m6 s12">
 
         <div class="title s-hide">
           <h1 itemprop="name">{{ product.title }}</h1>
@@ -62,12 +62,12 @@
         </div>
 
         <p id="ProductPrice" class="product-price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-          Price: {{ current_variant.price | money }}/Yard
+          Price: {{ current_variant.price | times: 2 | money }}/Yard
         </p>
 
-        <p class="product-msrp product-{{ section.id }}{% unless current_variant.available %} product-price-sold-out{% endunless %}">
-          MSRP: {{ product.price_max | times:2 | money }}/Yard
-        </p>
+        {% comment %}<p class="product-msrp product-{{ section.id }}{% unless current_variant.available %} product-price-sold-out{% endunless %}">
+          MSRP: {{ product.price_max | times: 2 | money }}/Yard
+        </p>{% endcomment %}
 
         {% assign hasFull = false %}
         {% assign hasSample = false %}
@@ -82,7 +82,7 @@
         {% endfor%}
 
         {% if hasFull == true %}
-          <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-cart-submit>
+          <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
               
             <select id="variantOptions" name="id" style="display:none">
               {% for variant in product.variants %}
@@ -272,7 +272,7 @@
       var quantity =  yards * 2;
       var variantId = $('#variantOptions').val();
 
-      cart.addItem(variantId, quantity, {
+      CartJS.addItem(variantId, quantity, {
         "Length": yards + ' Yards'
       },
       {
@@ -286,7 +286,7 @@
     });
 
     $('#orderSample').click(function(){
-      cart.addItem(parseInt('{{sampleId}}'), 1, {
+      CartJS.addItem(parseInt('{{sampleId}}'), 1, {
          "Quantity":1
       }, {
           "success": function(data, textStatus, jqXHR) {

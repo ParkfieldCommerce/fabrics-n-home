@@ -1,0 +1,29 @@
+.article-get-inspired {
+	.featured-img {
+		width: 100%;
+		padding-right: 10px;
+		height: 400px;
+	}
+	.title,
+	.button.share,
+	.body,
+	.action {
+		padding-left: 10px;
+	}
+	.title {
+		@include ptSerif(30px, 400, normal);
+		color: #555;
+		padding-top: 5px;
+	}
+	.button.share {
+		flex: 0.1;
+	}
+	.body {
+		@include ptSans(15px, 400, normal);
+		color: #888;
+		margin-top: 20px;
+	}
+	.featured-products {
+		padding: 1em 0;
+	}
+}

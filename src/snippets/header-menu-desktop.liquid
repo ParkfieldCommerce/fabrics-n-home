@@ -1,9 +1,14 @@
 <!-- snippets/header-menu -->
+{% comment %}
+==========================Cart Popup Triggers==========================
+id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false"
+=======================================================================
+{% endcomment %}
 <ul class="menu row-1">
   <li class="menu-item">
-    <a href="/cart" id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" class="v-middle">
+    <a href="/cart"  class="v-middle">
       <i class="fa fa-shopping-bag"></i>
-      <span data-cart-item-count>({{ cart.item_count }})</span>
+      <span class="cart-qty" data-cart-item-count="{{ cart.item_count }}"></span>
     </a>
   </li>
   {% for link in linklists['header-menu-row-1'].links  %}

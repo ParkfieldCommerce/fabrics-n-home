@@ -10,6 +10,9 @@
 					<li class="mobile-item {% if childlink.active %}active{% else %}inactive{% endif %} {% if childlink.links != blank %}mb-item-dropdown{% endif %}">
 						<a class="mb-item-link" href="{{ childlink.url }}">
 							<p>{{ childlink.title }}</p>
+							{% if childlink.links != empty %}
+								{% include 'icon' with 'chevron-down' %}
+							{% endif %}
 						</a>
 						{% include 'dropdown-menu' %}
 					</li>

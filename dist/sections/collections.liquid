@@ -23,6 +23,7 @@
     <div class="row">
       <div class="column l3 m12 s12">
         {% include 'sidebar' %}
+        {% include 'price-quote-form' %}
       </div>
       <div class="column l9 m12 s12">
 
@@ -55,8 +56,12 @@
                 {% endunless %}
                 {% include 'onboarding-empty-collection' %}
               {% else %}
-                <div class="column l12 m12 s12">
-                  <p>{{ 'collection.no_matches' | t }}</p>
+                <div class="column l12 m12 s12 empty-collection">
+                  <p class="lead">{{ collection.description | strip_html }}</p>
+                  <div class="btns">
+                    <a class="btn secondary-btn" href="{{ section.settings.btn_1_url }}">{{ section.settings.btn_1 }}</a>
+                    <a class="btn secondary-btn" href="{{ section.settings.btn_2_url }}">{{ section.settings.btn_2 }}</a>
+                  </div>
                 </div>
               {% endif %}
             {% endfor %}
@@ -85,6 +90,32 @@
         "type": "image_picker",
         "id": "image_bg",
         "label": "Title Block Background"
+      },
+      {
+        "type": "header",
+        "content": "If there an empty collection"
+      },
+      {
+        "type": "text",
+        "id": "btn_1",
+        "label": "First Button Text",
+        "default": "Request Price Quote"
+      },
+      {
+        "type": "url",
+        "id": "btn_1_url",
+        "label": "First Button URL"
+      },
+      {
+        "type": "text",
+        "id": "btn_2",
+        "label": "Second Button Text",
+        "default": "See More Fabrics"
+      },
+      {
+        "type": "url",
+        "id": "btn_2_url",
+        "label": "Second Button URL"
       }
     ]
   }

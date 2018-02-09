@@ -52,6 +52,9 @@
 @import url('pages/page-blog.scss');
 @import url('pages/page-article.scss');
 @import url('pages/page-local-decorator.scss');
+@import url('pages/page-public-access.scss');
+@import url('pages/blog-get-inspired.scss');
+@import url('pages/page-article-get-inspired.scss');
 
 /* Sections ===================================================================*/
 @import url('sections/hero-slider.scss');
@@ -60,6 +63,7 @@
 @import url('sections/blog-section.scss');
 @import url('sections/featured-products.scss');
 @import url('sections/related-products.scss');
+@import url('sections/price-quote-form.scss');
 
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');

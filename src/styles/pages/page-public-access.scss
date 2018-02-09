@@ -1,9 +1,9 @@
-.local-decorator {
+.public-access {
 	.banner {
-	  height: 300px;
-	  @include s() {
-	  	height: 200px;
-	  }
+		height: 300px;
+		@include s() {
+			height: 200px;
+		}
 	}
 	.text-container {
 	  max-width: 45%;
@@ -57,10 +57,10 @@
 		}
 	}
 	.body-content {
-		padding: 1.5em 0;
 		.body-heading {
-			@include ptSerif(30px, 400, normal);
+			@include ptSerif(40px, 400, normal);
 			color: #555;
+			padding: 1em 0 0;
 			@include m() {
 				padding: 0.5em;
 				font-size: 30px;
@@ -71,8 +71,9 @@
 			}
 		}
 		.body-lead {
-			@include ptSans(16px, 400, normal);
+			@include ptSans(15px, 400, normal);
 			color: #555;
+			padding: 0.5em 0;
 			@include m() {
 				padding: 0.5em;
 				font-size: 15px;
@@ -84,85 +85,79 @@
 				line-height: 25px;
 			}
 		}
-	}
-
-	.local-dec-contact {
-		width: 80%;
-		margin: auto;
-		@include flex();
-		flex-flow: row wrap;
-		@include m() {
-			width: 100%;
-			padding: 0.5em;
-		}
-		@include s() {
-			width: 100%;
-			padding: 0.5em;
-		}
-
-		.stores {
-			flex: 1 40%;
+		.tabs {
+			padding: 3em 0 1em;
 			@include s() {
-				order: 2;
-				flex: 1 100%;
-				margin-bottom: 3em;
+				padding: 0 0 2em;
 			}
-			.states {
+		}
+		.tab-navigation {
+			@include flex();
+			list-style: none;
+			margin: 0;
+			justify-content: center;
+			@include s() {
+				justify-content: normal;
+			}
+		}
+		.tab-item {
+			cursor: pointer;
+			margin: 0;
+			padding: 0.5em 1.5em;
+			text-decoration: none;
+			text-transform: uppercase;
+			border: 1px solid #e5e5e5;
+			color: #888;
+			@include ptSans(14px, 400, normal);
+			@include s() {
+				padding: 10px 0;
+				flex: 1;
+				text-align: center;
+			}
+			&.active,
+			&:hover {
+				background: #88beb4;
+				border: 1px solid #88beb4;
+				color: #fff;
+				@include transition();
+			}
+		}
+		.tab-panels {
+			margin-left: 0;
+			padding-top: 2em;
+		}
+		.tab-panel {
+			display: none;
+			&.active {
+				display: block;
+			}
+			.panel-inner {
+				width: 61%;
+				margin: auto;
+				@include s() {
+					width: 100%;
+				}
 				li {
-					@include ptSans(16px, 400, normal);
-					margin-bottom: 15px;
+					border-bottom: 1px solid #e5e5e5;
+					cursor: pointer;
 					a {
-						color: #88beb4;
+						@include ptSans(15px, 700, normal);
+						color: #888;
 						text-decoration: none;
+						padding: 10px 5em;
+						display: block;
 						&:hover {
-							text-decoration: underline;
+							color: #fff;
+						}
+						@include s() {
+							font-size: 14px;
+							padding: 10px;
 						}
 					}
-				}
-				.main {
-					@include ptSerif(25px, 400, normal);
-					margin-bottom: 5px;
-				}
-
-			}
-		}
-
-		.contact-form {
-			flex: 1 60%;
-			@include s() {
-				order: 1;
-				flex: 1 100%;
-			}
-			.lead {
-				@include ptSans(16px, 400, normal);
-				color: #555;
-				@include s() {
-					display: none;
-				}
-			}
-			label {
-				@include ptSerif(20px, 400, normal);
-				color: #555;
-				margin-bottom: 5px;
-			}
-			input[type="text"],
-			input[type="tel"],
-			input[type="email"] {
-				border: 1px solid #e5e5e5;
-				padding: 10px;
-				width: 100%;
-				@include ptSans(15px, 400, normal);
-				margin-bottom: 1em;
-				color: #888;
-				@include inputPlaceholder(#888);
-			}
-			button {
-				height: auto;
-				border: 0;
-				margin: 10px auto;
-				display: block;
-				@include s() {
-					margin-bottom: 3em;
+					&:hover {
+						background: #88beb4;
+						@include transition();
+					}
 				}
 			}
 		}

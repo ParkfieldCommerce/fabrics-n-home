@@ -1,13 +1,5 @@
 [
   {
-    "name": "theme_info",
-    "theme_name": "Concrete",
-    "theme_author": "Elkfox",
-    "theme_version": "2.0.0",
-    "theme_documentation_url": "https://elkfox.github.io/Concrete/",
-    "theme_support_email": "help@elkfox.com"
-  },
-  {
     "name": "Colors",
     "settings": [
       {
@@ -109,6 +101,32 @@
         "type": "checkbox",
         "id": "enable_gateway_icons",
         "label": "Show payment gateway icons"
+      }
+    ]
+  },
+  {
+    "name": "Price Quote Sidebar",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Content for Price Quote Sidebar"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_price_quote_sidebar",
+        "label": "Enable Price Quote Sidebar"
+      },
+      {
+        "type": "text",
+        "id": "price_quote_title",
+        "label": "Title",
+        "default": "Need a Price Quote Request?"
+      },
+      {
+        "type": "text",
+        "id": "price_quote_lead",
+        "label": "Lead",
+        "default": "Enter your fabric, wallcovering, trim or furniture request below or call: <strong>800-582-2624</strong>"
       }
     ]
   },

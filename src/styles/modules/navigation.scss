@@ -3,8 +3,9 @@
 .dropdown-window {
   position: absolute;
   background: #fff;
-  width: 1200px;
+  width: 80%;
   top: 50px;
+  left: 0;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
   @include flex();
   flex-flow: row wrap;
@@ -12,8 +13,11 @@
   border-radius: 3px;
   opacity: 0;
   z-index: -1;
+  margin: 0 10%;
+
   @include m() {
-    width: 600px;
+    width: 100%;
+    margin: 0;
   }
   @include s() {
     position: relative;
@@ -22,6 +26,8 @@
     display: none;
     opacity: 1;
     z-index: 1;
+    left: 0;
+    margin: 0;
   }
   .section {
     flex: 1;

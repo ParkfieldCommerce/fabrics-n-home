@@ -1,0 +1,98 @@
+{% assign set = section.settings %}
+{% capture alignment %}
+	{% if set.main_alignment == 'left' %}
+		align-left
+	{% elsif set.main_alignment == 'center' %}
+		align-center
+	{% elsif set.main_alignment == 'right' %}
+		align-right
+	{% endif %}
+{% endcapture %}
+
+<style>
+	.banner {
+		background: url({{ set.banner_img | img_url:'master' }});
+		background-size: cover;
+		background-position: 50% 50%;
+	}
+</style>
+
+<section class="public-access">
+	<div class="container l">
+		<div class="banner">
+			<div class="text-container {{ alignment }}">
+				<h1 class="title">{{ set.banner_text }}</h1>		
+			</div>
+		</div>
+		<div class="body-content">
+			<h1 class="body-heading">{{ set.body_heading }}</h1>
+			<p class="body-lead">{{ set.body_lead }}</p>
+			<div class="tabs">
+				<ul class="tab-navigation" data-tabgroup="public-access-tabs">
+					{% for link in linklists['public-access'].links %}
+						<li class="tab-item {% if forloop.first %}active{% endif %}">{{ link.title }}</li>
+					{% endfor %}
+				</ul>
+
+				<ul class="tab-panels" data-tabgroup="public-access-tabs">
+					{% for link in linklists['public-access'].links %}
+						<li class="tab-panel {% if forloop.first %}active{% endif %}">
+							<ul class="panel-inner">
+								{% for childlink in link.links %}
+									<li>{{ childlink.title | link_to: childlink.url }}</li>
+								{% endfor %}
+							</ul>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Public Access",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Banner"
+		},
+		{
+			"type": "select",
+			"id": "main_alignment",
+			"label": "Text Alignment",
+			"options": [
+				{ "value": "left", "label": "Left" },
+				{ "value": "center", "label": "Centered" },
+				{ "value": "right", "label": "Right" }
+			]
+		},
+		{
+			"type": "image_picker",
+			"id": "banner_img",
+			"label": "Banner Image"
+		},
+		{
+			"type": "text",
+			"id": "banner_text",
+			"label": "Banner Text",
+			"default": "Public Access to Trade Only Décor"
+		},
+		{
+			"type": "header",
+			"content": "Body"
+		},
+		{
+			"type": "text",
+			"id": "body_heading",
+			"label": "Body Heading"
+		},
+		{
+			"type": "textarea",
+			"id": "body_lead",
+			"label": "Body Lead"
+		}
+	]
+}
+{% endschema %}

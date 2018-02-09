@@ -1,22 +1,92 @@
+{% assign set = section.settings %}
 {% capture alignment %}
-	{% if section.settings.main_alignment == 'left' %}
+	{% if set.main_alignment == 'left' %}
 		align-left
-	{% elsif section.settings.main_alignment == 'center' %}
+	{% elsif set.main_alignment == 'center' %}
 		align-center
-	{% elsif section.settings.main_alignment == 'right' %}
+	{% elsif set.main_alignment == 'right' %}
 		align-right
 	{% endif %}
 {% endcapture %}
+
+<style>
+	.banner {
+		background: url({{ set.banner_img | img_url:'master' }});
+		background-size: cover;
+		background-position: 50% 50%;
+	}
+</style>
 
 <section class="local-decorator">
 	<div class="container l">
 		<div class="banner">
 			<div class="text-container {{ alignment }}">
-				<h1 class="title">{{ section.settings.banner_text }}</h1>		
+				<h1 class="title">{{ set.banner_text }}</h1>		
 			</div>		
 		</div>
-		<div class="">
-			
+		<div class="body-content">
+			<h1 class="body-heading">{{ set.body_heading }}</h1>
+			<p class="body-lead">{{ set.body_lead }}</p>
+		</div>
+		<div class="local-dec-contact">
+			<div class="stores">
+				{% for block in section.blocks %}
+					{% assign settings = block.settings %}
+					
+					<ul class="states">
+						<li class="main">{{ settings.state_id }}</li>
+						
+						{% if settings.store_1 != empty %}
+							<li>{{ settings.store_1 | link_to: settings.store_1_url }}</li>
+						{% endif %}
+						{% if settings.store_2 != empty %}
+							<li>{{ settings.store_2 | link_to: settings.store_2_url }}</li>
+						{% endif %}
+						{% if settings.store_3 != empty %}
+							<li>{{ settings.store_3 | link_to: settings.store_3_url }}</li>
+						{% endif %}
+						{% if settings.store_4 != empty %}
+							<li>{{ settings.store_4 | link_to: settings.store_4_url }}</li>
+						{% endif %}
+						{% if settings.store_5 != empty %}
+							<li>{{ settings.store_5 | link_to: settings.store_5_url }}</li>
+						{% endif %}
+					</ul>
+				{% endfor %}
+			</div>
+			<div class="contact-form">
+
+				<p class="lead">{{ set.form_paragraph }}</p>
+				{% form 'contact' %}
+
+					{% if form.posted_successfully? %}
+						<p class="note form-success">
+							{{ set.form_success }}
+						</p>
+					{% endif %}
+
+					{{ form.errors | default_errors }}
+
+					{% assign name_attr = 'contact.form.name' | t | handleize %}
+          <label for="ContactFormName" class="clearfix">{{ 'form.name' | t }}</label>
+          <input type="text" id="ContactFormName" name="contact[{{ name_attr }}]" placeholder="{{ 'form.name' | t }}" autocapitalize="words" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+
+          <label for="ContactFormEmail" class="clearfix">{{ 'form.email' | t }}</label>
+          <input type="email" id="ContactFormEmail" name="contact[email]" placeholder="{{ 'form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+
+          {% assign name_attr = 'form.phone' | t | handleize %}
+          <label for="ContactFormPhone" class="clearfix">{{ 'form.phone' | t }}</label>
+          <input type="tel" id="ContactFormPhone" name="contact[{{ name_attr }}]" placeholder="{{ 'form.phone' | t }}" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+
+          {% assign name_attr = 'form.decorator' | t | handleize %}
+          <label for="ContactFromDecorator" class="clearfix">{{ 'form.decorator' | t }}</label>
+					<input type="text" id="ContactFromDecorator" name="contact[{{ name_attr }}]" placeholder="State" autocapitalize="words" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.customer_address.province }}{% endif %}">
+
+
+					<button class="btn primary-btn" type="submit">Submit Request</button>
+				{% endform %}
+
+			</div>
 		</div>
 	</div>
 </section>
@@ -49,6 +119,31 @@
 			"type": "image_picker",
 			"id": "banner_img",
 			"label": "Banner Image"
+		},
+		{
+			"type": "header",
+			"content": "Body"
+		},
+		{
+			"type": "text",
+			"id": "body_heading",
+			"label": "Heading"
+		},
+		{
+			"type": "textarea",
+			"id": "body_lead",
+			"label": "Paragraph"
+		},
+		{
+			"type": "textarea",
+			"id": "form_paragraph",
+			"label": "Form Paragraph"
+		},
+		{
+			"type": "text",
+			"id": "form_success",
+			"label": "Message after submitting a form",
+			"default": "Thank you for submitting! We will contact you shortly"
 		}
 	],
 	"blocks": [
@@ -58,7 +153,7 @@
 			"settings": [
 				{
 					"type": "text",
-					"id": "states",
+					"id": "state_id",
 					"label": "State"
 				},
 				{

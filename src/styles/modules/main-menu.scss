@@ -52,6 +52,7 @@ nav.main-menu {
 
 nav.secondary-menu {
 	text-align: center;
+	position: relative;
 	@include s() {
 		display: none;
 	}
@@ -63,11 +64,13 @@ nav.secondary-menu {
 		}
 		.secondary-item {
 			flex: 15%;
-			position: relative;
+			.secondary-item-link {
+				position: relative;
+			}
 			&.item-dropdown {
 				.icon {
 					position: absolute;
-			    right: 15%;
+			    right: 11%;
 			    z-index: 5;
 			    top: 24px;
 			    font-size: 12px;

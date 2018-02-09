@@ -104,6 +104,7 @@
     "add": "Add",
     "edit": "Edit",
     "delete": "Delete",
+    "decorator": "Decorator Building Location",
     "contact": {
       "success": "Form posted successfully"
     }

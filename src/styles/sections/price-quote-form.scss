@@ -1,0 +1,55 @@
+.price-quote-form {
+	padding: 2em 10px 0 0;
+	@include m() {
+		display: none;
+	}
+	@include s() {
+		display: none;
+	}
+	.title {
+		@include ptSerif(20px, 400, normal);
+		color: #555;
+	}
+
+	.lead {
+		@include ptSans(15px, 400, normal);
+		color: #888;
+		margin: 0;
+	}
+
+	input {
+		border: 1px solid #e5e5e5;
+		color: #888;
+		width: 100%;
+		margin: 0.5em 0;
+		@include ptSans(15px, 400, normal);
+		padding: 10px;
+		@include inputPlaceholder(#888);
+	}
+
+	.add-more {
+		padding: 1em 0;
+		text-align: center;
+		.action {
+			text-decoration: none;
+			@include ptSans(14px, 400, normal);
+			color: #88beb4;
+			border-bottom: 1px solid #88beb4;
+			text-transform: uppercase;
+			&:hover {
+				color: darken(#88beb4, 20%);
+			}
+		}
+	}
+
+	.send-action {
+		margin: 1em 0;
+		button {
+			width: 100%;
+			display: block;
+			height: auto;
+			border: 0;
+		}
+	}
+	
+}

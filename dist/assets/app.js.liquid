@@ -719,6 +719,37 @@ $(document).ready(function() {
     }
   });
 
+  // Cart Math Logic
+  function changeCartQty() {
+    // Header
+    var header_cart_qty = $('.menu.row-1 .cart-qty').data('cart-item-count');
+    var header_cart_result = header_cart_qty / 2;
+    $('.menu.row-1 .cart-qty').prepend('('+header_cart_result+' yds)');
+
+    // Cart Page
+    $('.length-price .quantity').each(function() {
+      var cart_page_qty = $(this).data('value');
+      var cart_page_result = cart_page_qty / 2;
+      if (cart_page_result <= 1) {
+        $(this).prepend('Length: '+cart_page_result+' yard');
+      } else {
+        $(this).prepend('Length: '+cart_page_result+' yards');
+      }
+    });
+
+    $('.cart__qty-input').each(function(){
+      var currentQuantity = $(this).val();
+      $(this).next().val(currentQuantity/2);
+    });
+
+    $('.dummy-quantity').change(function(){
+      var currentQuantity = $(this).val();
+      $(this).val(Math.round(currentQuantity*2)/2);
+      $(this).prev().val(currentQuantity*2);
+    });
+  }
+  changeCartQty();
+
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     $('.item-dropdown .secondary-item-link').on('click', function(e) {
       e.preventDefault();
@@ -741,7 +772,7 @@ $(document).ready(function() {
   // Mobile Item Dropdown
   $('.mb-item-dropdown .mb-item-link').on('click', function(e) {
     e.preventDefault();
-    $('.dropdown-window').slideToggle();
+    $(this).next('.dropdown-window').slideToggle();
   });
 
   // Init Slick Slider for sections/hero-slider.liquid
@@ -881,4 +912,10 @@ $(document).ready(function() {
     $(" > .tab-panel", panelsContext).removeClass("active");
     $(".tab-panel:eq(" + index + ")", panelsContext).addClass("active");
   });
+
+  // Price Quote Form Clone
+  function cloneForm() {
+    var price_quote_form_index = 0;
+    
+  }
 });

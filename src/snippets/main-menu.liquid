@@ -32,6 +32,9 @@
 						<li class="secondary-item {% if childlink.active %}active{% else %}inactive{% endif %} {% if childlink.links != blank %}item-dropdown{% endif %}">
 							<a class="secondary-item-link" href="{{ childlink.url }}">
 								<p>{{ childlink.title }}</p>
+								{% if childlink.links != empty %}
+									{% include 'icon' with 'chevron-down' %}
+								{% endif %}
 							</a>
 							{% include 'dropdown-menu' %}
 						</li>

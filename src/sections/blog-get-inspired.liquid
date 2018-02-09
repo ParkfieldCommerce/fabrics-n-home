@@ -1,0 +1,48 @@
+{% assign set = section.settings %}
+{% paginate blogs['get-inspired'].articles by 6 %}
+<section class="get-inspired">
+	<div class="container l">
+		<h1 class="title">{{ set.main_title }}</h1>
+		<div class="row">
+			{% for article in blogs['get-inspired'].articles %}
+				<div class="column l6 m6 s12">
+					<div class="article-block block-{{ forloop.index }}">
+						<div class="featured-image">
+							<a href="{{shop.url}}{{article.url}}">
+								<img src="{{ article.image | img_url: 'master' }}" alt="">
+							</a>
+						</div>
+						<div class="content">
+							<h3>{{ article.title | link_to: article.url }}</h3>
+							<p>{{ article.excerpt }}</p>
+							<div class="action">
+								<a class="btn secondary-btn" href="{{shop.url}}{{article.url}}">More</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		{% if paginate.pages > 1 %}
+      <hr>
+      <div class="pagination">
+        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+      </div>
+    {% endif %}
+	</div>
+</section>
+{% endpaginate %}
+
+{% schema %}
+{
+	"name": "Get Inspired",
+	"settings": [
+		{
+			"type": "text",
+			"id": "main_title",
+			"label": "Main Title",
+			"default": "Awaken Your Style"
+		}
+	]
+}
+{% endschema %}

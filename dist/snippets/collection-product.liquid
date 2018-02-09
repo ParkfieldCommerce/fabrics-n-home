@@ -33,10 +33,10 @@
       {% else %}
 
         {% if product.price_varies %}
-          {% assign price = product.price | money %}
+          {% assign price = product.price | times: 2 | money %}
           {{ 'product.priced_from_html' | t: price: price }}/Yard
         {% else %}
-          {{ product.price | money }}/Yard
+          {{ product.price | times: 2 | money }}/Yard
         {% endif %}
 
       {% endif %}

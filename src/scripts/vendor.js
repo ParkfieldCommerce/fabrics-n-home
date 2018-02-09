@@ -24,9 +24,14 @@
 // =require vendor/focus.js
 
 /*!
- * concrete.cart.min.js
+ * rivets-cart.min.js
  */
-// =require vendor/Cartfox.js
+// =require vendor/rivets-cart.min.js
+
+/*!
+ * cart.js
+ */
+// =require vendor/cart.js
 
 /*!
  * slick.min.js

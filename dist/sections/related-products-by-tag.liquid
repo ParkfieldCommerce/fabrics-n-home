@@ -21,7 +21,7 @@
               </div>
               <div class="info">
                 <h4 class="product-title"><a href="{{ product.url }}" title="{{ product.title | escape }}">{{ product.title }}</a></h4>
-                <span class="money">{{ product.price | money }}/ Yard</span>
+                <span class="money">{{ product.price | times: 2 | money }}/ Yard</span>
               </div>
             </li>
 

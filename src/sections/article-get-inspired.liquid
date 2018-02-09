@@ -1,0 +1,50 @@
+<section class="article-get-inspired">
+	<div class="container l">
+		<div class="row">
+			<div class="column l7 m6 s12">
+				<img class="featured-img" src="{{ article.image | img_url:'master' }}" alt="">
+			</div>
+			<div class="column l5 m6 s12">
+				<h3 class="title">{{ article.title }}</h3>
+				{% include 'social-sharing' %}
+				<p class="body">
+					{{ article.content }}
+				</p>
+				<div class="action">
+          <a href="{{ section.settings.btn_url }}" class="btn primary-btn">{{ section.settings.btn_text }}</a>
+        </div>
+			</div>
+		</div>
+		<div class="featured-products">
+			<div class="row">
+				{% for tag in article.tags %}
+					{% if tag contains 'product' %}
+						{% assign handle = tag | split: '_' | last %}
+						{% assign product = all_products[handle] %}
+						{% assign column_width = 'column l3 m4 s12' %}
+						{% include 'collection-product' %}
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Get Inspired Article",
+	"settings": [
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button Text",
+			"default": "Get a Custom Quote"
+		},
+		{
+			"type": "url",
+			"id": "btn_url",
+			"label": "Button URL"
+		}
+	]
+}
+{% endschema %}

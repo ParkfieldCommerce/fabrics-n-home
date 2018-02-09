@@ -1,0 +1,33 @@
+{% if settings.enable_price_quote_sidebar %}
+	{% form 'contact' %}
+
+		<div class="price-quote-form" id="formClone">
+			{% if form.posted_successfully? %}
+				<p class="note form-success">
+					{{ 'contact.form.post_success' }}
+				</p>
+			{% endif %}
+
+			<h3 class="title">{{ settings.price_quote_title }}</h3>
+			<p class="lead">{{ settings.price_quote_lead }}</p>
+
+			<input type="hidden" id="ContactPriceQuoteForm" name="contact[PriceQuoteForm]" value="PriceQuoteForm">
+
+			<input type="text" id="ContactManufacturer" name="contact[Manufacturer]" placeholder="Manufacturer">
+
+			<input type="text" id="ContactPatternName" name="contact[PatternName]" placeholder="Pattern Name or #">
+
+			<input type="text" id="ContactColorName" name="contact[ColorName]" placeholder="Color Name or Number">
+
+			<input type="text" id="ContactEmail" name="contact[Email]" placeholder="E-mail">
+
+			<div class="add-more">
+				<a id="add-more-action" class="action"><i class="fa fa-plus"></i> Add Another</a>
+			</div>
+			<div class="send-action">
+				<button type="submit" class="btn primary-btn">Send Request</button>
+			</div>
+		</div>
+
+	{% endform %}
+{% endif %}

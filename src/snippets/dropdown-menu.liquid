@@ -1,16 +1,20 @@
 {% if childlink.links != empty %}
-	{% include 'icon' with 'chevron-down' %}
 	<div class="dropdown-window">
 
 		{% for grandchild in childlink.links %}
 			<ul class="section {{ grandchild.handle }}" >
-				<li class="title">{{ grandchild.title }}</li>
+				{% if grandchild.links != empty %}
+					<li class="title">{{ grandchild.title }}</li>
 
-				{% for greatgrandchild in grandchild.links %}
-					<li class="dropdown-item {% if greatgrandchild.active %}active{% else %}inactive{% endif %}">
-						{{ greatgrandchild.title | link_to: greatgrandchild.url }}
-					</li>
-				{% endfor %}
+					{% for greatgrandchild in grandchild.links %}
+						<li class="dropdown-item {% if greatgrandchild.active %}active{% else %}inactive{% endif %}">
+							{{ greatgrandchild.title | link_to: greatgrandchild.url }}
+						</li>
+					{% endfor %}
+
+				{% else %}
+					<li class="dropdown-item {% if grandchild.active %}active{% else %}inactive{% endif %}">{{ grandchild.title | link_to: grandchild.url }}</li>
+				{% endif %}
 
 			</ul>
 		{% endfor %}

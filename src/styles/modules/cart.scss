@@ -1,52 +1,156 @@
 /* Cart ======================================================================*/
 
-.quantity-adjust {
-  margin-bottom: $gutter/2;
-  @include prefixer(user-select, none, webkit moz ms o spec);
-  .adjust {
-    display: inline-block;
-    height: $gutter/1.5;
-    vertical-align: middle;
-    line-height: $gutter/1.5 - $borderWeight*4;
-    font-size: 1.35rem;
-    text-align: center;
-    text-decoration: none;
-    background-color: transparent;
-    border: $borderWeight $borderStyle transparent;
-  }
-  .quantity, input#Quantity.quantity {
-    display: inline-block;
-    width: $gutter/1.5;
-    height: $gutter/1.5;
-    line-height: $gutter/1.5;
-    text-align: center;
-    padding: 0;
-    margin-bottom: 0;
-    background-color: lighten($colorBackground, 30%);
-    border-radius: $borderRadius;
-    border-color: lighten($colorBackground, 30%);
-    font-size: 1rem;
-    color: $colorText;
-    &[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+.my-cart {
+  .cart-item {
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    padding: 1.3em 0;
+    @include s() {
+      padding: 0;
     }
   }
-  input#Quantity.quantity {
-    line-height: $gutter/1.5 - $borderRadius*2;
-    &[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+  .title {
+    @include ptSerif(40px, 400, normal);
+    text-align: center;
+    padding: 1em 0;
+    color: #888;
+    @include s() {
+      padding: 0.5em 0;
     }
   }
-}
-
-
-.template-cart {
-  @include s() {
-    .product_title {
-      display: block;
-      margin-bottom: $gutter/2;
+  .product-container {
+    .featured-img {
+      img {
+        width: 70%;
+        display: block;
+        margin: auto;
+        @include s() {
+          width: 100%;
+        }
+      }
+    }
+    .product-title {
+      text-decoration: none;
+      color: #888;
+      &:hover {
+        text-decoration: underline;
+      }
+      h3 {
+        @include ptSerif(18px, 400, normal);
+        text-align: center;
+        @include s() {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+  .length-price {
+    @include flex();
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    height: 230px;
+    @include s() {
+      height: 100px;
+      .quantity {
+        margin: 0;
+      }
+    }
+    p {
+      @include ptSans(20px, 400, normal);
+      color: #888;
+      @include s() {
+        font-size: 18px;
+      }
+    }
+  }
+  .qty-container {
+    height: 200px;
+    @include flex();
+    flex-flow: row wrap;
+    align-items: center;
+    @include s() {
+      height: 80px;
+    }
+    label {
+      width: 20%;
+      @include ptSans(20px, 400, normal);
+      color: #888;
+      text-align: left;
+      margin: auto;
+      margin-left: 10px;
+    }
+    input[type="number"] {
+      width: 30%;
+      color: #888;
+      @include ptSans(20px, 400, normal);
+      border: 1px solid #e5e5e5;
+      padding: 10px;
+      margin: auto;
+      margin-right: 0;
+    }
+    @include s() {
+      label,
+      input[type="number"] {
+        font-size: 18px;
+      }
+    }
+  }
+  .total-item-price {
+    height: 200px;
+    padding: 3em 0;
+    @include flex();
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    @include s() {
+      height: 150px;
+      padding: 1em 0;
+    }
+    p {
+      @include ptSans(20px, 400, normal);
+      text-align: center;
+      color: #888;
+      flex: 1 100%;
+    }
+    .btn {
+      flex: 0.5;
+    }
+  }
+  .cart-info {
+    margin-top: 1em;
+    border: 1px solid #e5e5e5;
+    padding: 20px;
+    .cart-actions {
+      width: 50%;
+      margin: auto;
+      @include flex();
+      flex-flow: row wrap;
+      @include s() {
+        width: 65%;
+      }
+      button {
+        height: auto;
+        border: 0;
+      }
+      .btn {
+        flex: 0.5 20%;
+        margin: 0 5%;
+        @include s() {
+          flex: 1;
+          margin: 10px 1%;
+        }
+      }
+    }
+  }
+  .cart-total {
+    width: 50%;
+    margin: auto;
+    padding: 1em 0;
+    text-align: center;
+    p {
+      @include ptSans(25px, 400, normal);
+      color: #555;
     }
   }
 }

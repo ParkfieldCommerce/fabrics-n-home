@@ -1,0 +1,53 @@
+.get-inspired {
+	.title {
+		@include ptSerif(40px, 400, normal);
+		text-align: center;
+		padding: 1em 0;
+	}
+	.article-block {
+		width: 98%;
+		border-bottom: 1px solid #e5e5e5;
+		margin-bottom: 10px;
+		@include s() {
+			width: 100%;
+		}
+		&.block-1,
+		&.block-3,
+		&.block-5 {
+			margin-right: auto;
+		}
+		&.block-2,
+		&.block-4,
+		&.block-6 {
+			margin-left: auto;
+		}
+		.featured-image {
+			height: 400px;
+			a,
+			img {
+				height: inherit;
+				width: 100%;
+			}
+		}
+		.content {
+			position: relative;
+			padding-bottom: 1em;
+			h3 {
+				a {
+					@include ptSerif(20px, 400, normal);
+					color: #555;
+					text-decoration: none;
+				}
+			}
+			p {
+				@include ptSans(15px, 400, normal);
+				color: #888;
+			}
+			.action {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
+		}
+	}
+}
