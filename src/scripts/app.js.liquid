@@ -234,6 +234,12 @@ $(document).ready(function() {
     $(this).next('.pane').slideToggle();
   });
 
+  // Accordion for FAQ
+  $('.accordion .title').on('click', function() {
+    $(this).next('.pane').slideToggle();
+    $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+  });
+
   // View by filter
   $('#view-per-page').on('change', function() {
     var optVal = $(this).val();
@@ -256,6 +262,6 @@ $(document).ready(function() {
   // Price Quote Form Clone
   function cloneForm() {
     var price_quote_form_index = 0;
-    
+
   }
 });

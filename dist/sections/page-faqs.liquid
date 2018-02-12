@@ -1,0 +1,102 @@
+{% assign set = section.settings %}
+{% capture alignment %}
+	{% if set.banner_alignment == 'left' %}
+		align-left
+	{% elsif set.banner_alignment == 'center' %}
+		align-center
+	{% elsif set.banner_alignment == 'right' %}
+		align-right
+	{% endif %}
+{% endcapture %}
+<style>
+	.banner {
+		background: linear-gradient(
+			rgba(0,0,0,0.4),
+			rgba(0,0,0,0.4)
+			),
+			url({{ set.banner_bg | img_url:'master' }});
+		background-size: cover;
+		background-position: 50% 50%;
+	}
+</style>
+<script>
+	$('.secondary-items[data-main-title="Fabric & Wallcovering"], .mobile-items[data-main-title="Fabric & Wallcovering"]').removeClass('inactive').addClass('active');
+</script>
+<section class="faq-page">
+	<div class="container l">
+		<div class="banner {{ alignment }}">
+			<div class="text-container">
+				<h2>{{ set.banner_heading }}</h2>
+				<p>{{ set.banner_lead }}</p>
+			</div>			
+		</div>
+		<div class="faq-body">
+			<h2 class="heading">FAQ's</h2>
+			<div class="accordion">
+				{% for block in section.blocks %}
+					<div class="title">
+						{% include 'icon' with 'chevron-down' %}
+						<h3>{{ block.settings.faq_question }}</h3>
+					</div>
+					<p class="pane">{{ block.settings.faq_answer }}</p>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "FAQ Page",
+	"max_blocks": 20,
+	"settings": [
+		{
+			"type":"header",
+			"content": "Main Banner"
+		},
+		{
+			"type": "select",
+			"id": "banner_alignment",
+			"label": "Alignment",
+			"options": [
+				{ "value": "left", "label": "Left" },
+				{ "value": "right", "label": "Right" },
+				{ "value": "center", "label": "Center" }
+			]
+		},
+		{
+			"type": "image_picker",
+			"id": "banner_bg",
+			"label": "Banner Background Image"
+		},
+		{
+			"type": "text",
+			"id": "banner_heading",
+			"label": "Banner Heading"
+		},
+		{
+			"type": "textarea",
+			"id": "banner_lead",
+			"label": "Banner Lead"
+		}
+	],
+	"blocks": [
+		{
+			"type": "faq_blocks",
+			"name": "FAQ Blocks",
+			"settings": [
+				{
+					"type": "text",
+					"id": "faq_question",
+					"label": "Question"
+				},
+				{
+					"type": "textarea",
+					"id": "faq_answer",
+					"label": "Answer"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

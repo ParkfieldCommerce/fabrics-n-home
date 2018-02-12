@@ -1,0 +1,120 @@
+<style>
+	.banner {
+		background: url({{ section.settings.banner_bg | img_url:'master' }});
+		background-size: cover;
+		background-position: 50% 50%;
+	}
+	{% for block in section.blocks %}
+		.centered-block.block-{{forloop.index}} {
+			background: linear-gradient(
+				rgba(0,0,0,0.4),
+				rgba(0,0,0,0.4)
+				),
+			url({{block.settings.feature_img|img_url:'master'}});
+			background-position: 50% 50%;
+			background-size: cover;
+		}
+	{% endfor %}
+</style>
+
+<script>
+	$('.secondary-items[data-main-title="Fabric & Wallcovering"], .mobile-items[data-main-title="Fabric & Wallcovering"]').removeClass('inactive').addClass('active');
+</script>
+
+<section class="page-our-story">
+	<div class="container l">
+		<div class="banner"></div>
+		<div class="our-story-body">
+			<h1 class="heading">How it all got started</h1>
+			{% for block in section.blocks %}
+				{% capture left %}
+					<div class="column l6 m6 s12">
+						<div class="img-container">
+							<img src="{{ block.settings.feature_img | img_url:'master' }}" alt="">
+						</div>
+					</div>
+					<div class="column l6 m6 s12">
+						<h1 class="year">{{ block.settings.year }}</h1>
+						<p class="content">{{ block.settings.year_description }}</p>
+					</div>
+				{% endcapture %}
+				{% capture right %}
+					<div class="column l6 m6 s12">
+						<h1 class="year">{{ block.settings.year }}</h1>
+						<p class="content">{{ block.settings.year_description }}</p>
+					</div>
+					<div class="column l6 m6 s12">
+						<div class="img-container">
+							<img src="{{ block.settings.feature_img | img_url:'master' }}" alt="">
+						</div>
+					</div>
+				{% endcapture %}
+				{% capture centered %}
+					<div class="centered-block block-{{forloop.index}}">
+						<div class="text-container">
+							<h1>{{ block.settings.year }}</h1>
+						</div>
+					</div>
+					<p class="content">{{ block.settings.year_description }}</p>
+				{% endcapture %}
+
+				<div class="row">
+					{% if block.settings.img_alignment == 'left' %}
+						{{ left }}
+					{% elsif block.settings.img_alignment == 'right' %}
+						{{ right }}
+					{% elsif block.settings.img_alignment == 'center' %}
+						{{ centered }}
+					{% endif %}
+				</div>
+
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% schema %}
+{
+	"name": "Our Story",
+	"max_blocks": 20,
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "banner_bg",
+			"label": "Banner Image"
+		}
+	],
+	"blocks": [
+		{
+			"type": "date",
+			"name": "Date",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "feature_img",
+					"label": "Featured Image"
+				},
+				{
+					"type": "radio",
+					"id": "img_alignment",
+					"label": "Image Alignment",
+					"options": [
+						{ "value": "left", "label": "Left" },
+						{ "value": "right", "label": "Right" },
+						{ "value": "center", "label": "Center" }
+					]
+				},
+				{
+					"type": "text",
+					"id": "year",
+					"label": "Year"
+				},
+				{
+					"type": "textarea",
+					"id": "year_description",
+					"label": "Content"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

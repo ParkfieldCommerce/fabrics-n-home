@@ -1,4 +1,17 @@
 <!-- /sections/collection.liquid -->
+{% comment %}
+=============================
+Just in case
+=============================
+.banner {
+  background:linear-gradient(
+      rgba(0,0,0,0.3),
+      rgba(0,0,0,0.3)
+      ),
+    url({{section.settings.image_bg | img_url:'master'}}); 
+}
+=============================
+{% endcomment %}
 
 {% assign view = '12' %}
 {% paginate collection.products by 12 %}
@@ -6,11 +19,7 @@
 {% assign column_width = 'column l3 m4 s12' %}
 <style>
   .banner {
-    background: linear-gradient(
-      rgba(0,0,0,0.3),
-      rgba(0,0,0,0.3)
-      ),
-    url({{section.settings.image_bg | img_url:'master'}});
+    background: #fff;
     background-size: cover;
     background-position: 50% 50%;
   }
@@ -18,7 +27,13 @@
 <section class="collections-page" data-section-type="collection">
   <div class="container l">
     <div class="banner">
-      <h1>{{ collection.title }}</h1>
+      {% if collection.image %}
+        <div class="img-container">
+          <img src="{{ collection.image | img_url:'master' }}" alt="">
+        </div>
+      {% else %}
+        <h1>{{ collection.title }}</h1>
+      {% endif %}
     </div>
     <div class="row">
       <div class="column l3 m12 s12">

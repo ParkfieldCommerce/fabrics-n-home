@@ -1,7 +1,7 @@
 .product-block {
 	.image {
 		height: 215px;
-		width: 97%;
+		width: 215px;
 		margin: auto;
 		display: block;
 		text-decoration: none;
@@ -9,6 +9,7 @@
 		z-index: 1;
 		@include s() {
 			height: 154px;
+			width: 154px;
 		}
 		p {
 			@include ptSerif(18px, 400, normal);

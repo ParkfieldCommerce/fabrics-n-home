@@ -1,0 +1,93 @@
+.page-our-story {
+	.banner {
+		height: 400px;
+		@include m() {
+			height: 240px;
+		}
+		@include s() {
+			height: 140px;
+		}
+	}
+	.heading {
+		@include ptSerif(40px, 400, normal);
+		color: #888;
+		text-align: center;
+		padding: 1em 0;
+		@include m() {
+			font-size: 30px;
+			padding: 0.5em 0;
+		}
+		@include s() {
+			font-size: 20px;
+			padding: 0.5em 0;
+		}
+	}
+	.row {
+		margin: 0 0 5em 0;
+		@include m() {
+			padding: 0 2%;
+			margin: 0 0 3em 0;
+		}
+		@include s() {
+			padding: 0;
+			margin: 0 0 0.5em 0;
+		}
+	}
+	.our-story-body {
+		.img-container {
+			img {
+				width: 100%;
+				padding: 0 40px;
+				@include s() {
+					padding: 0;
+				}
+			}
+		}
+		.year {
+			@include ptSerif(60px, 400, normal);
+			color: #c0ae81;
+			@include m() {
+				font-size: 50px;
+			}
+			@include s() {
+				font-size: 40px;
+				text-align: center;
+			}
+		}
+		.content {
+			@include ptSans(15px, 400, normal);
+			color: #888;
+			line-height: 30px;
+			@include s() {
+				padding: 0 2%;
+				font-size: 12px;
+				line-height: 15px;
+			}
+		}
+	}
+	.centered-block {
+		height: 525px;
+		@include flex();
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 1em;
+		@include m() {
+			height: 325px;
+		}
+		@include s() {
+			height: 200px;
+		}
+		.text-container {
+			h1 {
+				@include ptSerif(100px, 400, normal);
+				color: #fff;
+				@include m() {
+					font-size: 80px;
+				}
+				@include s() {
+					font-size: 70px;
+				}
+			}
+		}
+	}
+}

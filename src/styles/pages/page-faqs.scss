@@ -1,0 +1,88 @@
+.faq-page {
+	.banner {
+		height: 400px;
+		@include flex();
+		align-items: center;
+		&.align-left {
+			justify-content: flex-start;
+		}
+		&.align-center {
+			justify-content: center;
+		}
+		&.align-right {
+			justify-content: flex-end;
+		}
+		.text-container {
+			width: 400px;
+			margin: 0 10%;
+			h2,
+			p {
+				color: #fff;
+				margin: 0;
+			}
+			h2 {
+				@include ptSerif(40px, 400, italic);
+				padding: 10px 0;
+				border-bottom: 6px solid #88beb4;
+				@include s() {
+					font-size: 30px;
+				}
+			}
+			p {
+				@include ptSans(25px, 400, normal);
+				line-height: 30px;
+				padding-top: 10px;
+				@include s() {
+					font-size: 20px;
+				}
+			}
+		}
+	} //.banner 
+	.faq-body {
+		@include s() {
+			padding: 0 5%;
+		}
+		.heading {
+			@include ptSerif(30px, 400, normal);
+			padding: 10px 0;
+			border-bottom: 1px solid #e5e5e5;
+			margin-bottom: 2em;
+		}
+		.accordion {
+			.title {
+				margin-bottom: 2em;
+				.icon,
+				h3 {
+					display: inline-block;
+					color: #555;
+					line-height: 1;
+				}
+				.icon {
+					padding: 15px;
+					border: 1px solid #e5e5e5;
+					border-radius: 3px;
+					@include s() {
+						padding: 10px;
+					}
+				}
+				h3 {
+					@include ptSerif(25px, 400, normal);
+					padding-top: 3px;
+					vertical-align: middle;
+					@include s() {
+						font-size: 20px;
+						width: 85%;
+					}
+				}
+			}
+			.pane {
+				@include ptSans(15px, 400, normal);
+				color: #888;
+				line-height: 20px;
+				display: none;
+				margin-bottom: 1.5em;
+				padding: 0 5%;
+			}
+		}
+	}
+}
