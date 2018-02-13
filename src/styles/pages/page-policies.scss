@@ -1,0 +1,30 @@
+.page-policies {
+	.page-title {
+		@include ptSerif(30px, 400, normal);
+		color: #555;
+		padding: 0.7em 0;
+		border-bottom: 1px solid #e5e5e5;
+		margin-bottom: 1em;
+	}
+
+	.policy-body {
+		@include ptSans(15px, 400, normal);
+		color: #555;
+		.policy-block {
+			margin: 0.5em 0;
+			@include s() {
+				margin: 0 0 4.5em;
+				padding: 0 2%;
+			}
+		}
+		h2 {
+			@include ptSerif(25px, 400, normal);
+		}
+		h3 {
+			@include ptSerif(20px, 400, normal);
+		}
+		p {
+			@include ptSans(15px, 400, normal);
+		}
+	}
+}

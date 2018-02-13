@@ -1,0 +1,40 @@
+.fh-gives-back {
+	.banner {
+		height: 400px;
+	}
+	.title {
+		@include ptSerif(40px, 400, normal);
+		margin-bottom: 10px;
+		color: #555;
+	}
+	.lead {
+		@include ptSans(15px, 400, normal);
+		line-height: 30px;
+		color: #3a3a3a;
+		a {
+			color: #88beb4;
+			text-decoration: none;
+		}
+	}
+	.img-container {
+		img {
+			width: 100%;
+		}
+	}
+	.sec-title {
+		@include ptSerif(25px, 700, normal);
+		color: #888;
+		padding-left: 20px;
+	}
+	.list {
+		@include flex();
+		flex-flow: row wrap;
+		padding: 0 20px;
+		li {
+			flex: 1 50%;
+			@include ptSans(15px, 700, normal);
+			line-height: 35px;
+			color: #888;
+		}
+	}
+}

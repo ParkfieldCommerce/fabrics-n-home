@@ -1,0 +1,73 @@
+{% include 'js-nav-activator' %}
+
+<style>
+	.banner {
+		background: url({{ section.settings.banner_img | img_url:'master' }});
+		background-size: cover;
+		background-position: 50% 50%;
+	}
+</style>
+
+<section class="fh-gives-back">
+	<div class="container l">
+		<div class="banner"></div>
+		<div class="fh-body">
+			<h2 class="title">Fabric for Special Education</h2>
+			<p class="lead">
+				Every year, under the federal law known as the Individuals with Disabilities Education Act (IDEA), millions of children with disabilities receive special services designed to meet their individual needs. Fabrics and Home Interiors would like to help support education for children with disabilities by donating .25 per yard for each yard of fabric sold on our website.  IDEA lists 13 different disabilities that effect school-aged children and youth. Fabrics and Home Interiors will choose one of IDEA’s disability categories and make an annual donation. We will vary each donation annually hoping to touch the lives of the many children in our country who need additional support so they can lead happy, productive lives. Many non-profit organizations build their foundations designed to provide students affected by a disability, their families, teachers and support staff with the resources necessary that provide continuous support. Students with disabilities achieve success with appropriate individualized programs designed and implemented by caring kindhearted people. 
+			</p>
+			<div class="row">
+				<div class="column l4 m4 s12">
+					<div class="img-container">
+						<img src="{{ section.settings.feature_img | img_url:'master' }}" alt="">
+					</div>
+				</div>
+				<div class="column l8 m8 s12">
+						<h2 class="sec-title">The 13 disabilities affecting our children</h2>
+						<ul class="list">
+							<li>Autism</li>
+							<li>Deaf-Blindness</li>
+							<li>Emotional Disturbance</li>
+							<li>Deafness</li>
+							<li>Hearing Impairment</li>
+							<li>Intellectual Disability</li>
+							<li>Multiple Disabilities</li>
+							<li>Orthopedic Impairment</li>
+							<li>Other health Impairment</li>
+							<li>Speech or Language Impairment</li>
+							<li>Specific Learning Disability</li>
+							<li>Traumatic Brain Injury</li>
+							<li>Visual Impairment</li>
+						</ul>
+					</div>
+			</div>
+			<p class="lead">
+				Our first donation will be made on _____  to the Learning Disabilities Association of America (LDA) in order to help children and youths who are affected by a specific learning disability. A learning disability is a neurological condition that interferes with an individual’s ability to store, process and produce information.  Having a learning disability can affect one’s ability to read, write, speak, spell, compute math, reason, an individual’s attention, memory, coordination, social skills and emotional maturity.
+			</p>
+			<p class="lead">
+				“The mission of NCLD is to improve the lives of the one in five children and adults nationwide with learning and attention issues—by empowering parents and young adults, transforming schools and advocating for equal rights and opportunities. We’re working to create a society in which every individual possesses the academic, social and emotional skills needed to succeed in school, at work and in life.” Please visit NCLD website to learn more about this cause <a href="http://www.ncld.org">http://www.ncld.org</a>
+			</p>
+			<p class="lead">
+				Thank you to all our customers who have supported our business this year empowering us to reach out and help the 1 in 5 affected by this disability. By supporting our vision is to play a big part and enables Fabrics and Home Interiors to continually “Pay it forward.”
+			</p>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "FH Gives Back",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "banner_img",
+			"label": "Banner Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "feature_img",
+			"label": "Featured Image"
+		}
+	]
+}
+{% endschema %}

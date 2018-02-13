@@ -3606,6 +3606,116 @@ nav.mobile-menu {
 		}
 	}
 }
+.page-policies {
+	.page-title {
+		@include ptSerif(30px, 400, normal);
+		color: #555;
+		padding: 0.7em 0;
+		border-bottom: 1px solid #e5e5e5;
+		margin-bottom: 1em;
+	}
+
+	.policy-body {
+		@include ptSans(15px, 400, normal);
+		color: #555;
+		.policy-block {
+			margin: 0.5em 0;
+			@include s() {
+				margin: 0 0 4.5em;
+				padding: 0 2%;
+			}
+		}
+		h2 {
+			@include ptSerif(25px, 400, normal);
+		}
+		h3 {
+			@include ptSerif(20px, 400, normal);
+		}
+		p {
+			@include ptSans(15px, 400, normal);
+		}
+	}
+}
+.design-tools {
+	.accordion {
+		margin: 3em 0;
+		.title {
+			margin-bottom: 2em;
+			.icon,
+			h3 {
+				display: inline-block;
+				color: #555;
+				line-height: 1;
+			}
+			.icon {
+				padding: 15px;
+				border: 1px solid #e5e5e5;
+				border-radius: 3px;
+				@include s() {
+					padding: 10px;
+				}
+			}
+			h3 {
+				@include ptSerif(25px, 400, normal);
+				padding-top: 3px;
+				vertical-align: middle;
+				@include s() {
+					font-size: 20px;
+					width: 85%;
+				}
+			}
+		}
+		.pane {
+			@include ptSans(15px, 400, normal);
+			color: #888;
+			line-height: 20px;
+			display: none;
+			margin-bottom: 1.5em;
+			padding: 0 5%;
+			height: 500px;
+		}
+	}
+}
+.fh-gives-back {
+	.banner {
+		height: 400px;
+	}
+	.title {
+		@include ptSerif(40px, 400, normal);
+		margin-bottom: 10px;
+		color: #555;
+	}
+	.lead {
+		@include ptSans(15px, 400, normal);
+		line-height: 30px;
+		color: #3a3a3a;
+		a {
+			color: #88beb4;
+			text-decoration: none;
+		}
+	}
+	.img-container {
+		img {
+			width: 100%;
+		}
+	}
+	.sec-title {
+		@include ptSerif(25px, 700, normal);
+		color: #888;
+		padding-left: 20px;
+	}
+	.list {
+		@include flex();
+		flex-flow: row wrap;
+		padding: 0 20px;
+		li {
+			flex: 1 50%;
+			@include ptSans(15px, 700, normal);
+			line-height: 35px;
+			color: #888;
+		}
+	}
+}
 
 /* Sections ===================================================================*/
 .hero-slider {

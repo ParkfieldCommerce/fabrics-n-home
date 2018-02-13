@@ -1,0 +1,43 @@
+{% include 'js-nav-activator' %}
+
+<section class="design-tools">
+	<div class="container l">
+		<div class="accordion">
+			{% for block in section.blocks %}
+				{% assign settings = block.settings %}
+				<div class="title">
+					{% include 'icon' with 'chevron-up' %}
+					<h3>{{ settings.tool_name }}</h3>
+				</div>
+				<div class="pane">
+					{{ settings.tool_content }}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Design Tools",
+	"max_blocks": 20,
+	"blocks": [
+		{
+			"type": "tool",
+			"name": "Tool",
+			"settings": [
+				{
+					"type": "text",
+					"id": "tool_name",
+					"label": "Title"
+				},
+				{
+					"type": "textarea",
+					"id": "tool_content",
+					"label": "Insert pdf or content here"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

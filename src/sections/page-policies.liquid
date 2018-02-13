@@ -1,0 +1,41 @@
+<section class="page-policies">
+	<div class="container l">
+		<h1 class="page-title">{{ page.title }}</h1>
+		<div class="policy-body">
+			{% for block in section.blocks %}
+				{% assign settings = block.settings %}
+				<div class="policy-block">
+					<h2>{{ settings.policy_title }}</h2>
+					<p>{{ settings.policy_lead }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+{% include 'js-nav-activator' %}
+
+{% schema %}
+{
+	"name": "Policy Page",
+	"max_blocks": 20,
+	"blocks": [
+		{
+			"type": "policy",
+			"name": "Policy",
+			"settings": [
+				{
+					"type": "text",
+					"id": "policy_title",
+					"label": "Title"
+				},
+				{
+					"type": "textarea",
+					"id": "policy_lead",
+					"label": "Body"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
