@@ -624,6 +624,9 @@
     rivets.formatters.array_last = function(array) {
       return array[array.length - 1];
     };
+    rivets.formatters.array_length = function(array) {
+      return array.length;
+    };
     rivets.formatters.money = function(value, currency) {
       return CartJS.Utils.formatMoney(value, CartJS.settings.moneyFormat, 'money_format', currency);
     };

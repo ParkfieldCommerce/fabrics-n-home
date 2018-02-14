@@ -39,7 +39,9 @@
 						<li class="tab-panel {% if forloop.first %}active{% endif %}">
 							<ul class="panel-inner">
 								{% for childlink in link.links %}
-									<li>{{ childlink.title | link_to: childlink.url }}</li>
+									<li>
+										<a href="{{ childlink.url }}" target="_blank">{{ childlink.title }}</a>
+									</li>
 								{% endfor %}
 							</ul>
 						</li>

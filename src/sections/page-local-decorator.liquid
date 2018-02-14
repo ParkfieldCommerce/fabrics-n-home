@@ -37,19 +37,19 @@
 						<li class="main">{{ settings.state_id }}</li>
 						
 						{% if settings.store_1 != empty %}
-							<li>{{ settings.store_1 | link_to: settings.store_1_url }}</li>
+							<li><a href="{{settings.store_1_url}}" target="_blank">{{ settings.store_1 }}</a></li>
 						{% endif %}
 						{% if settings.store_2 != empty %}
-							<li>{{ settings.store_2 | link_to: settings.store_2_url }}</li>
+							<li><a href="{{settings.store_2_url}}" target="_blank">{{ settings.store_2 }}</a></li>
 						{% endif %}
 						{% if settings.store_3 != empty %}
-							<li>{{ settings.store_3 | link_to: settings.store_3_url }}</li>
+							<li><a href="{{settings.store_3_url}}" target="_blank">{{ settings.store_3 }}</a></li>
 						{% endif %}
 						{% if settings.store_4 != empty %}
-							<li>{{ settings.store_4 | link_to: settings.store_4_url }}</li>
+							<li><a href="{{settings.store_4_url}}" target="_blank">{{ settings.store_4 }}</a></li>
 						{% endif %}
 						{% if settings.store_5 != empty %}
-							<li>{{ settings.store_5 | link_to: settings.store_5_url }}</li>
+							<li><a href="{{settings.store_5_url}}" target="_blank">{{ settings.store_5 }}</a></li>
 						{% endif %}
 					</ul>
 				{% endfor %}

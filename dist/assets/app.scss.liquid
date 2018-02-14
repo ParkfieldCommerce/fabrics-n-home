@@ -4364,8 +4364,21 @@ nav.mobile-menu {
 		padding: 10px;
 		@include inputPlaceholder(#888);
 	}
+}
 
-	.add-more {
+form#contact_form {
+
+	.errors {
+		padding: 5px;
+		margin: 0;
+		position: absolute;
+		left: 15%;
+		right: 15%;
+		bottom: -31px;
+	}
+
+	.add-more,
+	.remove {
 		padding: 1em 0;
 		text-align: center;
 		.action {
@@ -4380,6 +4393,10 @@ nav.mobile-menu {
 		}
 	}
 
+	.remove {
+		display: none;
+	}
+
 	.send-action {
 		margin: 1em 0;
 		button {
@@ -4389,7 +4406,6 @@ nav.mobile-menu {
 			border: 0;
 		}
 	}
-	
 }
 
 /* Helpers ===================================================================*/

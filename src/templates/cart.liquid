@@ -52,6 +52,7 @@
                   
                   {% unless isSample %}
                   <input type="number" 
+                  min="0" 
                   {% if isSample == false %} step="0.5" {% endif %} 
                   value="0"  
                   class="dummy-quantity" 
