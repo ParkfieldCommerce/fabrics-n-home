@@ -1,0 +1,78 @@
+{% include 'js-nav-activator' %}
+<section class="page-price-quote">
+	<div class="container l">
+		<div class="row">
+			<div class="column l6 m6 s12">
+				<h1>Price Quote Request</h1>
+				<p class="lead">Enter your fabric or furniture request or call us. <a href="tel:{{ section.settings.phone_num }}">{{ section.settings.phone_num }}</a></p>
+
+				{% form 'contact' %}
+					<div class="price-quote-request-form">
+
+						<input type="hidden" id="ContactPriceQuoteForm" name="contact[PriceQuoteForm]" value="PriceQuoteRequestForm">
+						<input type="text" id="ContactEmail" name="contact[Email]" placeholder="E-mail">
+
+						<div class="input-row cloneForm">
+
+							<span class="request-num"></span>
+
+							<div class="input-wrapper">
+								<input type="text" id="ContactManufacturer" name="contact[Manufacturer]" placeholder="Manufacturer">
+							</div>
+
+							<div class="input-wrapper">
+								<input type="text" id="ContactPatternName" name="contact[PatternName]" placeholder="Pattern Name or #">
+							</div>
+
+							<div class="input-wrapper">
+								<input type="text" id="ContactColorName" name="contact[ColorName]" placeholder="Color Name or Number">
+							</div>
+
+						</div>
+
+						<div class="btn-actions">
+							<a class="add-another" id="add-more-fields"><i class="fa fa-plus"></i> Add another</a>
+							<button type="submit" class="btn primary-btn">Send Request</button>
+						</div>
+					
+					</div>
+				{% endform %}
+			</div>
+			<div class="column l6 m6 s12">
+				<img src="{{ section.settings.featured_img | img_url:'master' }}" alt="{{ section.settings.featured_img }}">
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	var requestField = $('.cloneForm').length;
+	$('.request-num:first').prepend('Request '+requestField);
+
+	$('#add-more-fields').on('click', function() {
+		var cloneDiv = $('.cloneForm:first').clone();
+		cloneDiv.insertAfter('.cloneForm:last');
+		var requestField = $('.cloneForm').length;
+		$('.request-num:last').text('').append('Request '+requestField);
+	});
+
+</script>
+
+{% schema %}
+{
+	"name": "Price Quote Request Page",
+	"settings": [
+		{
+			"type": "text",
+			"label": "Phone Number",
+			"id": "phone_num",
+			"default": "800-582-2624"
+		},
+		{
+			"type": "image_picker",
+			"label": "Featured Image",
+			"id": "featured_img"
+		}
+	]
+}
+{% endschema %}

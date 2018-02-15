@@ -924,7 +924,7 @@ $(document).ready(function() {
   // Price Quote Form Clone
   $('#add-more-action').on('click', function() {
     var clone = $(this).closest('#contact_form').find('.formClone:first').clone();
-    clone.insertAfter($('.formClone'));
+    clone.insertAfter($('.formClone:last'));
     if ($('.formClone').length > 1) {
       $('.remove').show();
     }

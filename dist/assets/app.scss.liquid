@@ -3716,6 +3716,66 @@ nav.mobile-menu {
 		}
 	}
 }
+.page-price-quote {
+	padding: 1em 0;
+	h1 {
+		@include ptSerif(30px, 400, normal);
+		color: #555;
+	}
+	.lead {
+		@include ptSans(15px, 400, normal);
+		color: #888;
+		a {
+			font-weight: 700;
+			color: #888;
+			text-decoration: none;
+		}
+	}
+	form {
+		padding: 0.5em 0;
+		input {
+			width: 100%;
+			border: 1px solid #e5e5e5;
+			padding: 10px;
+			color: #888;
+			@include inputPlaceholder(#888);
+			@include ptSans(15px, 400, normal);
+		}
+	}
+	.request-num {
+		display: block; 
+		width: 100%;
+		@include ptSans(15px, 700, normal);
+		color: #888;
+		padding: 5px 0;
+	}
+	.input-row {
+		padding: 1em 0;
+		@include flex();
+		flex-flow: row wrap;
+		align-items: flex-start;
+		.input-wrapper {
+			flex: 1;
+		}
+	}
+	.btn-actions {
+		padding: 1em 0;
+		text-align: center;
+		.add-another {
+			border-bottom: 1px solid #88beb4;
+			color: #88beb4;
+			padding: 0 0 1px;
+			margin: 0 30px;
+			@include ptSans(14px, 400, normal);
+			text-transform: uppercase;
+		}
+		button {
+			height: auto;
+			border: 0;
+
+		}
+	}
+}
 
 /* Sections ===================================================================*/
 .hero-slider {
