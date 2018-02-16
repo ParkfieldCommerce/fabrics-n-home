@@ -1,3 +1,5 @@
+{% unless product.type == 'Sample' %}
+
 {% assign sold_out = true %}
 {% assign on_sale = false %}
 {% assign current_variant = product.selected_or_first_available_variant %}
@@ -33,9 +35,9 @@
           </div>
         </div>
 
-        <div class="img-container" id="ProductImages">
+        <div class="img-container" >
           {% for image in product.images %}
-            <img src="{{ image.src | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
+            <img src="{{ image.src | img_url: 'master' }}" class="zoom" data-magnify-magnifiedheight="800" data-magnify-magnifiedwidth="800" data-magnify-src="{{ image.src | img_url: 'master' }}" {% if image.alt %} alt="{{ image.alt }}"{% endif %} >
           {% endfor %}
         </div>
 
@@ -252,6 +254,17 @@
   </div>
 </section>
 
+<div class="product-popup">
+  <div class="inner">
+    <div class="yardage-popup">
+      {{ section.settings.yardage_chart }}
+    </div>
+    <div class="how-to-measure">
+      {{ section.settings.how_to_measure }}
+    </div>
+  </div>
+</div>
+
 {% unless product == empty %}
   <script type="application/json" id="ProductJson-{{ section.id }}">
     {{ product | json }}
@@ -260,6 +273,22 @@
 
 <script>
   $(document).ready(function() {
+
+    $('.yardage-chart').on('click touch', function() {
+      $('.product-popup, .yardage-popup').show();
+      $('.how-to-measure').hide();
+    });
+
+    $('.measure-chart').on('click touch', function() {
+      $('.product-popup, .how-to-measure').show();
+      $('.yardage-popup').hide();
+    });
+
+    $('.inner').on('click', function() {
+      $(this).parent().hide();
+    });
+
+    $('.zoom').magnify();
 
     $('#Quantity').on('change', function() {
       var currentQuantity = $(this).val();
@@ -300,6 +329,14 @@
   });
 </script>
 
+{% else %}
+
+  <script>
+    window.location.href = '/'
+  </script>
+  
+{% endunless %}
+
 {% schema %}
   {
     "name": "Product pages",
@@ -333,6 +370,20 @@
         "id": "show_share_buttons",
         "label": "Show social sharing buttons",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Place embeded pdf below"
+      },
+      {
+        "type": "textarea",
+        "id": "yardage_chart",
+        "label": "Yardage Chart"
+      },
+      {
+        "type": "textarea",
+        "id": "how_to_measure",
+        "label": "How to Measure"
       }
     ]
   }

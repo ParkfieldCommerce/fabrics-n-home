@@ -1431,6 +1431,15 @@ form#AddToCartForm, form#CartPage, form#contact_form {
         font-size: 18px;
       }
     }
+    .properties {
+      padding: 10px;
+      li {
+        @include ptSans(15px, 400, normal);
+        color: #888;
+        padding: 5px 0;
+        text-align: center;
+      }
+    }
   }
   .qty-container {
     height: 200px;
@@ -1977,6 +1986,31 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 			margin-bottom: 10px;
 		}
 	}
+}
+
+.product-popup {
+	display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  right: 0;
+  z-index: 600;
+  background: rgba(0,0,0,0.4);
+  .inner {
+  	padding: 50px;
+  	@include flex();
+  	flex-flow: column wrap;
+  	align-items: center;
+  	justify-content: center;
+  	height: inherit;
+  	.yardage-popup,
+  	.how-to-measure {
+			width: 90%;
+			height: 90%;
+			display: none;
+  	}
+  }
 }
 $button-size: 25px;
 $button-color: #000;
@@ -3756,6 +3790,10 @@ nav.mobile-menu {
 		align-items: flex-start;
 		.input-wrapper {
 			flex: 1;
+			margin-right: 5px;
+			&:last-child {
+				margin: 0;
+			}
 		}
 	}
 	.btn-actions {
@@ -3773,6 +3811,42 @@ nav.mobile-menu {
 			height: auto;
 			border: 0;
 
+		}
+	}
+}
+.page-order-sample {
+	padding: 2em 0;
+	.title {
+		@include ptSerif(30px, 400, normal);
+		color: #555;
+	}
+	.lead {
+		@include ptSans(15px, 400, normal);
+		color: #888;
+		margin-bottom: 35px;
+	}
+	.sample-fields {
+		padding: 0.5em 0;
+		.input-wrapper {
+			width: 100%;
+			margin: 10px 0;
+			input {
+				width: 90%;
+				height: auto;
+				border: 1px solid #e5e5e5;
+				padding: 10px;
+				@include ptSans(15px, 400, normal);
+				color: #888;
+				@include inputPlaceholder(#888);
+			}
+		}
+	}
+	.btn-actions {
+		text-align: center;
+		.add-another-btn {
+			border-bottom: 1px solid #88beb4;
+			color: #88beb4;
+			margin: 0 20px;
 		}
 	}
 }
@@ -4680,6 +4754,67 @@ form#contact_form {
 }
 .slick-arrow.slick-hidden {
     display: none;
+}
+
+html.magnifying > body {
+  overflow-x: hidden !important;
+}
+.magnify,
+.magnify > .magnify-lens,
+.magnify-mobile,
+.lens-mobile { /* Reset */
+  min-width: 0;
+  min-height: 0;
+  animation: none;
+  border: none;
+  float: none;
+  margin: 0;
+  opacity: 1;
+  outline: none;
+  overflow: visible;
+  padding: 0;
+  text-indent: 0;
+  transform: none;
+  transition: none;
+}
+.magnify {
+  position: relative;
+  width: auto;
+  height: auto;
+  box-shadow: none;
+  display: inline-block;
+  z-index: inherit;
+}
+.magnify > .magnify-lens { /* Magnifying lens */
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  /* Multiple box shadows to achieve the glass lens effect */
+  box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85),
+    0 0 7px 7px rgba(0, 0, 0, 0.25),
+    inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+  cursor: none;
+  display: none;
+  z-index: 99;
+}
+.magnify > .magnify-lens.loading {
+  background: #333 !important;
+  opacity: 0.8;
+}
+.magnify > .magnify-lens.loading:after { /* Loading text */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  content: 'Loading...';
+  font: italic normal 16px/1 Calibri, sans-serif;
+  letter-spacing: 1px;
+  margin-top: -8px;
+  text-align: center;
+  text-shadow: 0 0 2px rgba(51, 51, 51, 0.8);
+  text-transform: none;
 }
 
 

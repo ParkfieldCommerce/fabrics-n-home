@@ -14,18 +14,43 @@
                     <img class="product_image" src="{{ item | img_url: 'master' }}" alt="{{ item.title | escape }}">
                   </div>
                   <a class="product-title" href="{{ item.url | within: collections.all }}">
-                    <h3>{{ item.product.title }}</h3>
+                    <h3>
+                      {% if item.product.type == 'Sample' %}
+                        {{ item.product.title | replace: '-', ' ' }}
+                      {% else %}
+                        {{ item.product.title }}
+                      {% endif %}
+                    </h3>
                   </a>
                 </div>
               </div>
 
               <div class="column l3 m3 s12">
                 <div class="length-price">
-                  
-                  <p class="price">
-                    Price: {{ item.price | times: 2 | money_with_currency }}/Yard
-                  </p>
-                  <p class="quantity" data-value="{{ item.quantity }}"></p>
+
+                  {% unless item.product.type == 'Sample' %}
+
+                    <p class="price">
+                      Price: {{ item.price | times: 2 | money_with_currency }}/Yard
+                    </p>
+                    <p class="quantity" data-value="{{ item.quantity }}"></p>
+
+                  {% else %}
+
+                    <p class="price">
+                      Price: {{ item.price | money_with_currency }}
+                    </p>
+                    <p class="sample-quantity" data-value="{{ item.quantity }}">Quantity: {{ item.quantity }}</p>
+
+                    {% unless item.properties == empty %}
+                      <ul class="properties">
+                        {% for property in item.properties %}
+                        <li>{{ property.first }}: {{ property.last }}</li>
+                        {% endfor %}
+                      </ul>
+                      {% endunless %}
+
+                  {% endunless %}
 
                 </div>
               </div>
@@ -34,7 +59,7 @@
                 <div class="qty-container">
 
                   {% assign isSample = false %}
-                  {% unless item.variant.title contains 'Sample' %}
+                  {% unless item.product.type == 'Sample' %}
                   {% else %}
                     {% assign isSample = true %}
                   {% endunless %}
@@ -61,7 +86,7 @@
                   data-sample='{{ isSample }}'>
                   {% endunless %}
 
-                  <label for="updates_{{ item.key }}" class="cart__qty-label">Yards</label>
+                  <label for="updates_{{ item.key }}" class="cart__qty-label">{% unless item.product.type == 'Sample' %}Yards{% else %}Qty{% endunless %}</label>
 
                 </div>
               </div>

@@ -38,6 +38,16 @@
  */
 // =require vendor/slick.min.js
 
+/*!
+ * jquery.magnify-mobile.js
+ */
+// =require vendor/jquery.magnify-mobile.js
+
+/*!
+ * jquery.magnify.js
+ */
+// =require vendor/jquery.magnify.js
+
 // Attempts to preserve comments that likely contain licensing information,
 // even if the comment does not have directives such as `@license` or `/*!`.
 //

@@ -1,0 +1,78 @@
+{% include 'js-nav-activator' %}
+
+<section class="page-order-sample">
+	<div class="container l">
+		<h1 class="title">Order Sample</h1>
+		<p class="lead">
+			{{ page.content }}
+		</p>
+		<div class="row">
+			<div class="column l6 m6 s12">
+				<div class="sample-fields">
+					<div class="input-wrapper">
+						<input type="text" id="sampleManufacturer" placeholder="Enter Manufacturer Name">
+					</div>
+					<div class="input-wrapper">
+						<input type="text" id="samplePattern" placeholder="Enter Pattern Name or #">
+					</div>
+					<div class="input-wrapper">
+						<input type="text" id="sampleColor" placeholder="Enter Color Name or #">
+					</div>
+				</div>
+				<div class="btn-actions">
+					<a class="add-another-btn"><i class="fa fa-plus"></i> Add another</a>
+					<a class="btn primary-btn" data-target='addItem'>add to bag</a>
+				</div>
+			</div>
+			<div class="column l6 m6 s12">
+				<img src="{{ section.settings.feature_img | img_url:'master' }}" alt="{{ section.settings.feature_img }}">
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	$('.add-another-btn').on('click', function() {
+		var cloneDiv = $('.sample-fields:first').clone();
+		cloneDiv.insertAfter('.sample-fields:last');
+	});
+
+	$('.btn[data-target="addItem"]').on('click', function() {
+		$('.sample-fields').each(function() {
+			var sampleManufacturer = $(this).find('#sampleManufacturer').val(),
+					samplePattern = $(this).find('#samplePattern').val();
+					sampleColor = $(this).find('#sampleColor').val();
+
+			if (sampleColor && samplePattern && sampleColor) {
+				CartJS.addItem(6852417552419, 1, {
+	    		"Manufacturer Name": sampleManufacturer,
+	    		"Pattern Name or #": samplePattern,
+	    		"Color Name or #": sampleColor
+				}, {
+				    "success": function(data, textStatus, jqXHR) {
+				        console.log('Added!');
+				    },
+				    "error": function(jqXHR, textStatus, errorThrown) {
+				        alert('Error: ' + errorThrown + '!');
+				    }
+				});
+			} else {
+				alert('Some fields are missing!');
+			}
+
+		});
+	});
+</script>
+
+{% schema %}
+{
+	"name": "Order Sample Page",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "featured_img",
+			"label": "Featured Image"
+		}
+	]
+}
+{% endschema %}
