@@ -64,7 +64,7 @@
         </div>
 
         <p id="ProductPrice" class="product-price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-          Price: {{ current_variant.price | times: 2 | money }}/Yard
+          Price: {{ product.price_max | times: 2 | money }}/Yard
         </p>
 
         {% comment %}<p class="product-msrp product-{{ section.id }}{% unless current_variant.available %} product-price-sold-out{% endunless %}">
