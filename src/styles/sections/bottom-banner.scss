@@ -1,0 +1,32 @@
+.bottom-banner {
+  margin-top: 2em;
+  height: 120px;
+  background-position: 50% 50%;
+  background-size: cover;
+  .inner {
+    padding: 20px;
+    height: inherit;
+    @include flex();
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -ms-flex-line-pack: center;
+        align-content: center;
+  }
+  .heading {
+    @include dancingScript(40px, 700, normal);
+    color: #fff;
+    padding-left: 15px;
+    width: 80%;
+    span {
+      border-bottom: 3px solid #fff;
+    }
+  }
+  .btn {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: auto;
+  }
+}

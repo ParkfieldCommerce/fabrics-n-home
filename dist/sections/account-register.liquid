@@ -1,0 +1,19 @@
+<style>
+  .banner {
+    background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+      ),
+      url('{{ section.settings.banner_img | img_url:'master' }}');
+  }
+</style>
+<section class="account register">
+  <div class="container l">
+    <div class="banner">
+      <h1>{{page_title}} - Register</h1>
+    </div>
+    <div class="inner">
+      {%- include 'form-register' -%}
+    </div>
+  </div>
+</section>

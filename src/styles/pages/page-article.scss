@@ -16,10 +16,14 @@
 		color: #555
 	}
 	.social-sharing {
-		justify-content: center;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
 		padding: 1em 0 2em;
 		.button.share {
-			flex: 1;
+			-webkit-box-flex: 1;
+			    -ms-flex: 1;
+			        flex: 1;
 			text-align: center;
 		}
 	}

@@ -5,11 +5,22 @@
 		width: 100%;
 		margin: 0 auto;
 		@include flex();
-		justify-content: center;
-		align-items: center;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 		position: relative;
 		.row {
 			width: 100%;
+			padding: 0 15%;
+			@include m() {
+				padding: 0 7.5%;
+			}
+			@include s() {
+				padding: 20px;
+			}
 		}
 		&.slick-slide {
 			@include flex();
@@ -49,14 +60,19 @@
 		display: block;
 		.slick-dots {
 			@include flex();
-			flex-direction: row;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			    -ms-flex-direction: row;
+			        flex-direction: row;
 			width: 15%;
 			margin: auto;
 			@include s() {
 				width: 50%;
 			}
 			li {
-				flex: 1;
+				-webkit-box-flex: 1;
+				    -ms-flex: 1;
+				        flex: 1;
 				text-align: center;
 				a {
 					color: #fff;

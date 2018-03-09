@@ -20,9 +20,9 @@
     <label for="CreatePassword" class="clearfix left">{{ 'account.password' | t }}</label>
     <input type="password" name="customer[password]" id="CreatePassword" {% if form.errors contains 'password' %}class="error"{% endif %} placeholder="{{ 'account.password' | t }}">
 
-    <input type="submit" value="{{ 'account.register' | t }}">
+    <button type="submit" class="btn primary-btn" value="{{ 'account.register' | t }}">{{ 'account.register' | t }}</button>
 
-    <p><a href="{{ shop.url }}">{{ 'form.cancel' | t }}</a></p>
+    <a class="btn secondary-btn" href="{{ shop.url }}">{{ 'form.cancel' | t }}</a>
 
   {% endform %}
 

@@ -11,8 +11,12 @@
 {% if product.available %}
   {% assign sold_out = false %}
 {% endif %}
-
+{%- include 'js-nav-activator' -%}
 <section class="product-template">
+  <div class="enlarge-img inactive">
+    <img src="">
+    <a class="btn primary-btn" id="CloseImg">Close</a>
+  </div>
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
@@ -21,7 +25,7 @@
     <div class="crumbs">
       {% include 'theme-breadcrumbs' %}
     </div>
-    
+
     <div class="row">
       <div class="column l6 m6 s12">
 
@@ -37,7 +41,7 @@
 
         <div class="img-container" >
           {% for image in product.images %}
-            <img src="{{ image.src | img_url: 'master' }}" class="zoom" data-magnify-magnifiedheight="800" data-magnify-magnifiedwidth="800" data-magnify-src="{{ image.src | img_url: 'master' }}" {% if image.alt %} alt="{{ image.alt }}"{% endif %} >
+            <img src="{{ image.src | img_url: 'master' }}" id="ProductImages" {% if image.alt %} alt="{{ image.alt }}"{% endif %} >
           {% endfor %}
         </div>
 
@@ -52,6 +56,8 @@
             {% endfor %}
           </div>
         {% endif %}
+
+        <a class="btn primary-btn" id="ClickToEnlarge">Click to enlarge</a>
 
       </div>
       <div class="column l6 m6 s12">
@@ -85,12 +91,12 @@
 
         {% if hasFull == true %}
           <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-              
+
             <select id="variantOptions" name="id" style="display:none">
               {% for variant in product.variants %}
                 {% unless variant.title contains 'Sample' %}
                   <option value="{{ variant.id }}">{{ variant.price | times: 2 | money }} /Yard</option>
-                
+
                 {% endunless %}
               {% endfor %}
             </select>
@@ -149,13 +155,13 @@
             {% assign content = tag | split: '_' %}
             {% assign content_exists = true %}
           {% elsif tag contains 'width' %}
-            {% assign width = tag | split: '_' %} 
+            {% assign width = tag | split: '_' %}
             {% assign width_exists = true %}
           {% elsif tag contains 'vertical' %}
             {% assign vertical = tag | split: '_' %}
             {% assign vertical_exists = true %}
           {% elsif tag contains 'horizontal' %}
-            {% assign horizontal = tag | split: '_' %}  
+            {% assign horizontal = tag | split: '_' %}
             {% assign horizontal_exists = true %}
           {% elsif tag contains 'suggested' %}
             {% assign suggested = tag | split: '_' %}
@@ -164,25 +170,25 @@
             {% assign durability = tag | split: '_' %}
             {% assign durability_exists = true %}
           {% elsif tag contains 'item-type' %}
-            {% assign item = tag | split: '_' %}    
+            {% assign item = tag | split: '_' %}
             {% assign item_exists = true %}
           {% elsif tag contains 'unit' %}
             {% assign unit = tag | split: '_' %}
             {% assign unit_exists = true %}
           {% elsif tag contains 'origin' %}
-            {% assign origin = tag | split: '_' %}    
+            {% assign origin = tag | split: '_' %}
             {% assign origin_exists = true %}
           {% elsif tag contains 'collection' %}
-            {% assign collection = tag | split: '_' %}    
+            {% assign collection = tag | split: '_' %}
             {% assign collection_exists = true %}
           {% endif %}
         {% endfor %}
-             
+
         <div class="product-description-tags">
           {% if brand_exists %}
             <p><strong>{{brand[0]}}:</strong> {{brand[1]}}</p>
           {% endif %}
-          {% if pattern_name_exists %}          
+          {% if pattern_name_exists %}
             <p><strong>{{pattern_name[0] | replace: '-', ' '}}:</strong> {{pattern_name[1]}}</p>
           {% endif %}
           {% if pattern_number_exists %}
@@ -192,16 +198,16 @@
             <p><strong>{{style[0]}}:</strong> {{style[1]}}</p>
           {% endif %}
           {% if color_exists %}
-            <p><strong>{{color[0] | replace: '-', ' '}}:</strong> {{color[1]}}</p>  
+            <p><strong>{{color[0] | replace: '-', ' '}}:</strong> {{color[1]}}</p>
           {% endif %}
           {% if color_number_exists %}
-            <p><strong>{{color_number[0] | replace: '-', ' '}}:</strong> {{color_number[1]}}</p>  
+            <p><strong>{{color_number[0] | replace: '-', ' '}}:</strong> {{color_number[1]}}</p>
           {% endif %}
-          {% if content_exists %}  
-            <p><strong>{{content[0]}}:</strong> {{content[1]}}</p> 
+          {% if content_exists %}
+            <p><strong>{{content[0]}}:</strong> {{content[1]}}</p>
           {% endif %}
           {% if width_exists %}
-            <p><strong>{{width[0]}}:</strong> {{width[1] | replace: '-', ''}}</p>    
+            <p><strong>{{width[0]}}:</strong> {{width[1] | replace: '-', ''}}</p>
           {% endif %}
           {% if vertical_exists %}
             <p><strong>{{vertical[0] | replace: '-', ' '}}:</strong> {{vertical[1] | replace: '-', ''}}</p>
@@ -216,7 +222,7 @@
             <p><strong>{{durability[0] | replace: '-', ' '}}:</strong> {{durability[1] | replace: '-', ' '}}</p>
           {% endif %}
           {% if item_exists %}
-            <p><strong>{{item[0] | replace: '-', ' '}}:</strong> {{item[1]}}</p>     
+            <p><strong>{{item[0] | replace: '-', ' '}}:</strong> {{item[1]}}</p>
           {% endif %}
           {% if unit_exists %}
             <p><strong>{{unit[0] | replace: '-', ' '}}:</strong> {{unit[1] | replace: '-', ' '}}</p>
@@ -240,7 +246,7 @@
 
       <div class="column l6 m6 s12">
         <div class="yardage-chart">
-          <p>Yardage Chart</p> 
+          <p>Yardage Chart</p>
           <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
         </div>
       </div>
@@ -313,10 +319,11 @@
         }
       });
     });
-
     $('#orderSample').click(function(){
       CartJS.addItem(parseInt('{{sampleId}}'), 1, {
-         "Quantity":1
+        "Manufacturer Name": '{{brand[1]}}',
+        "Color Name or #": '{{color[1]}}',
+        "Pattern Name or #": '{{pattern_number[1]}}'
       }, {
           "success": function(data, textStatus, jqXHR) {
               window.location.href = '/cart';
@@ -324,7 +331,18 @@
           "error": function(jqXHR, textStatus, errorThrown) {
               alert('Error: ' + errorThrown + '!');
           }
-      });        
+      });
+    });
+
+    $('#ClickToEnlarge').on('click touch', function() {
+      var thisSrc = $('.img-container img').attr('src');
+      $('.enlarge-img').toggleClass('inactive active');
+
+      $('.enlarge-img img').attr('src', thisSrc);
+    });
+
+    $('#CloseImg').on('click touch', function() {
+      $(this).parent().toggleClass('inactive active');
     });
   });
 </script>
@@ -334,7 +352,7 @@
   <script>
     window.location.href = '/'
   </script>
-  
+
 {% endunless %}
 
 {% schema %}

@@ -10,13 +10,13 @@
 			<div class="column l6 m6 s12">
 				<div class="sample-fields">
 					<div class="input-wrapper">
-						<input type="text" id="sampleManufacturer" placeholder="Enter Manufacturer Name">
+						<input type="text" class="sampleManufacturer" placeholder="Enter Manufacturer Name">
 					</div>
 					<div class="input-wrapper">
-						<input type="text" id="samplePattern" placeholder="Enter Pattern Name or #">
+						<input type="text" class="samplePattern" placeholder="Enter Pattern Name or #">
 					</div>
 					<div class="input-wrapper">
-						<input type="text" id="sampleColor" placeholder="Enter Color Name or #">
+						<input type="text" class="sampleColor" placeholder="Enter Color Name or #">
 					</div>
 				</div>
 				<div class="btn-actions">
@@ -38,17 +38,29 @@
 	});
 
 	$('.btn[data-target="addItem"]').on('click', function() {
+		var sampleQueue = [];
+		var allDataFilled = true;
 		$('.sample-fields').each(function() {
-			var sampleManufacturer = $(this).find('#sampleManufacturer').val(),
-					samplePattern = $(this).find('#samplePattern').val();
-					sampleColor = $(this).find('#sampleColor').val();
+			var sampleManufacturer = $(this).find('.sampleManufacturer').val(),
+					samplePattern = $(this).find('.samplePattern').val(),
+					sampleColor = $(this).find('.sampleColor').val();
 
-			if (sampleColor && samplePattern && sampleColor) {
-				CartJS.addItem(6852417552419, 1, {
-	    		"Manufacturer Name": sampleManufacturer,
-	    		"Pattern Name or #": samplePattern,
-	    		"Color Name or #": sampleColor
-				}, {
+			if (!(sampleManufacturer !='' && samplePattern !='' && sampleColor !='')){
+				allDataFilled = false;
+				alert('Some fields are Missing!');
+				return false;
+			} else {
+				var data = {
+					"Manufacturer Name": sampleManufacturer,
+					"Pattern Name or #": samplePattern,
+					"Color Name or #": sampleColor
+				}
+				sampleQueue.push(data);
+			}
+		});
+		if (allDataFilled) {
+			sampleQueue.forEach(function(sample) {
+				CartJS.addItem(6852417552419, 1, sample, {
 				    "success": function(data, textStatus, jqXHR) {
 				        console.log('Added!');
 				    },
@@ -56,11 +68,8 @@
 				        alert('Error: ' + errorThrown + '!');
 				    }
 				});
-			} else {
-				alert('Some fields are missing!');
-			}
-
-		});
+			});
+		}
 	});
 </script>
 

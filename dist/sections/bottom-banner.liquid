@@ -1,0 +1,50 @@
+<style>
+  .bottom-banner {
+    background: linear-gradient(
+      rgba(85,85,85,0.4),
+      rgba(85,85,85,0.4)
+      ),
+      url('{{ section.settings.bg_img | img_url:'master' }}');
+  }
+</style>
+
+<div class="container l">
+  <div class="bottom-banner">
+    <div class="inner">
+      <h1 class="heading">{{ section.settings.main_heading }}</h1>
+      {%- if section.settings.btn_url -%}
+        <a class="btn secondary-btn" href="{{ section.settings.btn_url }}">{{ section.settings.btn_txt }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bottom Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_img",
+      "label": "Image Background"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "Looking for <span>Custom Made</span> Products?"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,202 @@
+// Due to changes with file naming, this file only works with
+// sections/pages-custom
+.window-treatment {
+  .banner {
+    height: 300px;
+    @include flex();
+    @include flex-direction(column);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background: #e5e5e5;
+    @include s() {
+      height: 200px;
+    }
+    h1 {
+      @include ptSerif(50px, 400, italic);
+      padding-bottom: 2px;
+      border-bottom: 5px solid #88b3b4;
+      color: #888;
+      @include s() {
+        font-size: 25px;
+      }
+    }
+    p {
+      @include ptSans(25px, 400, normal);
+      color: #888;
+      padding-top: 5px;
+      @include s() {
+        font-size: 15px;
+      }
+    }
+  }
+  .window-categories {
+    position: relative;
+    @include flex();
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    padding-bottom: 2em;
+    .block {
+      position: relative;
+      width: calc(100% / 3);
+      height: 300px;
+      background-size: cover;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      z-index: 1;
+      @include m() {
+        width: calc(100% / 2);
+        height: 250px;
+      }
+      @include s() {
+        width: 100%;
+        height: 200px;
+      }
+      h1 {
+        @include ptSerif(30px, 400, normal);
+        text-transform: capitalize;
+        color: #fff;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      &:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background-image: linear-gradient(-183deg, rgba(0,0,0,0) 50%, #555 100%);
+      }
+      &:hover {
+        @include transition();
+        @include prefixer(transform, scale(1.05), o webkit moz ms spec);
+        z-index: 20;
+        -webkit-box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
+                box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
+      }
+    } // .block
+    .pane {
+      position: absolute;
+      z-index: 100;
+      background: rgba(#fff, 1);
+      -webkit-box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
+              box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
+      opacity: 0;
+      visibility: hidden;
+      top: 50%;
+      left: 50%;
+      right: 50%;
+      bottom: 50%;
+      padding: 20px;
+      @include flex();
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: row wrap;
+              flex-flow: row wrap;
+      -ms-flex-line-pack: start;
+          align-content: flex-start;
+      overflow: auto;
+      .pane-block {
+        width: calc(100% / 4);
+        padding: 0 10px 5px;
+        overflow: auto;
+        @include m() {
+          width: calc(100% / 3);
+        }
+        @include s() {
+          width: calc(100% / 2);
+        }
+        img {
+          display: block;
+          width: 100%;
+          height: 220px;
+          @include s() {
+            height: 140px;
+          }
+        }
+        h2,
+        a {
+          @include ptSerif(20px, 400, normal);
+          text-align: center;
+          padding: 10px 0;
+          display: block;
+          width: 100%;
+          color: #888;
+          text-decoration: none;
+        }
+        a {
+          padding-top: 0;
+        }
+        a:hover {
+          background: rgba(0,0,0,0.1);
+          @include transition();
+        }
+      }
+      .pane-category {
+        width: 100%;
+        @include flex();
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row wrap;
+                flex-flow: row wrap;
+        h3 {
+          @include ptSerif(30px, 400, normal);
+          color: #555;
+          width: 90%;
+          padding: 10px 0 30px;
+          text-transform: capitalize;
+          text-align: center;
+          @include m() {
+            width: 85%;
+          }
+          @include s() {
+            width: 100%;
+            -webkit-box-ordinal-group: 3;
+                -ms-flex-order: 2;
+                    order: 2;
+          }
+        }
+        .close-action {
+          width: 10%;
+          text-align: right;
+          cursor: pointer;
+          @include m() {
+            width: 15%;
+          }
+          @include s() {
+            width: 100%;
+            text-align: center;
+            -webkit-box-ordinal-group: 2;
+                -ms-flex-order: 1;
+                    order: 1;
+          }
+          p,
+          i {
+            display: inline-block;
+          }
+          p {
+            @include ptSans(15px, 400, normal);
+            color: #888;
+            text-transform: uppercase;
+          }
+          i {
+            color: #888;
+            background: #e5e5e5;
+            padding: 4px 15px;
+          }
+        }
+      }
+    }
+  } // .window-categories
+}

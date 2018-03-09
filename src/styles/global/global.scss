@@ -102,11 +102,16 @@ textarea {
   max-width: 100%;
   height: auto;
   line-height: normal;
-  padding: 0 $gutter/2;
-  font-size: 1.125rem;
-  border: $borderWeight $borderStyle $colorAlternate;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
   border-radius: $borderRadius;
   -webkit-appearance: none;
+  @include ptSans(15px, 400, normal);
+  @include inputPlaceholder(#888);
+  color: #555;
+  &:focus {
+    border: 1px solid #88beb4;
+  }
   @media only screen and (max-width: $s) {
     width: 100%;
     clear: both;
@@ -131,13 +136,13 @@ input[type="submit"],
 input[type="reset"],
 select {
   max-width: 100%;
-  height: $gutter;
+  height: auto;
   line-height: ($gutter - $borderWeight*2);
   padding: 0 $gutter/1.5;
   font-size: 1.125rem;
   color: lighten($colorBrand, 25%);
   background-color: $colorBrand;
-  border: $borderWeight $borderStyle $colorBrand;
+  border: 2px solid #88beb4;
   border-radius: $borderRadius;
   -webkit-appearance: none;
   -moz-appearance: none;

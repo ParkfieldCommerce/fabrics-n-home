@@ -1,35 +1,56 @@
 .all-collections {
 	.banner {
+		-webkit-box-align: center;
+		align-items: center;
+		-ms-flex-align: center;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
 		height: 200px;
 		@include flex();
-		align-items: center;
-  	justify-content: center;
-  	h1 {
-  		@include ptSerif(40px, 400, normal);
-  		color: #fff;
-  	}
+
+		h1 {
+			color: #fff;
+			@include ptSerif(40px, 400, normal);
+		}
 	}
+
 	.collection-lead {
-		@include flex();
+		-ms-flex-flow: row wrap;
 		flex-flow: row wrap;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
 		padding: 20px 0;
+		@include flex();
 		@include m() {
 			padding: 20px;
 		}
 		@include s() {
 			padding: 20px;
 		}
+
 		h2 {
-			@include ptSerif(18px, 700, normal);
+			-webkit-box-flex: 10;
+			-ms-flex: 10;
 			flex: 10;
 			text-transform: uppercase;
-			color: #555555;
+			color: #555;
+			@include ptSerif(18px, 700, normal);
 		}
+
 		.btn {
+			-webkit-box-flex: 1;
+			-ms-flex: 1;
 			flex: 1;
 		}
 	}
+
 	hr {
 		border-top: 2px solid #e5e5e5;
+	}
+
+	.product-block .image {
+		width: 195px;
+		height: 195px;
 	}
 }

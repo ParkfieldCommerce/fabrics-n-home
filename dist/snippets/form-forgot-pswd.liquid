@@ -1,0 +1,9 @@
+{% form 'recover_customer_password' %}
+
+{{ form.errors | default_errors }}
+
+<input type="email" name="email" placeholder="Email" />
+
+<input class="btn primary-btn" type="submit" value="Submit" />
+
+{% endform %}

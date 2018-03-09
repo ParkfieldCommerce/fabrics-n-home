@@ -1,0 +1,191 @@
+{% assign set = section.settings %}
+{% capture pillow1 %}
+{% if set.custom_1 == 'pillows-more' %}pillow{% endif %}
+{% endcapture %}
+{% capture pillow2 %}
+{% if set.custom_2 == 'pillows-more' %}pillow{% endif %}
+{% endcapture %}
+{% capture pillow3 %}
+{% if set.custom_3 == 'pillows-more' %}pillow{% endif %}
+{% endcapture %}
+<style>
+  .main-banner {
+    background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+      ),
+      url({{ set.main_banner | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+
+  .bottom-banner {
+    background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+      ),
+      url({{ set.bottom_banner | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+
+  .box.one {
+    background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+      ),
+      url({{ set.custom_1_img | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+
+  .box.two {
+    background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+      ),
+      url({{ set.custom_2_img | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+
+  .box.three {
+    background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+      ),
+      url({{ set.custom_3_img | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+</style>
+<section class="custom-design">
+  <div class="container l">
+    <div class="main-banner">
+      <h1>{{ set.main_banner_lead }}</h1>
+    </div>
+    <div class="custom-design-links">
+      <h2>Custom Design Made to Order</h2>
+      <div class="three-boxes">
+        <div class="box one {{ pillow1 }}">
+          <a href="{{ set.custom_1 }}">
+            {% if set.custom_1 == 'pillows-more' %}
+              <h3>{{ set.custom_1 | replace: '-', ' & ' }}</h3>
+              <p>What's your pillow personality?</p>
+            {% else %}
+              <h3>{{ set.custom_1 | replace: '-', ' ' }}</h3>
+            {% endif %}
+          </a>
+        </div>
+        <div class="box two {{ pillow2 }}">
+          <a href="{{ set.custom_2 }}">
+            {% if set.custom_2 == 'pillows-more' %}
+              <h3>{{ set.custom_2 | replace: '-', ' & ' }}</h3>
+              <p>What's your pillow personality?</p>
+            {% else %}
+              <h3>{{ set.custom_2 | replace: '-', ' ' }}</h3>
+            {% endif %}
+          </a>
+        </div>
+        <div class="box three {{ pillow3 }}">
+          <a href="{{ set.custom_3 }}">
+            {% if set.custom_3 == 'pillows-more' %}
+              <h3>{{ set.custom_3 | replace: '-', ' & ' }}</h3>
+              <p>What's your pillow personality?</p>
+            {% else %}
+              <h3>{{ set.custom_3 | replace: '-', ' ' }}</h3>
+            {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-banner">
+      <h1>{{ set.bottom_banner_lead }}</h1>
+      {% if set.bot_ban_url_txt != empty %}
+        <a class="btn primary-btn" href="{{ set.bot_ban_btn }}">{{ set.bot_ban_url_txt }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Design",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_banner",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "main_banner_lead",
+      "label": "Heading",
+      "default": "We Bring Rooms to Life"
+    },
+    {
+      "type": "header",
+      "content": "Custom Design Links"
+    },
+    {
+      "type": "page",
+      "id": "custom_1",
+      "label": "Box 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_1_img",
+      "label": "Box 1 Background"
+    },
+    {
+      "type": "page",
+      "id": "custom_2",
+      "label": "Box 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_2_img",
+      "label": "Box 2 Background"
+    },
+    {
+      "type": "page",
+      "id": "custom_3",
+      "label": "Box 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_3_img",
+      "label": "Box 3 Background"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_banner",
+      "label": "Bottom banner Image"
+    },
+    {
+      "type": "text",
+      "id": "bottom_banner_lead",
+      "label": "Bottom Banner Heading"
+    },
+    {
+      "type": "url",
+      "id": "bot_ban_btn",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "bot_ban_url_txt",
+      "label": "Button Text",
+      "default": "View Our Catalog"
+    }
+  ]
+}
+{% endschema %}

@@ -42,7 +42,7 @@
             {% include 'collection-view' %}
           </div>
         </div>
-        
+
         <div class="collection-products">
           <div class="row">
             {% for product in collection.products %}
@@ -55,8 +55,12 @@
                 {% endunless %}
                 {% include 'onboarding-empty-collection' %}
               {% else %}
-                <div class="column l12">
-                  <p>{{ 'collection.no_matches' | t }}</p>
+                <div class="column l12 m12 s12 empty-collection">
+                  <p class="lead">{{ collection.description }}</p>
+                  <div class="btns">
+                    <a class="btn secondary-btn" href="{{ section.settings.btn_1_url }}">{{ section.settings.btn_1 }}</a>
+                    <a class="btn secondary-btn" href="{{ section.settings.btn_2_url }}">{{ section.settings.btn_2 }}</a>
+                  </div>
                 </div>
               {% endif %}
             {% endfor %}

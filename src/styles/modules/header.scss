@@ -21,7 +21,10 @@
 				margin: 20px auto;
 			}
 			@include flex();
-			flex-direction: row;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			    -ms-flex-direction: row;
+			        flex-direction: row;
 			margin-bottom: 20px;
 			width: 85%;
 			float: right;
@@ -36,7 +39,9 @@
 			}
 			.menu-item {
 				@include ptSans(14px, $fontRegular, normal);
-				flex: auto;
+				-webkit-box-flex: 1;
+				    -ms-flex: auto;
+				        flex: auto;
 				text-align: center;
 				padding: 0 5px;
 				border-right: 1px solid #000;
@@ -50,11 +55,15 @@
 					&:last-child {
 						@include m() {
 							text-align: center;
-							flex: auto;
+							-webkit-box-flex: 1;
+							    -ms-flex: auto;
+							        flex: auto;
 						}
 						font-weight: $fontBold;
 						text-align: right;
-						flex: 5;
+						-webkit-box-flex: 5;
+						    -ms-flex: 5;
+						        flex: 5;
 						a {
 							color: #808080;
 						}
@@ -71,12 +80,16 @@
 					&:last-child {
 						@include m() {
 							text-align: center;
-							flex: auto;
+							-webkit-box-flex: 1;
+							    -ms-flex: auto;
+							        flex: auto;
 						}
 						font-weight: $fontBold;
 						text-align: right;
 						border-right: none;
-						flex: 4.5;
+						-webkit-box-flex: 4.5;
+						    -ms-flex: 4.5;
+						        flex: 4.5;
 						a {
 							color: #88beb4;
 						}
@@ -104,6 +117,9 @@
 				padding: 10px 50px 10px 0px;
 				color: #a2a6b4;
 				@include inputPlaceholder(#888888);
+        &:focus {
+          border-bottom: 1px solid #88beb4;
+        }
 			}
 			&:after {
 				position: absolute;
@@ -129,12 +145,17 @@
   	}
   	.banner {
   		@include flex();
-  		flex-direction: row;
+  		-webkit-box-orient: horizontal;
+  		-webkit-box-direction: normal;
+  		    -ms-flex-direction: row;
+  		        flex-direction: row;
   		background: #f2f2f2;
   		padding: 10px 5px;
   		.banner-item {
   			@include ptSans(14px, $fontRegular, normal);
-  			flex: auto;
+  			-webkit-box-flex: 1;
+  			    -ms-flex: auto;
+  			        flex: auto;
   			text-align: center;
   			border-right: 1px solid #888888;
   			&:last-child {
@@ -159,12 +180,17 @@
   		}
   		#mb-actions {
   			@include flex();
-  			flex-direction: row;
+  			-webkit-box-orient: horizontal;
+  			-webkit-box-direction: normal;
+  			    -ms-flex-direction: row;
+  			        flex-direction: row;
   			.cart,
   			.search {
-  				flex: 1;
+  				-webkit-box-flex: 1;
+  				    -ms-flex: 1;
+  				        flex: 1;
   				font-size: 1.5em;
-  				padding: 23px 6px 0; 
+  				padding: 23px 6px 0;
   				text-align: center;
   			}
   		}
@@ -186,14 +212,19 @@
 			}
 			.search-actions {
 				@include flex();
-				flex-direction: row;
+				-webkit-box-orient: horizontal;
+				-webkit-box-direction: normal;
+				    -ms-flex-direction: row;
+				        flex-direction: row;
 				width: 110px;
 				position: absolute;
 				top: 17px;
 				right: 4%;
 				font-size: 24px;
 				li {
-					flex: 1;
+					-webkit-box-flex: 1;
+					    -ms-flex: 1;
+					        flex: 1;
 					text-align: center;
 					&:first-child {
 						border-right: 1px solid #e5e5e5;

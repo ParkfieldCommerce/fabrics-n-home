@@ -3,8 +3,12 @@
 		height: 200px;
 		width: 100%;
 		@include flex();
-		justify-content: center;
-		align-items: center;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 		.title {
 			@include ptSerif(40px, 400, normal);
 			color: #fff;
@@ -19,9 +23,13 @@
 			@include flex();
 			list-style: none;
 			margin-left: 0;
-			justify-content: center;
+			-webkit-box-pack: center;
+			    -ms-flex-pack: center;
+			        justify-content: center;
 			@include s() {
-				justify-content: normal;
+				-webkit-box-pack: normal;
+				    -ms-flex-pack: normal;
+				        justify-content: normal;
 			}
 		}
 		.tab-item {
@@ -35,7 +43,9 @@
 			@include ptSans(14px, 400, normal);
 			@include s() {
 				padding: 10px 0;
-				flex: 1;
+				-webkit-box-flex: 1;
+				    -ms-flex: 1;
+				        flex: 1;
 				text-align: center;
 			}
 			&.active,

@@ -2,15 +2,23 @@
 	.banner {
 		height: 400px;
 		@include flex();
-		align-items: center;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 		&.align-left {
-			justify-content: flex-start;
+			-webkit-box-pack: start;
+			    -ms-flex-pack: start;
+			        justify-content: flex-start;
 		}
 		&.align-center {
-			justify-content: center;
+			-webkit-box-pack: center;
+			    -ms-flex-pack: center;
+			        justify-content: center;
 		}
 		&.align-right {
-			justify-content: flex-end;
+			-webkit-box-pack: end;
+			    -ms-flex-pack: end;
+			        justify-content: flex-end;
 		}
 		.text-container {
 			width: 400px;
@@ -37,7 +45,7 @@
 				}
 			}
 		}
-	} //.banner 
+	} //.banner
 	.faq-body {
 		@include s() {
 			padding: 0 5%;

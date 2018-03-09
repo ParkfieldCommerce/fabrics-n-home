@@ -6,9 +6,13 @@
   width: 80%;
   top: 50px;
   left: 0;
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+          box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
   @include flex();
-  flex-flow: row wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   border: 1px solid #e5e5e5;
   border-radius: 3px;
   opacity: 0;
@@ -30,7 +34,9 @@
     margin: 0;
   }
   .section {
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     padding: 20px;
     border-right: 1px solid #e5e5e5;
     &:last-child {

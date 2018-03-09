@@ -13,20 +13,20 @@
   Copyright 2015 Shopify Inc. & Elkfox Co Pty Ltd
 ==============================================================================*/
 
-/* Settings ==================================================================*/
+// Settings ==================================================================
 @import url('settings/variables.scss.liquid');
 
-/* Utils =====================================================================*/
+// Utils =====================================================================
 @import url('utils/mixins.scss');
 
-/* Global ====================================================================*/
+// Global ====================================================================
 @import url('global/concrete-reset.scss');
 @import url('global/global.scss');
 @import url('global/grid.scss');
 @import url('global/forms.scss');
 @import url('global/buttons.scss');
 
-/* Modules ===================================================================*/
+// Modules ===================================================================
 @import url('modules/header.scss');
 @import url('modules/navigation.scss');
 @import url('modules/footer.scss');
@@ -44,8 +44,11 @@
 @import url('modules/collection-product.scss');
 @import url('modules/collections.scss');
 @import url('modules/pagination.scss');
+@import url('modules/search.scss');
+@import url('modules/contact.scss');
+@import url('modules/account.scss');
 
-/* Pages ======================================================================*/
+// Pages ======================================================================
 @import url('pages/page-fabric.scss');
 @import url('pages/page-designer-brands.scss');
 @import url('pages/page-designer-secrets.scss');
@@ -62,8 +65,11 @@
 @import url('pages/page-fh-gives-back.scss');
 @import url('pages/page-price-quote.scss');
 @import url('pages/page-order-sample.scss');
+@import url('pages/page-custom-design.scss');
+@import url('pages/page-window-treatment.scss');
+@import url('pages/page-custom-drapery.scss');
 
-/* Sections ===================================================================*/
+// Sections ===================================================================
 @import url('sections/hero-slider.scss');
 @import url('sections/brand-slider.scss');
 @import url('sections/section-custom-block.scss');
@@ -71,11 +77,13 @@
 @import url('sections/featured-products.scss');
 @import url('sections/related-products.scss');
 @import url('sections/price-quote-form.scss');
+@import url('sections/custom-design-form.scss');
+@import url('sections/bottom-banner.scss');
 
-/* Helpers ===================================================================*/
+// Helpers ===================================================================
 @import url('global/helpers.scss');
 
-/* Vendor ===================================================================*/
+// Vendor ===================================================================
 @import url('vendor/slick.scss');
 @import url('vendor/magnify.css');
 

@@ -14,13 +14,13 @@
       <input type="password" value="" name="customer[password]" id="CustomerPassword" {% if form.errors contains 'password' %}class="error"{% endif %} placeholder="{{ 'account.password' | t }}">
     {% endif %}
 
-    <input type="submit" class="wide" value="{{ 'account.sign_in' | t }}">
+    <button type="submit" class="btn primary-btn" value="{{ 'account.sign_in' | t }}">{{ 'account.sign_in' | t }}</button>
 
     <p>
       <p><a href="{{ shop.url }}">{{ 'form.cancel' | t }}</a></p>
 
       {% if form.password_needed %}
-        <br><a href="/account/login?view=recover">{{ 'account.forgot_password' | t }}</a>
+        <br><a id="fgt-pswd">{{ 'account.forgot_password' | t }}</a>
       {% endif %}
     </p>
 

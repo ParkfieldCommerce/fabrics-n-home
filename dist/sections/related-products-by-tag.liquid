@@ -1,34 +1,56 @@
-<div class="related-products">
-  <div class="container l">
-    <h4 class="title">Related Products</h4>
+{% assign number_of_related_products_to_show = 4 %}
 
-    <ul class="rel-product-group">
+{% assign current_product = product %}
+{% assign current_product_tags = product.tags %}
+{% assign found_first_match = false %}
+{% assign found_second_match = false %}
+{% assign first_related_product = true %}
 
-      {% assign current_product = product %}
-      {% assign current_product_found = false %}
+{%- if product.tags.size > 0 -%}
+  <div class="related-products">
+    <div class="container l">
+      <h4 class="title">Related Products</h4>
 
-      {% for product in collection.products limit: 5 %}
-        {% if product.handle == current_product.handle %}
-          {% assign current_product_found = true %}
-        {% else %}
-          {% unless current_product_found == false and forloop.last %}
+      <ul class="rel-product-group">
+        {%- for product in collections.all.products -%}
+          {%- unless product.handle == current_product.handle -%}
+            {%- for tag in product.tags -%}
+              {%- if current_product_tags contains tag and tag != 'Made in USA' -%}
+                {% if found_first_match == false %}
+                  {% assign found_first_match = true %}
+                  {% assign first_match = tag %}
+                {% elsif found_second_match == false %}
+                  {% assign found_second_match = true %}
+                  {% assign second_match = tag %}
+                {% endif %}
+              {%- endif -%}
+            {%- endfor -%}
 
-            <li>
-              <div class="image">
-                <a href="{{ product.url | within: collection }}" title="{{ product.title | escape }}">
-                  {{ product.featured_image | product_img_url: image_size | img_tag }}
-                </a>
-              </div>
-              <div class="info">
-                <h4 class="product-title"><a href="{{ product.url }}" title="{{ product.title | escape }}">{{ product.title }}</a></h4>
-                <span class="money">{{ product.price | times: 2 | money }}/ Yard</span>
-              </div>
-            </li>
-
-          {% endunless %}
-        {% endif %}
-      {% endfor %}
-
-    </ul>
+            {%- if found_first_match == true -%}
+              {%- if first_related_product == true -%}
+                {%- assign first_related_product = false -%}
+              {%- endif -%}
+              {%- if product.tags contains first_match or product.tags contains second_match -%}
+                <li>
+                  <div class="image">
+                    <a href="{{ product.url | within: collection }}" title="{{ product.title | escape }}">
+                      {{ product.featured_image | product_img_url: image_size | img_tag }}
+                    </a>
+                  </div>
+                  <div class="info">
+                    <h4 class="product-title"><a href="{{ product.url }}" title="{{ product.title | escape }}">{{ product.title }}</a></h4>
+                    <span class="money">{{ product.price | times: 2 | money }}/ Yard</span>
+                  </div>
+                </li>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      </ul>
+    </div>
   </div>
-</div>
+{%- endif -%}
+<script>
+  var howMany = {{ number_of_related_products_to_show }};
+  $('.rel-product-group li').pick(howMany);
+</script>

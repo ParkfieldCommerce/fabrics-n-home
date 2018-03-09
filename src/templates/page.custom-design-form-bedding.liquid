@@ -1,0 +1,128 @@
+<section class="custom-forms">
+  <div class="container l">
+    <div class="crumbs">
+      {%- include 'theme-breadcrumbs' -%}
+    </div>
+    <div class="row">
+      <div class="column l7 m6 s12">
+        <div class="m-hide l-hide">
+          <h1 class="heading mbItemStorageDrop"></h1>
+          <p class="lead">
+            Made for you, designed by you, created by us!
+          </p>
+          <p class="lead">
+            <strong>Contact our design team for pricing below:</strong>
+          </p>
+        </div>
+        <div class="img-container">
+          <img src="" class="imgStorageDrop" alt="">
+        </div>
+        <div class="measure-chart">
+
+        </div>
+      </div>
+      <div class="column l5 m6 s12">
+        <h1 class="heading itemStorageDrop s-hide"></h1>
+        <p class="lead s-hide">
+          Made for you, designed by you, created by us!
+        </p>
+        <p class="lead s-hide">
+          <strong>Contact our design team for pricing below:</strong>
+        </p>
+        <div class="form-container">
+          {% form 'contact' %}
+            <input type="hidden" class="itemName" name="contact[windowTreatment]" value="">
+
+            <label for="WindowTreatmentSize" class="heading-label">Requested Size</label>
+            <div class="size-inputs">
+              <div class="cloneInputs">
+
+                <div class="select-container">
+                  <label for="BedSize">Choose Bed Size</label>
+                  <select name="BedSize">
+                    <option selected disabled>Choose Bed Size</option>
+                    <option value="twin">Twin</option>
+                    <option value="full">Full</option>
+                    <option value="queen">Queen</option>
+                    <option value="king">King</option>
+                    <option value="cal-king">California King</option>
+                  </select>
+                </div>
+
+              </div>
+              <a class="btn secondary-btn" id="jsCloneInput"><i class="fa fa-plus"></i> Add Another</a>
+            </div>
+
+            <label for="YourInformation" class="heading-label">Your Information</label>
+            <div class="contact-container">
+
+              <div class="input-container">
+                <label for="FirstName"><strong>First name</strong></label>
+                <input type="text" name="contact[FirstName]" placeholder="Your First Name">
+              </div>
+
+              <div class="input-container">
+                <label for="LastName"><strong>Last name</strong></label>
+                <input type="text" placeholder="Your Last Name" name="contact[LastName]">
+              </div>
+
+              <div class="input-container">
+                <label for="Email"><strong>Email</strong></label>
+                <input type="text" placeholder="Your email address" name="contact[Email]">
+              </div>
+
+              <div class="input-container">
+                <label for="Comments"><strong>Comments</strong></label>
+                <textarea name="contact[Comments]" placeholder="Send us any special notes or requests"></textarea>
+              </div>
+
+              <button type="submit" name="submitBtn" class="btn primary-btn">Send Request</button>
+
+            </div>
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    // Get Local Storage and place them in their respective areas
+    var getImgSrc = localStorage.getItem('imgSrc');
+    var getImgAlt = localStorage.getItem('imgAlt');
+    var getItemVal = localStorage.getItem('itemVal');
+
+    document.querySelector('.imgStorageDrop').src = getImgSrc;
+    document.querySelector('.imgStorageDrop').alt = getImgAlt;
+    document.querySelector('.itemStorageDrop').innerHTML = getItemVal;
+    document.querySelector('.mbItemStorageDrop').innerHTML = getItemVal;
+    document.querySelector('.itemName').value = "Bedding "+getItemVal;
+
+    // Remove localStorage on Window Close
+    window.onbeforeunload = function (e) {
+      window.onunload = function () {
+        window.localStorage.isMySessionActive = "false";
+      }
+      return undefined;
+    };
+
+    window.onload = function () {
+      window.localStorage.isMySessionActive = "true";
+    };
+
+    // Clone Inputs
+    var cloneBtn = document.querySelector('#jsCloneInput');
+
+    Element.prototype.appendAfter = function(element) {
+      element.parentNode.insertBefore(this, element.nextSibling);
+    }, false;
+
+    cloneBtn.addEventListener('click', function() {
+      var div = document.querySelector('.cloneInputs');
+      var clonedDiv = div.cloneNode(true);
+      clonedDiv.appendAfter(div);
+    });
+
+  });
+</script>
+{%- include 'js-nav-activator' -%}

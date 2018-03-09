@@ -46,7 +46,7 @@
 			right: 0;
 			bottom: 0;
 			z-index: -1;
-			background-image: linear-gradient(-183deg, rgba(0,0,0,0.00) 50%, #555555 100%);
+			background-image: linear-gradient(-183deg, rgba(0,0,0,0.00) 50%, #000 100%);
 		}
 		a {
 			@include ptSerif(20px, 400, normal);

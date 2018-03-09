@@ -3,9 +3,14 @@
 	@include m() {
 		padding: 0;
 		@include flex();
-		flex-flow: row wrap;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		    -ms-flex-flow: row wrap;
+		        flex-flow: row wrap;
 		.accordion {
-			flex: 1 50%;
+			-webkit-box-flex: 1;
+			    -ms-flex: 1 50%;
+			        flex: 1 50%;
 			border-right: 1px solid #e5e5e5;
 			position: relative;
 		}
@@ -13,9 +18,14 @@
 	@include s() {
 		padding: 0;
 		@include flex();
-		flex-flow: row wrap;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		    -ms-flex-flow: row wrap;
+		        flex-flow: row wrap;
 		.accordion {
-			flex: 1 50%;
+			-webkit-box-flex: 1;
+			    -ms-flex: 1 50%;
+			        flex: 1 50%;
 			border-right: 1px solid #e5e5e5;
 			position: relative;
 		}

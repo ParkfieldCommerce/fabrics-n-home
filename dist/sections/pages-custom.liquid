@@ -1,0 +1,138 @@
+{% assign uniqueCategories = '' %}
+{%- for block in section.blocks -%}
+  {% unless uniqueCategories contains block.settings.block_category %}
+    {% if uniqueCategories == '' %}
+    {% assign uniqueCategories = uniqueCategories | append: block.settings.block_category %}
+    {% else %}
+    {% assign uniqueCategories = uniqueCategories | append: '+' | append: block.settings.block_category %}
+    {% endif %}
+  {% endunless %}
+{%- endfor -%}
+{% assign categoriesArray = uniqueCategories | replace: "_", " " | split: '+' %}
+<style>
+{%- for category in categoriesArray -%}
+  {%- for block in section.blocks limit: 5 -%}
+    {% assign modCategory = category | replace: ' ', '_' %}
+    {%- if block.settings.block_category == modCategory -%}
+      {% assign img_url = block.settings.block_img | img_url:'master' %}
+      .block.{{modCategory}} {
+        background: url({{img_url}});
+      }
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+</style>
+<section class="window-treatment">
+  <div class="container l">
+    <div class="banner">
+      <h1>{{ section.settings.page_header }}</h1>
+      <p>{{ section.settings.page_lead }}</p>
+    </div>
+    <div class="window-categories">
+
+      {%- for category in categoriesArray -%}
+        <div class="block {{ category | replace: ' ', '_' }}" data-category="{{ category | replace: ' ', '_' }}">
+          <h1>{{ category }}</h1>
+        </div>
+        <div class="pane" data-category="{{ category | replace: ' ', '_' }}">
+          <div class="pane-category">
+            <h3>{{ category }}</h3>
+            <div class="close-action">
+              <p>Close</p>
+              <i class="fa fa-close" aria-hidden="true"></i>
+            </div>
+          </div>
+          {%- for block in section.blocks -%}
+            {% assign modCategory = category | replace: ' ', '_' %}
+            {%- if block.settings.block_category == modCategory -%}
+              {% assign img_url = block.settings.block_img | img_url:'master' %}
+              <div class="pane-block">
+                <a class="jsLocalStorageInit" href="{{ block.settings.block_url }}">
+                  <img class="imgStorageGrab" data-src="{{ block.settings.block_img | img_url: 'master' }}" data-alt="{{block.settings.block_img}}" src="{{ block.settings.block_img | img_url: 'master' }}" alt="{{block.settings.block_img}}">
+                  <h2 class="itemStorageGrab" data-value="{{ block.settings.block_title }}">{{ block.settings.block_title }}</h2>
+                </a>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+
+    </div>
+  </div>
+</section>
+<script>
+  var storageInit = document.querySelectorAll('.jsLocalStorageInit');
+
+  storageInit.forEach( function(storage){
+    storage.addEventListener('click', function(e) {
+      e.preventDefault();
+      var imgSrc = storage.querySelector('.imgStorageGrab');
+      var itemGrab = storage.querySelector('.itemStorageGrab');
+      var imgData = imgSrc.dataset.src;
+      var imgAlt = imgSrc.dataset.alt;
+      var itemVal = itemGrab.dataset.value;
+      var itemHref = storage.href;
+
+      localStorage.setItem('imgSrc', imgData);
+      localStorage.setItem('imgAlt', imgAlt);
+      localStorage.setItem('itemVal', itemVal);
+
+      console.log("Successfully added "+localStorage.getItem('imgSrc')+" "+localStorage.getItem('imgAlt')+" "+localStorage.getItem('itemVal'));
+
+      window.location.href = itemHref;
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Window Treatment",
+  "max_blocks": 50,
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_header",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "page_lead",
+      "label": "Lead"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Window Treatment Block",
+      "type": "window-treatment-block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "block_img",
+          "label": "Background"
+        },
+        {
+          "type": "select",
+          "id": "block_category",
+          "label": "Category",
+          "options": [
+            { "value": "drapery", "label": "Drapery" },
+            { "value": "shades", "label": "Shades" },
+            { "value": "hard_cornice", "label": "Top Treatments Hard Cornice" },
+            { "value": "soft_valance", "label": "Top Treatments Soft Valance" },
+            { "value": "cafe_curtains", "label": "Cafe Curtains" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "block_title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "block_url",
+          "label": "Link to Item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

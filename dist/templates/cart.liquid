@@ -27,16 +27,7 @@
 
               <div class="column l3 m3 s12">
                 <div class="length-price">
-
-                  {% unless item.product.type == 'Sample' %}
-
-                    <p class="price">
-                      Price: {{ item.price | times: 2 | money_with_currency }}/Yard
-                    </p>
-                    <p class="quantity" data-value="{{ item.quantity }}"></p>
-
-                  {% else %}
-
+                  {%- if item.variant.title == 'Sample' or item.product.type == 'Sample' -%}
                     <p class="price">
                       Price: {{ item.price | money_with_currency }}
                     </p>
@@ -48,9 +39,14 @@
                         <li>{{ property.first }}: {{ property.last }}</li>
                         {% endfor %}
                       </ul>
-                      {% endunless %}
+                    {% endunless %}
+                  {%- else -%}
+                    <p class="price">
+                      Price: {{ item.price | times: 2 | money_with_currency }}/Yard
+                    </p>
+                    <p class="quantity" data-value="{{ item.quantity }}"></p>
 
-                  {% endunless %}
+                  {%- endif -%}
 
                 </div>
               </div>
@@ -59,34 +55,34 @@
                 <div class="qty-container">
 
                   {% assign isSample = false %}
-                  {% unless item.product.type == 'Sample' %}
+                  {% unless item.product.type == 'Sample' or item.variant.title == 'Sample' %}
                   {% else %}
                     {% assign isSample = true %}
                   {% endunless %}
-                  
-                  <input 
-                  {% unless isSample %} style="display:none" {% endunless %} 
-                  class="cart__qty-input {{isSample}}" 
-                  type="number" name="updates[]" 
-                  id="updates_{{ item.key }}" 
-                  value="{{ item.quantity }}" 
-                  min="0" 
-                  data-variant-id='{{item.variant_id}}' 
-                  pattern="[0-9]*" 
+
+                  <input
+                  {% unless isSample %} style="display:none" {% endunless %}
+                  class="cart__qty-input {{isSample}}"
+                  type="number" name="updates[]"
+                  id="updates_{{ item.key }}"
+                  value="{{ item.quantity }}"
+                  min="0"
+                  data-variant-id='{{item.variant_id}}'
+                  pattern="[0-9]*"
                   data-line-item='{{forloop.index}}'>
-                  
+
                   {% unless isSample %}
-                  <input type="number" 
-                  min="0" 
-                  {% if isSample == false %} step="0.5" {% endif %} 
-                  value="0"  
-                  class="dummy-quantity" 
-                  data-line-item='{{forloop.index}}' 
+                  <input type="number"
+                  min="0"
+                  {% if isSample == false %} step="0.5" {% endif %}
+                  value="0"
+                  class="dummy-quantity"
+                  data-line-item='{{forloop.index}}'
                   data-variant-id='{{item.variant_id}}'
                   data-sample='{{ isSample }}'>
                   {% endunless %}
 
-                  <label for="updates_{{ item.key }}" class="cart__qty-label">{% unless item.product.type == 'Sample' %}Yards{% else %}Qty{% endunless %}</label>
+                  <label for="updates_{{ item.key }}" class="cart__qty-label">{% unless item.product.type == 'Sample' or item.variant.title == 'Sample' %}Yards{% else %}Qty{% endunless %}</label>
 
                 </div>
               </div>
@@ -101,7 +97,7 @@
                   {% endif %}
 
                   <a class="btn primary-btn" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">{{ 'cart.remove_item' | t }}</a>
-                  
+
                 </div>
               </div>
             </div>
@@ -109,7 +105,7 @@
         {% endfor %}
 
         {% if settings.cart_notes_enable %}
-          <div class="cart-notes"> 
+          <div class="cart-notes">
             <label for="CartSpecialInstructions">{{ 'cart.note' | t }}</label>
             <textarea class="wide" name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
           </div>
@@ -173,7 +169,7 @@
             window.location.href = '/cart';
           }
         });
-      });    
+      });
     });
   });
 </script>

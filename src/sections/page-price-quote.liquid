@@ -31,10 +31,11 @@
 						</div>
 
 						<div class="btn-actions">
+							<a class="remove-another" id='remove-fields'><i class="fa fa-minus"></i> Remove</a>
 							<a class="add-another" id="add-more-fields"><i class="fa fa-plus"></i> Add another</a>
 							<button type="submit" class="btn primary-btn">Send Request</button>
 						</div>
-					
+
 					</div>
 				{% endform %}
 			</div>
@@ -54,6 +55,15 @@
 		cloneDiv.insertAfter('.cloneForm:last');
 		var requestField = $('.cloneForm').length;
 		$('.request-num:last').text('').append('Request '+requestField);
+		$('.remove-another').show();
+	});
+
+	$('#remove-fields').on('click', function() {
+		var requestField = $('.cloneForm').length;
+		$('.cloneForm:last').remove();
+		if (requestField === 2) {
+			$(this).hide();
+		}
 	});
 
 </script>

@@ -1,0 +1,102 @@
+.search-page {
+  .banner {
+    height: 300px;
+    @include flex();
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background: #888;
+    margin-bottom: 20px;
+    .search-lead {
+      @include ptSerif(50px, 400, normal);
+      color: #fff;
+    }
+    @include m() {
+      height: 250px;
+      .search-lead {
+        font-size: 40px;
+        text-align: center;
+      }
+    }
+    @include s() {
+      height: 200px;
+      .search-lead {
+        font-size: 30px;
+        text-align: center;
+      }
+    }
+  }
+  .search-results {
+    @include flex();
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
+    .block {
+      width: calc(100% / 3);
+      @include s() {
+        width: calc(100% / 2);
+      }
+    }
+    .inner {
+      padding: 10px;
+      a {
+        display: block;
+        text-decoration: none;
+      }
+      img {
+        width: 350px;
+        height: 350px;
+        margin: auto;
+        display: block;
+        @include m() {
+          width: 230px;
+          height: 230px;
+        }
+        @include s() {
+          width: 130px;
+          height: 130px;
+        }
+      }
+      .item-title {
+        @include ptSerif(20px, 400, normal);
+        color: #888;
+        text-align: center;
+        padding: 10px;
+        margin: 0;
+        @include s() {
+          font-size: 15px;
+        }
+      }
+      .our-price,
+      .sold-out {
+        @include ptSans(16px, 400, normal);
+        text-align: center;
+        color: #555;
+        @include s() {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .pagination-container {
+    display: block;
+    width: 100%;
+    position: relative;
+    padding: 2em 0;
+    .pagination {
+      margin: 0;
+      position: absolute;
+      top: 0;
+      right: 10px;
+      @include s() {
+        right: 0;
+      }
+    }
+  }
+}

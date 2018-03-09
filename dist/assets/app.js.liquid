@@ -937,4 +937,36 @@ $(document).ready(function() {
     });
   });
 
+  // Notes: I started using Velocity JS for all animations from here on out.
+
+  // Blocks for Window Treatment, Bedding, and Pillows & More
+  $('.window-categories .block').on('click touch', function() {
+    var category = $(this).data('category');
+    var duration = { duration: 500 };
+    var showOptions = {
+      opacity: 1,
+      visibility: "visible",
+      top: '-30%',
+      left: 0,
+      right: 0,
+      bottom: 0
+     };
+    var paneGrab = $('.pane[data-category="'+category+'"]');
+    paneGrab.velocity(showOptions, duration);
+  });
+
+  $('.window-categories .close-action').on('click touch', function() {
+    var parent = $(this).parents('.pane');
+    var duration = { duration: 500 };
+    var hideOptions = {
+      opacity: 0,
+      visibility: "hidden",
+      top: "50%",
+      left: "50%",
+      right: "50%",
+      bottom: "50%"
+    };
+    parent.velocity(hideOptions, duration);
+  });
+
 });

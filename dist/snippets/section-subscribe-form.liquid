@@ -13,7 +13,7 @@
            value="{% if customer %}{{ customer.email }}{% endif %}"
            placeholder="{{ email_placeholder }}"
            name="contact[email]"
-           id="Email"
+           id="email_subscribe"
            aria-label="{{ email_placeholder }}"
            autocorrect="off"
            autocapitalize="off">
@@ -25,9 +25,9 @@
            value="" />
     <button type="submit"
            name="subscribe"
-           id="subscribe"
+           id="subscribe_newsletter"
            class="{% unless show_button %} hidden{% endunless %}">
-      <i class="fa fa-chevron-right"></i>  
+      <i class="fa fa-chevron-right"></i>
     </button>
 
   {% endif %}

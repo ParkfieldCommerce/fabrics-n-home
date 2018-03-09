@@ -1,0 +1,123 @@
+.custom-design {
+  .main-banner {
+    height: 425px;
+    @include flex();
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    h1 {
+      @include ptSerif(70px, 400, italic);
+      text-align: center;
+      color: #fff;
+    }
+    @include s() {
+      height: 350px;
+      h1 {
+        @include ptSerif(40px, 400, italic);
+      }
+    }
+  }
+  .custom-design-links {
+    padding-bottom: 2em;
+    h2 {
+      @include ptSerif(40px, 400, normal);
+      padding: 48px 0 30px;
+      text-align: center;
+      @include s() {
+        @include ptSerif(25px, 400, normal);
+      }
+    }
+    .three-boxes {
+      @include flex();
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: row wrap;
+              flex-flow: row wrap;
+    }
+    .box {
+      height: 300px;
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      @include s() {
+        -webkit-box-flex: 100%;
+            -ms-flex: 100%;
+                flex: 100%;
+      }
+      a {
+        display: block;
+        height: inherit;
+        @include flex();
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: end;
+            -ms-flex-align: end;
+                align-items: flex-end;
+        text-decoration: none;
+        text-transform: capitalize;
+        color: #fff;
+      }
+      h3 {
+        @include ptSerif(30px, 400, normal);
+        padding-bottom: 10px;
+        text-align: center;
+      }
+      p {
+        @include ptSans(20px, 400, normal);
+        text-align: center;
+      }
+      &.pillow {
+        a {
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          h3 {
+            border-bottom: 3px solid #88beb4;
+            padding-bottom: 0;
+            margin-bottom: 10px;
+          }
+        }
+      }
+      &.one:hover,
+      &.two:hover,
+      &.three:hover {
+        @include transition();
+        @include prefixer(transform, scale(1.05), o webkit moz ms spec);
+        -webkit-box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
+                box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
+      }
+    }
+  }
+  .bottom-banner {
+    height: 175px;
+    @include flex();
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    h1 {
+      @include dancingScript(40px, 400, normal);
+      text-align: center;
+      padding-bottom: .3em;
+      color: #fff;
+    }
+    @include s() {
+      height: 240px;
+      margin-bottom: 2em;
+    }
+  }
+}

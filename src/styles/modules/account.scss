@@ -1,0 +1,125 @@
+.account {
+  .inner {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .banner {
+    -webkit-box-align: center;
+    align-items: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 200px;
+    background-position: 50% 50%;
+    background-size: cover;
+    @include flex();
+
+    h1 {
+      color: #fff;
+      @include ptSerif(40px, 400, normal);
+    }
+  }
+
+  label {
+    padding: 10px 0;
+    text-align: left;
+    color: #555;
+    @include ptSerif(20px, 400, normal);
+  }
+
+  input {
+    padding: 10px;
+    color: #888;
+    border: 1px solid #e5e5e5;
+    @include ptSans(15px, 400, normal);
+    @include inputPlaceholder(#888);
+
+    &:focus {
+      border: 1px solid #88beb4;
+    }
+  }
+
+  .btn {
+    height: auto;
+    margin: 20px 0;
+    border: 0;
+  }
+
+  form {
+    a,
+    p {
+      text-decoration: none;
+      color: #555;
+      @include ptSans(15px, 400, normal);
+    }
+
+    a {
+      color: #88beb4;
+    }
+  }
+
+  a,
+  p {
+    text-decoration: none;
+    color: #555;
+    @include ptSans(15px, 400, normal);
+  }
+
+  a {
+    color: #88beb4;
+  }
+
+  &.login {
+    position: relative;
+    .popup-forgotPswd {
+      position: absolute;
+      top: 31.6%;
+      left: 50%;
+      right: 50%;
+      bottom: 0%;
+      background: rgba(0,0,0,0.4);
+      z-index: 10;
+      visibility: hidden;
+      opacity: 0;
+      @include flex();
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: column;
+              flex-flow: column;
+      -ms-flex-line-pack: center;
+          align-content: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      .inner {
+        background: #fff;
+        width: 80%;
+        margin: auto;
+      }
+      .heading-container {
+        position: relative;
+        z-index: 2;
+        padding: 15px 0;
+        display: none;
+      }
+      h1 {
+        @include ptSerif(30px, 400, normal);
+        color: #555;
+      }
+      input {
+        @include ptSans(16px, 400, normal);
+        width: 100%;
+      }
+      .close-icon {
+        position: relative;
+        color: #555;
+        float: right;
+        padding: 5px 10px;
+        cursor: pointer;
+        z-index: 11;
+      }
+    }
+  }
+}

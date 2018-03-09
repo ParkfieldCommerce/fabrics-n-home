@@ -16,7 +16,9 @@
 		padding-top: 5px;
 	}
 	.button.share {
-		flex: 0.1;
+		-webkit-box-flex: 0.1;
+		    -ms-flex: 0.1;
+		        flex: 0.1;
 	}
 	.body {
 		@include ptSans(15px, 400, normal);

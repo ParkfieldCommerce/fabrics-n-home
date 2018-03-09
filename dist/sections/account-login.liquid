@@ -1,0 +1,96 @@
+<!-- /templates/customers/login.liquid -->
+<style>
+  .banner {
+    background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+      ),
+      url('{{ section.settings.banner_img | img_url:'master' }}');
+  }
+</style>
+<section class="account login">
+  <div class="container l">
+    <div class="banner">
+      <h1>{{ page_title }} - Login</h1>
+    </div>
+    <div class="inner">
+      {% include 'form-login' %}
+
+      {% if shop.checkout.guest_login %}
+        <hr>
+        <h2>{{ 'form.guest_title' | t }}</h2>
+        {% form 'guest_login' %}
+          <input type="submit" value="{{ 'form.continue' | t }}">
+        {% endform %}
+      {% endif %}
+    </div>
+  </div>
+  <div class="popup-forgotPswd">
+    <div class="inner">
+      <div class="close-icon">
+        <i class="fa fa-close" aria-hidden="true"></i>
+      </div>
+      <div class="heading-container">
+        <h1>Forgot Password?</h1>
+      </div>
+      {%- include 'form-forgot-pswd' -%}
+    </div>
+  </div>
+</section>
+<script>
+  var fgtPswd = document.querySelector('#fgt-pswd');
+  var closeBtn = document.querySelector('.close-icon');
+  fgtPswd.addEventListener('click', function() {
+    var popup = document.querySelector('.popup-forgotPswd');
+    var heading = document.querySelector('.heading-container');
+    var duration = { duration: 500 };
+    var optionsLg = {
+      visibility: 'visible',
+      opacity: 1,
+      left: "30%",
+      right: "30%"
+    };
+    var optionsSm = {
+      visibility: 'visible',
+      opacity: 1,
+      left: "0%",
+      right: "0%"
+    };
+
+    if (window.matchMedia("(min-width: 850px)").matches) {
+      // At least 850px;
+      heading.velocity({width: "100%", display: "block"}, {duration: 200});
+      popup.velocity(optionsLg, duration);
+    } else {
+      // Less than 850px;
+      heading.velocity({width: "100%", display: "block"}, {duration: 200});
+      popup.velocity(optionsSm, duration);
+    }
+  });
+  closeBtn.addEventListener('click', function() {
+    var popup = document.querySelector('.popup-forgotPswd');
+    var heading = document.querySelector('.heading-container');
+    var dur = { duration: 500 };
+    var clOpts = {
+      visibility: 'hidden',
+      opacity: 0,
+      left: "50%",
+      right: "50%"
+    };
+    heading.velocity({width: "0%", display: "none"}, {duration: 200});
+    popup.velocity(clOpts, dur);
+  });
+</script>
+{%- include 'js-nav-activator' -%}
+{% schema %}
+{
+  "name": "Account-Login",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_img",
+      "label": "Banner Background"
+    }
+  ]
+}
+{% endschema %}

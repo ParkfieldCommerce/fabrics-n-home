@@ -4,15 +4,9 @@
  {% assign column_width = 'column l4 m6 s12' %}
 {% endunless %}
 
-{% assign on_sale = false %}
-{% if product.compare_at_price > product.price %}
- {% assign on_sale = true %}
-{% endif %}
-{% assign sale_price = product.price | money %}
-
 {% assign sold_out = true %}
 {% if product.available %}
- {% assign sold_out = false %}
+  {% assign sold_out = false %}
 {% endif %}
 
 <div class="{{column_width}} product-block {% if sold_out %} sold_out {% endif %} {% if on_sale %} on_sale {% endif %}">
@@ -22,24 +16,21 @@
     background-size: cover;">
 
     <p>
-      {% if on_sale %}
+      {%- if sold_out -%}
+        <strong>Sold Out!</strong>
+      {%- else -%}
+        {%- for variant in product.variants -%}
+          {%- if forloop.length > 1 -%}
+            {%- if variant.title == 'Original' -%}
+              {{ variant.price | times: 2 | money }}/Yard
+            {%- endif -%}
+          {%- else -%}
+            {{ product.price | times: 2 | money }}/Yard
+          {%- endif -%}
+        {%- endfor -%}
 
-        {% if product.price_varies %}
-          {{ 'product.on_sale_from_html' | t: price: sale_price }}/Yard
-        {% else %}
-          <strong>{{ 'product.on_sale_html' | t: price: sale_price }}/Yard</strong>
-        {% endif %}
+      {%- endif -%}
 
-      {% else %}
-
-        {% if product.price_varies %}
-          {% assign price = product.price | times: 2 | money %}
-          {{ 'product.priced_from_html' | t: price: price }}/Yard
-        {% else %}
-          {{ product.price | times: 2 | money }}/Yard
-        {% endif %}
-
-      {% endif %}
     </p>
 
   </a>

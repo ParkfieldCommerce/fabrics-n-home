@@ -34,14 +34,18 @@
 								{% for tag in collections[brand].tags %}
 
 									{% if tag contains 'brand_' %}
-										{% assign brand_name = tag | split: '_' | last %}	
-										<li> 
-											<a href="{{shop.url}}{{collections[brand].url}}">{{brand_name}}</a>
+										{% assign brand_name = tag | split: '_' | last %}
+										<li>
+											{%- if collections[brand_name].products.size != 0 -%}
+												<a href="{{shop.url}}{{collections[brand_name].url}}">{{brand_name}}</a>
+											{%- else -%}
+												<a href="{{shop.url}}{{collections[brand].url}}">{{brand_name}}</a>
+											{%- endif -%}
 										</li>
 									{% endif %}
 
 								{% endfor %}
-								
+
 							{% else %}
 
 								<li class="empty-section">This Section ({{ brand | upcase }}) Is Empty</li>
