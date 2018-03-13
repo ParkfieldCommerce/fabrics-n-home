@@ -7,9 +7,15 @@
 					<li class="title">{{ grandchild.title }}</li>
 
 					{% for greatgrandchild in grandchild.links %}
+						{%- if grandchild.title contains 'Color' -%}
 						<li class="dropdown-item {% if greatgrandchild.active %}active{% else %}inactive{% endif %}">
-							{{ greatgrandchild.title | link_to: greatgrandchild.url }}
+							<a href="{{ greatgrandchild.url }}"><i class="fa fa-circle" style="color: {{greatgrandchild.title}}"></i> {{greatgrandchild.title}}</a>
 						</li>
+						{%- else -%}
+							<li class="dropdown-item {% if greatgrandchild.active %}active{% else %}inactive{% endif %}">
+								{{ greatgrandchild.title | link_to: greatgrandchild.url }}
+							</li>
+						{%- endif -%}
 					{% endfor %}
 
 				{% else %}

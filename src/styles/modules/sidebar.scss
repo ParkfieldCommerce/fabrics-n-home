@@ -92,6 +92,7 @@
 			@include ptSans(14px, 400, normal);
 			color: #888888;
 			margin-bottom: 5px;
+			display: inline-block;
 			&:hover {
 				color: #000;
 			}

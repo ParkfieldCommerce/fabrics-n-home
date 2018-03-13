@@ -58,6 +58,13 @@
 			}
 		}
 	}
+	.enlarge-btn {
+		position: relative;
+		top: 7em;
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		        transform: translateX(-50%);
+	}
 	.title {
 		border-bottom: 1px solid #e5e5e5;
 		h1 {
@@ -161,9 +168,10 @@
 		}
 	}
 	.social-sharing {
-		width: 40%;
-		float: left;
-		margin-left: 14%;
+		width: 30%;
+		position: relative;
+		top:36px;
+		left: 17%;
 		.button.share {
 			-webkit-box-flex: 0.2;
 			    -ms-flex: 0.2;

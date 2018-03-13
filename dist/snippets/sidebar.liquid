@@ -8,9 +8,20 @@
 	  	</div>
 	    <div class="pane">
 	    	{% for childlink in link.links %}
-	    		<a href="{{shop.url}}{{ childlink.url }}">
-	    			<p>{{ childlink.title }}</p>
-	    		</a>
+          {%- if link.title == 'Color' -%}
+            <a href="{{shop.url}}{{ childlink.url }}">
+              <i class="fa fa-circle" style="color: {{childlink.title}}"></i>
+              <p>{{ childlink.title }}</p>
+            </a>
+          {%- elsif link.title == 'Brands' -%}
+            <a href="{{shop.url}}{{ childlink.url }}">
+              <p>{{ childlink.title }} /</p>
+            </a>
+          {%- else -%}
+            <a href="{{shop.url}}{{ childlink.url }}">
+              <p>{{ childlink.title }}</p>
+            </a>
+          {%- endif -%}
 	    	{% endfor %}
 	    </div>
 	  </div>

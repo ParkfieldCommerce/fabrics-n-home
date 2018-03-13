@@ -1,4 +1,5 @@
 .account {
+  @include ptSans(25px, 400, normal);
   .inner {
     padding: 20px;
     text-align: center;
@@ -20,6 +21,11 @@
       color: #fff;
       @include ptSerif(40px, 400, normal);
     }
+  }
+
+  h2 {
+    @include ptSans(25px, 700, normal);
+    color: #555;
   }
 
   label {

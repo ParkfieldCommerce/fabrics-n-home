@@ -1,0 +1,108 @@
+<!-- /templates/search.liquid -->
+{% comment %}
+  To return only products or pages in results http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
+  Or manually add type=product or type=page to the search URL as a parameter
+{% endcomment %}
+<style>
+  .banner {
+    background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+      ),
+      url({{ banner_img | img_url:'master' }});
+  }
+</style>
+{% paginate search.results by 10 %}
+  <section class="search-page">
+    <div class="container l">
+      <div class="crumbs">
+        {% include 'theme-breadcrumbs' %}
+      </div>
+      {% if search.performed %}
+        <div class="banner">
+          {% if search.results_count == 0 %}
+            <h1 class="search-lead">{{ 'search.no_results_html' | t: terms: search.terms }}</h1>
+          {% else %}
+            <h1 class="search-lead">{{ 'search.results_for_html' | t: terms: search.terms }}</h1>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="banner">
+          <h1 class="search-lead">{{ 'search.title' | t }}</h1>
+          {% include 'form-search' %}
+        </div>
+      {% endif %}
+      <div class="search-results">
+        {%- if search.performed -%}
+          {%- for item in search.results -%}
+            <div class="block">
+              <div class="inner">
+                {%- if item.featured_image -%}
+                {% comment %}
+                  If it has a featured_image, it is probably a product
+                {% endcomment %}
+                  <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
+                    <img srcset="{{ item.featured_image.src | img_url: 'x1400' }} 2x" data-src="{{ item.id }}" data-price="{{ item.price | times: 2 | money }}" data-title="{{ item.title | escape }}" data-target-href="{{shop.url}}{{ item.url | within: collection }}" src="{{ item.featured_image.src | img_url: 'x700' }}" alt="{{ item.featured_image.alt | escape }}" class="grid__image">
+                    <p class="item-title">{{ item.title | escape }}</p>
+                  </a>
+                {%- endif -%}
+                {% if item.image %}
+                {% comment %}
+                  If it has an article image, it is probably a blog article
+                {% endcomment %}
+                  <a href="{{ item.url }}" title="{{ item.title | escape }}">
+                    <img srcset="{{ item.featured_image.src | img_url: 'x1400' }} 2x" data-src="{{ item.id }}" data-title="{{ item.title | escape }}" data-target-href="{{shop.url}}{{ item.url | within: collection }}" src="{{ item.featured_image.src | img_url: 'x700' }}" alt="{{ item.featured_image.alt | escape }}" class="grid__image">
+                    <p class="item-title">{{ item.title | escape }}</p>
+                  </a>
+                {% endif %}
+                {%- if item.price -%}
+                {% comment %}
+                  If it has a fprice, it is definitely a product
+                {% endcomment %}
+                  {% assign sold_out = true %}
+                  {% if item.available %}
+                    {% assign sold_out = false %}
+                  {% endif %}
+
+                  {%- if sold_out -%}
+                    <p class="sold-out">Sold Out!</p>
+                  {%- else -%}
+
+                    {%- for variant in item.variants -%}
+                      {%- if variant.title == 'Original' -%}
+                        <p class="our-price">Price: {{ variant.price | times: 2 | money }}/Yard</p>
+                      {%- elsif variant.title == 'Sample' -%}
+                        <!-- <p class="our-price">Sample Price: {{ variant.price | money }}</p> -->
+                      {%- endif -%}
+                    {%- endfor -%}
+
+                  {%- endif -%}
+
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+      <div class="pagination-container">
+        {% if paginate.pages > 1 %}
+          <div class="pagination">
+            {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endpaginate %}
+{% schema %}
+{
+  "name": "Search Page",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_img",
+      "label": "Banner Background"
+    }
+  ]
+}
+{% endschema %}
