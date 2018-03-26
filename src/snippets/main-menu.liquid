@@ -25,10 +25,10 @@
 
 			{% for link in linklists['main-menu'].links %}
 				{% capture linkhandles %}{{link.handle}}{% endcapture %}
-
 				<ul class="secondary-items {% if link.active %}active{% else %}inactive{% endif %}" data-main-title="{{link.title}}">
 
 					{% for childlink in linklists[linkhandles].links %}
+
 						<li class="secondary-item {% if childlink.active %}active{% else %}inactive{% endif %} {% if childlink.links != blank %}item-dropdown{% endif %}">
 							<a class="secondary-item-link" href="{{ childlink.url }}">
 								<p>{{ childlink.title }}</p>

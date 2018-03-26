@@ -24,6 +24,40 @@
 </div>
 
 <script>
+function initSlickSlider() {
+  if ($('.rel-product-group li').length <= 4) {
+    var initialSlides = 3;
+  } else {
+    var initialSlides = 4;
+  }
+  $('.rel-product-group').slick({
+    slidesToShow: initialSlides,
+    slidesToScroll: 1,
+    speed: 500,
+    dots: false,
+    arrows: true,
+    prevArrow: '<a class="rel-img-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+    nextArrow: '<a class="rel-img-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
+    useCSS: false,
+    responsive: [
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          arrows: false,
+          draggable: true
+        }
+      }
+    ]
+  });
+}
 function tagExists(tag) {
   var query = tag;
   var xmlhttp = new XMLHttpRequest();
@@ -86,26 +120,31 @@ function tagExists(tag) {
   xmlhttp.open("GET", 'https://fabric-and-home.myshopify.com/search?q=' + query, false);
   xmlhttp.send();
 }
+function regexCatch(str) {
+
+  str = str.replace("'","A");;
+
+  return str
+}
+
 {% if book_name_exists %}
-  tagExists('{{ book }}');
+  console.log('Book Exists');
+  var bookTag = regexCatch('{{ book }}');
+  tagExists(bookTag);
 {% endif %}
 {% if collection_exists %}
-  tagExists('{{collection[0] | append: '_' | append: collection[1]}}');
+  console.log('Collection Exists');
+  tagExists(regexCatch("{{collection[0] | append: '_' | append: collection[1]}}"));
 {% endif %}
 {% if pattern_name_exists %}
-  tagExists('{{pattern_name[1]}}');
+  console.log('Pattern Name Exists');
+  tagExists(regexCatch('{{pattern_name[1]}}'));
 {% endif %}
 {% if pattern_number_exists %}
-  tagExists('{{pattern_number[1]}}');
+  console.log('Pattern Number Exists');
+  tagExists(regexCatch('{{pattern_number[1]}}'));
 {% endif %}
 
-$('.rel-product-group').slick({
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  dots: false,
-  arrows: true,
-  prevArrow: '<a class="rel-img-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
-  nextArrow: '<a class="rel-img-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
-  useCSS: false
-});
+initSlickSlider();
+
 </script>

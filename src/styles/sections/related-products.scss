@@ -20,19 +20,29 @@
 		-webkit-box-direction: normal;
 		    -ms-flex-flow: row wrap;
 		        flex-flow: row wrap;
-		.rel-img-prev {
-			position: absolute;
-			top: 34%;
-			left: -20px;
-			font-size: 3em;
-			color: #555;
-		}
+		.rel-img-prev,
 		.rel-img-next {
 			position: absolute;
-			top: 34%;
-			right: -20px;
+			top: 37%;
 			font-size: 3em;
 			color: #555;
+			font-size: 3em;
+			color: #555;
+			@include m() {
+				top: 31%;
+			}
+		}
+		.rel-img-prev {
+			left: -20px;
+			@include m() {
+				left: 0;
+			}
+		}
+		.rel-img-next {
+			right: -20px;
+			@include m() {
+				right: 0;
+			}
 		}
 		li {
 			-webkit-box-flex: 1;

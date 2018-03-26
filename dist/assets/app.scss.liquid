@@ -1930,6 +1930,10 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 .product-template {
 	padding: 35px 0;
+	&.some-block {
+		display: block;
+		height: 150px;
+	}
 	@include s() {
 		padding: 0;
 	}
@@ -1960,6 +1964,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 			background: rgba(0,0,0,0.4);
 			z-index: 5;
 			opacity: 1;
+			overflow: auto;
 			@include transition();
 		}
 		img {
@@ -1992,6 +1997,10 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 		left: 50%;
 		-webkit-transform: translateX(-50%);
 		        transform: translateX(-50%);
+
+		@include s() {
+			display: none;
+		}
 	}
 	.title {
 		border-bottom: 1px solid #e5e5e5;
@@ -2100,6 +2109,14 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 		position: relative;
 		top:36px;
 		left: 17%;
+		@include m() {
+			width: 40%;
+			left: 10%;
+		}
+		@include s() {
+			top: 0;
+			width: 100%;
+		}
 		.button.share {
 			-webkit-box-flex: 0.2;
 			    -ms-flex: 0.2;
@@ -2170,6 +2187,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 	}
 	.yardage-chart,
 	.measure-chart {
+		margin: 2em 0;
 		@include flex();
 		-webkit-box-orient: horizontal;
 		-webkit-box-direction: normal;
@@ -2223,6 +2241,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   right: 0;
   z-index: 600;
   background: rgba(0,0,0,0.4);
+
   .inner {
   	padding: 50px;
   	@include flex();
@@ -4902,7 +4921,7 @@ nav.mobile-menu {
 .drapery-hardware {
   .banner {
     height: 200px;
-    background: rgba(#454545, 0.4);
+    // background: rgba(#454545, 0.4);
     @include flex();
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -5619,19 +5638,29 @@ nav.mobile-menu {
 		-webkit-box-direction: normal;
 		    -ms-flex-flow: row wrap;
 		        flex-flow: row wrap;
-		.rel-img-prev {
-			position: absolute;
-			top: 34%;
-			left: -20px;
-			font-size: 3em;
-			color: #555;
-		}
+		.rel-img-prev,
 		.rel-img-next {
 			position: absolute;
-			top: 34%;
-			right: -20px;
+			top: 37%;
 			font-size: 3em;
 			color: #555;
+			font-size: 3em;
+			color: #555;
+			@include m() {
+				top: 31%;
+			}
+		}
+		.rel-img-prev {
+			left: -20px;
+			@include m() {
+				left: 0;
+			}
+		}
+		.rel-img-next {
+			right: -20px;
+			@include m() {
+				right: 0;
+			}
 		}
 		li {
 			-webkit-box-flex: 1;
@@ -5950,6 +5979,11 @@ form#contact_form {
   height: 120px;
   background-position: 50% 50%;
   background-size: cover;
+  background-repeat: no-repeat;
+  @include s() {
+    margin-bottom: 3em;
+    height: 300px;
+  }
   .inner {
     padding: 20px;
     height: inherit;

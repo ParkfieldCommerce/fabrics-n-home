@@ -72,11 +72,11 @@
         </div>
 
         <p id="ProductPrice" class="product-price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-          Price: {{ product.price_max | times: 2 | money }}/Yard
+          Price: {{ product.price_max | money }}/Yard
         </p>
 
         {% comment %}<p class="product-msrp product-{{ section.id }}{% unless current_variant.available %} product-price-sold-out{% endunless %}">
-          MSRP: {{ product.price_max | times: 2 | money }}/Yard
+          MSRP: {{ product.price_max | money }}/Yard
         </p>{% endcomment %}
 
         {% assign hasFull = false %}
@@ -97,7 +97,7 @@
             <select id="variantOptions" name="id" style="display:none">
               {% for variant in product.variants %}
                 {% unless variant.title contains 'Sample' %}
-                  <option value="{{ variant.id }}">{{ variant.price | times: 2 | money }} /Yard</option>
+                  <option value="{{ variant.id }}">{{ variant.price | money }} /Yard</option>
 
                 {% endunless %}
               {% endfor %}
@@ -106,7 +106,7 @@
             {% if section.settings.show_quantity_selector %}
               <div class="product-form__item product-form__item--quantity">
                 <label for="Quantity">Yards</label>
-                <input type="number" min="0" step="0.5" value="1" id="Quantity" name="quantity" class="product-form__input" pattern="[0-9]*">
+                <input type="number" min="0" step="1" value="1" id="Quantity" name="quantity" class="product-form__input" pattern="[0-9]*">
               </div>
             {% endif %}
 
@@ -246,7 +246,6 @@
             {% include 'icon' with 'chevron-down' %}
           {% endif %}
         </div>
-
       </div>
     </div> <!--row-->
   </div>
@@ -290,13 +289,13 @@
 
     $('#Quantity').on('change', function() {
       var currentQuantity = $(this).val();
-      $(this).val(Math.round(currentQuantity*2)/2);
+      // $(this).val(Math.round(currentQuantity*2)/2);
     });
 
     $('#buy').click(function(e){
       e.preventDefault();
       var yards = $('#Quantity').val();
-      var quantity =  yards * 2;
+      var quantity =  yards;
       var variantId = $('#variantOptions').val();
 
       CartJS.addItem(variantId, quantity, {
@@ -415,7 +414,13 @@ function initSlickSlider() {
     prevArrow: '<a class="img-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
     nextArrow: '<a class="img-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
     focusOnSelect: false,
-    useCSS: false
+    useCSS: false,
+    responsive: [{
+      breakpoint: 850,
+      settings: {
+        slidesToShow: 2
+      }
+    }]
   });
 }
 

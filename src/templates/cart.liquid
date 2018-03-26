@@ -42,7 +42,7 @@
                     {% endunless %}
                   {%- else -%}
                     <p class="price">
-                      Price: {{ item.price | times: 2 | money_with_currency }}/Yard
+                      Price: {{ item.price | money_with_currency }}/Yard
                     </p>
                     <p class="quantity" data-value="{{ item.quantity }}"></p>
 
@@ -74,7 +74,7 @@
                   {% unless isSample %}
                   <input type="number"
                   min="0"
-                  {% if isSample == false %} step="0.5" {% endif %}
+                  {% if isSample == false %} step="1" {% endif %}
                   value="0"
                   class="dummy-quantity"
                   data-line-item='{{forloop.index}}'
@@ -152,8 +152,8 @@
       //Update Line Property for Non-Sample
       $('.dummy-quantity[data-sample="false"]').each(function(){
         var line = $(this).data('line-item');
-        var quantity = $(this).val()*2;
-        var lineText = {'Length': quantity/2 + ' Yards'};
+        var quantity = $(this).val();
+        var lineText = {'Length': quantity + ' Yards'};
         CartJS.updateItem(line, quantity, lineText,{
           "success": function(data, textStatus, jqXHR) {
             window.location.href = '/cart';

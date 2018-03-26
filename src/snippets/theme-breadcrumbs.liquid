@@ -3,7 +3,7 @@
 {% unless template == 'index' or template == 'cart' %}
   <div class="container l">
     <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
-      <a href="/" title="{{ 'home_page.title' | t }}">{{ 'home_page.title' | t }}</a>
+      <a href="/collections/fabric" title="{{ 'home_page.title' | t }}">{{ 'home_page.title' | t }}</a>
       {% if template contains 'product' %}
         {% if collection %}
           <i class="fa fa-chevron-right" aria-hidden="true"></i>

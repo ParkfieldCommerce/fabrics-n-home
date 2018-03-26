@@ -2,6 +2,10 @@
 
 .product-template {
 	padding: 35px 0;
+	&.some-block {
+		display: block;
+		height: 150px;
+	}
 	@include s() {
 		padding: 0;
 	}
@@ -32,6 +36,7 @@
 			background: rgba(0,0,0,0.4);
 			z-index: 5;
 			opacity: 1;
+			overflow: auto;
 			@include transition();
 		}
 		img {
@@ -64,6 +69,10 @@
 		left: 50%;
 		-webkit-transform: translateX(-50%);
 		        transform: translateX(-50%);
+
+		@include s() {
+			display: none;
+		}
 	}
 	.title {
 		border-bottom: 1px solid #e5e5e5;
@@ -172,6 +181,14 @@
 		position: relative;
 		top:36px;
 		left: 17%;
+		@include m() {
+			width: 40%;
+			left: 10%;
+		}
+		@include s() {
+			top: 0;
+			width: 100%;
+		}
 		.button.share {
 			-webkit-box-flex: 0.2;
 			    -ms-flex: 0.2;
@@ -242,6 +259,7 @@
 	}
 	.yardage-chart,
 	.measure-chart {
+		margin: 2em 0;
 		@include flex();
 		-webkit-box-orient: horizontal;
 		-webkit-box-direction: normal;
@@ -295,6 +313,7 @@
   right: 0;
   z-index: 600;
   background: rgba(0,0,0,0.4);
+
   .inner {
   	padding: 50px;
   	@include flex();

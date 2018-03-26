@@ -1,3 +1,16 @@
+<style>
+  .banner {
+    background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.4)
+      ),
+      url({{ section.settings.banner_bg | img_url:'master' }});
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+
 <section class="drapery-hardware">
   <div class="container l">
     <div class="banner">
@@ -41,6 +54,11 @@
   "name": "Drapery Hardware",
   "max_blocks": 20,
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_bg",
+      "label": "Banner Image"
+    },
     {
       "type": "textarea",
       "id": "lead",

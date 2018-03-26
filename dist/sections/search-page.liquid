@@ -12,7 +12,7 @@
       url({{ banner_img | img_url:'master' }});
   }
 </style>
-{% paginate search.results by 10 %}
+{% paginate search.results by 12 %}
   <section class="search-page">
     <div class="container l">
       <div class="crumbs">
@@ -42,7 +42,7 @@
                   If it has a featured_image, it is probably a product
                 {% endcomment %}
                   <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
-                    <img srcset="{{ item.featured_image.src | img_url: 'x1400' }} 2x" data-src="{{ item.id }}" data-price="{{ item.price | times: 2 | money }}" data-title="{{ item.title | escape }}" data-target-href="{{shop.url}}{{ item.url | within: collection }}" src="{{ item.featured_image.src | img_url: 'x700' }}" alt="{{ item.featured_image.alt | escape }}" class="grid__image">
+                    <img srcset="{{ item.featured_image.src | img_url: 'x1400' }} 2x" data-src="{{ item.id }}" data-price="{{ item.price_max | money }}" data-title="{{ item.title | escape }}" data-target-href="{{shop.url}}{{ item.url | within: collection }}" src="{{ item.featured_image.src | img_url: 'x700' }}" alt="{{ item.featured_image.alt | escape }}" class="grid__image">
                     <p class="item-title">{{ item.title | escape }}</p>
                   </a>
                 {%- endif -%}
@@ -51,7 +51,7 @@
                   If it has an article image, it is probably a blog article
                 {% endcomment %}
                   <a href="{{ item.url }}" title="{{ item.title | escape }}">
-                    <img srcset="{{ item.featured_image.src | img_url: 'x1400' }} 2x" data-src="{{ item.id }}" data-title="{{ item.title | escape }}" data-target-href="{{shop.url}}{{ item.url | within: collection }}" src="{{ item.featured_image.src | img_url: 'x700' }}" alt="{{ item.featured_image.alt | escape }}" class="grid__image">
+                    <img srcset="{{ item.featured_image.src | img_url: 'x1400' }} 2x" data-src="{{ item.id }}" data-price="{{ item.price_max | money }}" data-title="{{ item.title | escape }}" data-target-href="{{shop.url}}{{ item.url | within: collection }}" src="{{ item.featured_image.src | img_url: 'x700' }}" alt="{{ item.featured_image.alt | escape }}" class="grid__image">
                     <p class="item-title">{{ item.title | escape }}</p>
                   </a>
                 {% endif %}
@@ -70,9 +70,10 @@
 
                     {%- for variant in item.variants -%}
                       {%- if variant.title == 'Original' -%}
-                        <p class="our-price">Price: {{ variant.price | times: 2 | money }}/Yard</p>
-                      {%- elsif variant.title == 'Sample' -%}
-                        <!-- <p class="our-price">Sample Price: {{ variant.price | money }}</p> -->
+                        <p class="our-price">Price: {{ variant.price | money }}/Yard</p>
+                      {% endif %}
+                      {%- if variant.title == 'Sample' -%}
+                        <!-- <p class="our-sample-price">Sample Price: {{ variant.price | money }}</p> -->
                       {%- endif -%}
                     {%- endfor -%}
 

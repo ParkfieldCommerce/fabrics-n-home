@@ -69,7 +69,7 @@ $(document).ready(function() {
     // Cart Page
     $('.length-price .quantity').each(function() {
       var cart_page_qty = $(this).data('value');
-      var cart_page_result = cart_page_qty / 2;
+      var cart_page_result = cart_page_qty / 1;
       if (cart_page_result <= 1) {
         $(this).prepend('Length: '+cart_page_result+' yard');
       } else {
@@ -79,13 +79,13 @@ $(document).ready(function() {
 
     $('.cart__qty-input').each(function(){
       var currentQuantity = $(this).val();
-      $(this).next().val(currentQuantity/2);
+      $(this).next().val(currentQuantity/1);
     });
 
     $('.dummy-quantity').change(function(){
       var currentQuantity = $(this).val();
-      $(this).val(Math.round(currentQuantity*2)/2);
-      $(this).prev().val(currentQuantity*2);
+      $(this).val(Math.round(currentQuantity*1)/1);
+      $(this).prev().val(currentQuantity*1);
     });
   }
   changeCartQty();

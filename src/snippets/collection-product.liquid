@@ -22,10 +22,10 @@
         {%- for variant in product.variants -%}
           {%- if forloop.length > 1 -%}
             {%- if variant.title == 'Original' -%}
-              {{ variant.price | times: 2 | money }}/Yard
+              {{ variant.price | money }}/Yard
             {%- endif -%}
           {%- else -%}
-            {{ product.price | times: 2 | money }}/Yard
+            {{ product.price | money }}/Yard
           {%- endif -%}
         {%- endfor -%}
 

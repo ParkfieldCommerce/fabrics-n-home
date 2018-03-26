@@ -3,6 +3,11 @@
   height: 120px;
   background-position: 50% 50%;
   background-size: cover;
+  background-repeat: no-repeat;
+  @include s() {
+    margin-bottom: 3em;
+    height: 300px;
+  }
   .inner {
     padding: 20px;
     height: inherit;
