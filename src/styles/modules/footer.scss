@@ -1,6 +1,6 @@
 /* Footer ====================================================================*/
 .theme-footer {
-  padding: 25px 0;
+  padding: 15px 0 ;
 
   &.desktop {
     @include s() {
@@ -11,13 +11,13 @@
       padding: 26px 0;
       text-align: center;
       color: #b9b4a7;
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid #f1f1f1;
       @include ptSerif(40px, $fontRegular, normal);
     }
 
     .menu-outer {
       padding: 20px;
-      border: 1px solid #e5e5e5;
+      border: 1px solid #f1f1f1;
 
       .menu-inner {
         -webkit-box-orient: horizontal;
@@ -92,9 +92,9 @@
       }
 
       .footer-logo-container {
-        padding: 48px 10% 100px;
-        border-right: 1px solid #e5e5e5;
-        border-left: 1px solid #e5e5e5;
+        padding: 55px 10%;
+        border-right: 1px solid #f1f1f1;
+        border-left: 1px solid #f1f1f1;
       }
 
       .contact-info {
@@ -102,7 +102,7 @@
 
         a,
         p {
-          margin-bottom: 10px;
+          margin-bottom: 2px;
           text-decoration: none;
           color: #888;
           @include ptSans(14px, $fontRegular, normal);

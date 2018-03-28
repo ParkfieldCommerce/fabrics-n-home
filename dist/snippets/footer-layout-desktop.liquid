@@ -3,7 +3,13 @@
 <footer class="theme-footer desktop">
   <div class="container l">
 
-    <h1 class="footer-lead">Marketplace for Exquisite Interiors</h1>
+    <h1 class="footer-lead">
+      {%- if page.handle == 'custom-design-for-you' or page.handle == 'window-treatment' or page.handle == 'bedding' or page.handle == 'drapery-hardware' or page.handle == 'designer-secrets' -%}
+        {{ section.settings.footer_lead_cus }}
+      {%- else -%}
+        {{ section.settings.footer_lead_fw }}
+      {%- endif -%}
+    </h1>
 
     <div class="menu-outer">
       {{ footer_menu }}
@@ -12,7 +18,7 @@
     <div class="footer-info">
       <div class="row">
         {{ footer_contact }}
-      </div>  
+      </div>
     </div>
 
     <div class="row copyrights">
@@ -27,7 +33,7 @@
         <div class="column l4 m4">
           <small>&copy; {{ 'now' | date: "%Y" }} <a href="/">{{ shop.name }}</a> </small>
         </div>
-      
+
       </div>
     </div>
 

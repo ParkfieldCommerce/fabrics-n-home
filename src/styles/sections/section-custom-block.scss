@@ -118,6 +118,9 @@
 	&.double {
 		.main {
 			height: 420px;
+			&.block-style-bottom {
+				height: 280px;
+			}
 		}
 		.block-1,
 		.block-3,

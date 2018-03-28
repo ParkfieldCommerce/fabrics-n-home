@@ -4,7 +4,7 @@
     <h1 class="title">{{ section.settings.heading }}</h1>
     <p class="lead">{{ section.settings.lead }}</p>
     <div class="row">
-      <div class="column l7 m7 s12">
+      <div class="column l6 m6 s12">
         {% form 'contact' %}
 
           {% if form.posted_successfully? %}
@@ -27,7 +27,7 @@
 
         {% endform %}
       </div>
-      <div class="column l5 m5 s12">
+      <div class="column l6 m6 s12">
         <img src="{{ section.settings.feat_img | img_url: 'master' }}" alt="{{ section.settings.feat_img_alt }}">
       </div>
     </div>

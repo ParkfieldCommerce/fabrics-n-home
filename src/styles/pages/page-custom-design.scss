@@ -48,6 +48,7 @@
                 flex: 100%;
       }
       a {
+        position: relative;
         display: block;
         height: inherit;
         @include flex();
@@ -63,46 +64,60 @@
       }
       h3 {
         @include ptSerif(30px, 400, normal);
-        padding-bottom: 10px;
         text-align: center;
+        padding-bottom: 20px;
       }
       p {
         @include ptSans(20px, 400, normal);
         text-align: center;
+        padding: 0 10%;
       }
-      &.pillow {
-        a {
-          -webkit-box-orient: vertical;
-          -webkit-box-direction: normal;
-              -ms-flex-direction: column;
-                  flex-direction: column;
-          -webkit-box-align: center;
-              -ms-flex-align: center;
-                  align-items: center;
-          h3 {
-            border-bottom: 3px solid #88beb4;
-            padding-bottom: 0;
-            margin-bottom: 10px;
+      .lead-container {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        background: rgba(0,0,0,0.6);
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        @include flex();
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row wrap;
+                flex-flow: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        h3 {
+          line-height: 35px;
+          padding: 0;
+        }
+        p {
+          line-height: 25px;
+          span {
+            font-style: italic;
           }
         }
-      }
-      &.one:hover,
-      &.two:hover,
-      &.three:hover {
-        @include transition();
-        @include prefixer(transform, scale(1.05), o webkit moz ms spec);
-        -webkit-box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
-                box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
+        .line-br {
+          margin: 10px 0 15px;
+          border-bottom: 3.6px solid #88b3b4;
+          width: 220px;
+        }
       }
     }
   }
   .bottom-banner {
     height: 175px;
+    padding: 30px;
     @include flex();
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-flow: column;
-            flex-flow: column;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -112,8 +127,8 @@
     h1 {
       @include dancingScript(40px, 400, normal);
       text-align: center;
-      padding-bottom: .3em;
       color: #fff;
+      width: 100%;
     }
     @include s() {
       height: 240px;

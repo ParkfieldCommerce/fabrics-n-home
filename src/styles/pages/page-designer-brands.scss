@@ -15,7 +15,7 @@
 		}
 	}
 	.tabs {
-		padding: 3em 0 1em;
+		padding: 1.5em 0 1em;
 		@include s() {
 			padding: 0 0 2em;
 		}
@@ -58,7 +58,7 @@
 		}
 		.tab-panels {
 			margin-left: 0;
-			padding-top: 2em;
+			padding-top: 1.5em;
 		}
 		.tab-panel {
 			display: none;
@@ -80,7 +80,7 @@
 						@include ptSans(15px, 700, normal);
 						color: #888;
 						text-decoration: none;
-						padding: 20px;
+						padding: 9px 9em;
 						display: block;
 						&:hover {
 							color: #fff;

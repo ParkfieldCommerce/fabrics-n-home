@@ -543,10 +543,10 @@ select {
   max-width: 100%;
   height: auto;
   line-height: ($gutter - $borderWeight*2);
-  padding: 0 $gutter/1.5;
+  padding: 10px;
   font-size: 1.125rem;
-  color: lighten($colorBrand, 25%);
-  background-color: $colorBrand;
+  color: #fff;
+  background-color: #88beb4;
   border: 2px solid #88beb4;
   border-radius: $borderRadius;
   -webkit-appearance: none;
@@ -560,9 +560,9 @@ select {
     color: $colorForeground;
   }
   &:hover {
-    background-color: darken($colorBrand, 5%);
-    border-color: darken($colorBrand, 5%);
-    color: lighten($colorBrand, 35%);
+    background-color: darken(#88beb4, 5%);
+    border-color: darken(#88b3b4, 5%);
+    color: #fff;
     cursor: pointer;
   }
   &.alternate {
@@ -833,7 +833,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 /* Header ====================================================================*/
 
 .theme-header {
-  padding: 25px 0;
+  padding: 5px 0 10px;
   .logo {
   	@include m() {
   		text-align: center;
@@ -850,15 +850,16 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 		.menu {
 			@include m() {
 				float: none;
-				margin: 20px auto;
+				margin: 8px auto;
+        width: 66%;
 			}
 			@include flex();
 			-webkit-box-orient: horizontal;
 			-webkit-box-direction: normal;
 			    -ms-flex-direction: row;
 			        flex-direction: row;
-			margin-bottom: 20px;
-			width: 85%;
+			margin-bottom: 15px;
+			width: 77%;
 			float: right;
 			a {
 				text-decoration: none;
@@ -1152,7 +1153,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 /* Footer ====================================================================*/
 .theme-footer {
-  padding: 25px 0;
+  padding: 15px 0 ;
 
   &.desktop {
     @include s() {
@@ -1163,13 +1164,13 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       padding: 26px 0;
       text-align: center;
       color: #b9b4a7;
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid #f1f1f1;
       @include ptSerif(40px, $fontRegular, normal);
     }
 
     .menu-outer {
       padding: 20px;
-      border: 1px solid #e5e5e5;
+      border: 1px solid #f1f1f1;
 
       .menu-inner {
         -webkit-box-orient: horizontal;
@@ -1244,9 +1245,9 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       }
 
       .footer-logo-container {
-        padding: 48px 10% 100px;
-        border-right: 1px solid #e5e5e5;
-        border-left: 1px solid #e5e5e5;
+        padding: 55px 10%;
+        border-right: 1px solid #f1f1f1;
+        border-left: 1px solid #f1f1f1;
       }
 
       .contact-info {
@@ -1254,7 +1255,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
         a,
         p {
-          margin-bottom: 10px;
+          margin-bottom: 2px;
           text-decoration: none;
           color: #888;
           @include ptSans(14px, $fontRegular, normal);
@@ -1930,6 +1931,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 .product-template {
 	padding: 35px 0;
+	max-width: 980px;
+	margin: auto;
 	&.some-block {
 		display: block;
 		height: 150px;
@@ -2162,10 +2165,10 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 			}
 		}
 		.img-prev {
-			left: -10px;
+			left: -15px;
 		}
 		.img-next {
-			right: -10px;
+			right: -15px;
 		}
 		img {
 			width: 60px;
@@ -2361,11 +2364,25 @@ nav.main-menu {
     			color: #888888;
     		}
     	}
+			&:first-child {
+				text-align: right;
+				padding-right: 4em;
+				@include s() {
+					text-align: center;
+					padding-right: 0px;
+				}
+			}
     	&:last-child {
+				text-align: left;
+				padding-left: 3.5em;
     		border-right: none;
+				@include s() {
+					text-align: center;
+					padding-left: 0px;
+				}
     	}
 			a {
-				padding: 20px 0;
+				padding: 15px 0;
 				display: block;
 				width: 100%;
 				height: 100%;
@@ -2813,6 +2830,10 @@ nav.mobile-menu {
   			padding: 0 10px;
   			color: #888;
   		}
+			img {
+				width: 250px;
+				height: 100px;
+			}
   	}
 	}
 	.actions {
@@ -3379,7 +3400,7 @@ nav.mobile-menu {
 		}
 	}
 	.tabs {
-		padding: 3em 0 1em;
+		padding: 1.5em 0 1em;
 		@include s() {
 			padding: 0 0 2em;
 		}
@@ -3422,7 +3443,7 @@ nav.mobile-menu {
 		}
 		.tab-panels {
 			margin-left: 0;
-			padding-top: 2em;
+			padding-top: 1.5em;
 		}
 		.tab-panel {
 			display: none;
@@ -3444,7 +3465,7 @@ nav.mobile-menu {
 						@include ptSans(15px, 700, normal);
 						color: #888;
 						text-decoration: none;
-						padding: 20px;
+						padding: 9px 9em;
 						display: block;
 						&:hover {
 							color: #fff;
@@ -3772,8 +3793,11 @@ nav.mobile-menu {
 			text-align: center;
 			color: #fff;
 			text-transform: uppercase;
+			padding: 20px;
+			line-height: 42px;
 			@include s() {
 				font-size: 30px;
+				padding: 0;
 			}
 		}
 	}
@@ -3782,6 +3806,7 @@ nav.mobile-menu {
 		.body-heading {
 			@include ptSerif(30px, 400, normal);
 			color: #555;
+			line-height: 40px;
 			@include m() {
 				padding: 0.5em;
 				font-size: 30px;
@@ -3794,6 +3819,8 @@ nav.mobile-menu {
 		.body-lead {
 			@include ptSans(16px, 400, normal);
 			color: #555;
+			line-height: 20px;
+			padding-right: 50px;
 			@include m() {
 				padding: 0.5em;
 				font-size: 15px;
@@ -3808,7 +3835,7 @@ nav.mobile-menu {
 	}
 
 	.local-dec-contact {
-		width: 80%;
+		width: 66%;
 		margin: auto;
 		@include flex();
 		-webkit-box-orient: horizontal;
@@ -3913,7 +3940,7 @@ nav.mobile-menu {
 		}
 	}
 	.text-container {
-	  max-width: 45%;
+	  max-width: 33%;
 	  @include flex();
 	  -webkit-box-align: center;
 	      -ms-flex-align: center;
@@ -3960,12 +3987,17 @@ nav.mobile-menu {
 			text-align: center;
 			color: #fff;
 			text-transform: uppercase;
+			line-height: 42px;
+			padding: 0 0 0 10%;
 			@include s() {
 				font-size: 30px;
+				padding: 0 10%;
 			}
 		}
 	}
 	.body-content {
+		max-width: 980px;
+		margin: auto;
 		.body-heading {
 			@include ptSerif(40px, 400, normal);
 			color: #555;
@@ -3982,7 +4014,8 @@ nav.mobile-menu {
 		.body-lead {
 			@include ptSans(15px, 400, normal);
 			color: #555;
-			padding: 0.5em 0;
+			padding: 0.5em 0 1.5em;
+			margin: 0;
 			@include m() {
 				padding: 0.5em;
 				font-size: 15px;
@@ -3995,7 +4028,7 @@ nav.mobile-menu {
 			}
 		}
 		.tabs {
-			padding: 3em 0 1em;
+			padding: 0em 0 3em;
 			@include s() {
 				padding: 0 0 2em;
 			}
@@ -4641,6 +4674,7 @@ nav.mobile-menu {
                 flex: 100%;
       }
       a {
+        position: relative;
         display: block;
         height: inherit;
         @include flex();
@@ -4656,46 +4690,60 @@ nav.mobile-menu {
       }
       h3 {
         @include ptSerif(30px, 400, normal);
-        padding-bottom: 10px;
         text-align: center;
+        padding-bottom: 20px;
       }
       p {
         @include ptSans(20px, 400, normal);
         text-align: center;
+        padding: 0 10%;
       }
-      &.pillow {
-        a {
-          -webkit-box-orient: vertical;
-          -webkit-box-direction: normal;
-              -ms-flex-direction: column;
-                  flex-direction: column;
-          -webkit-box-align: center;
-              -ms-flex-align: center;
-                  align-items: center;
-          h3 {
-            border-bottom: 3px solid #88beb4;
-            padding-bottom: 0;
-            margin-bottom: 10px;
+      .lead-container {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        background: rgba(0,0,0,0.6);
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        @include flex();
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row wrap;
+                flex-flow: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        h3 {
+          line-height: 35px;
+          padding: 0;
+        }
+        p {
+          line-height: 25px;
+          span {
+            font-style: italic;
           }
         }
-      }
-      &.one:hover,
-      &.two:hover,
-      &.three:hover {
-        @include transition();
-        @include prefixer(transform, scale(1.05), o webkit moz ms spec);
-        -webkit-box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
-                box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
+        .line-br {
+          margin: 10px 0 15px;
+          border-bottom: 3.6px solid #88b3b4;
+          width: 220px;
+        }
       }
     }
   }
   .bottom-banner {
     height: 175px;
+    padding: 30px;
     @include flex();
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-flow: column;
-            flex-flow: column;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -4705,8 +4753,8 @@ nav.mobile-menu {
     h1 {
       @include dancingScript(40px, 400, normal);
       text-align: center;
-      padding-bottom: .3em;
       color: #fff;
+      width: 100%;
     }
     @include s() {
       height: 240px;
@@ -4940,7 +4988,7 @@ nav.mobile-menu {
   }
   .row {
     background: #f9f9f9;
-    padding: 2em 20px 3em;
+    padding: 2em 10% 3em;
   }
 
   .heading {
@@ -5310,6 +5358,9 @@ nav.mobile-menu {
 	&.double {
 		.main {
 			height: 420px;
+			&.block-style-bottom {
+				height: 280px;
+			}
 		}
 		.block-1,
 		.block-3,
@@ -5879,7 +5930,8 @@ form#contact_form {
               flex-flow: row wrap;
       padding: 5px 0 10px;
       .select-container {
-        width: 100%;
+        width: 65%;
+        margin-right: 5px;
         position: relative;
         label {
           position: absolute;

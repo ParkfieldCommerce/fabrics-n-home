@@ -53,6 +53,11 @@
  */
 // =require vendor/jquery-pick.js
 
+/*!
+ * velocity.min.js
+ */
+// =require vendor/velocity.min.js
+
 // Attempts to preserve comments that likely contain licensing information,
 // even if the comment does not have directives such as `@license` or `/*!`.
 //

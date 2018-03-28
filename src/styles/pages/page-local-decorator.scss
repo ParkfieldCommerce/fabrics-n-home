@@ -53,8 +53,11 @@
 			text-align: center;
 			color: #fff;
 			text-transform: uppercase;
+			padding: 20px;
+			line-height: 42px;
 			@include s() {
 				font-size: 30px;
+				padding: 0;
 			}
 		}
 	}
@@ -63,6 +66,7 @@
 		.body-heading {
 			@include ptSerif(30px, 400, normal);
 			color: #555;
+			line-height: 40px;
 			@include m() {
 				padding: 0.5em;
 				font-size: 30px;
@@ -75,6 +79,8 @@
 		.body-lead {
 			@include ptSans(16px, 400, normal);
 			color: #555;
+			line-height: 20px;
+			padding-right: 50px;
 			@include m() {
 				padding: 0.5em;
 				font-size: 15px;
@@ -89,7 +95,7 @@
 	}
 
 	.local-dec-contact {
-		width: 80%;
+		width: 66%;
 		margin: auto;
 		@include flex();
 		-webkit-box-orient: horizontal;

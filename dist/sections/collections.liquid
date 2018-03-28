@@ -60,7 +60,7 @@ Just in case
         <div class="collection-products">
           <div class="row">
             {% for product in collection.products %}
-              {% assign column_width = 'column l4 m6 s6' %}
+              {% assign column_width = 'column l3 m6 s6' %}
               {% include 'collection-product' %}
             {% else %}
               {% if collection.handle == 'all' and current_tags == '' %}

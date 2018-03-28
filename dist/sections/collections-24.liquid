@@ -3,14 +3,10 @@
 {% assign view = '24' %}
 {% paginate collection.products by 24 %}
 
-{% assign column_width = 'column l4 m4 s12' %}
+{% assign column_width = 'column l3 m4 s12' %}
 <style>
   .banner {
-    background: linear-gradient(
-      rgba(0,0,0,0.3),
-      rgba(0,0,0,0.3)
-      ),
-    url({{section.settings.image_bg | img_url:'master'}});
+    background: #fff;
     background-size: cover;
     background-position: 50% 50%;
   }
@@ -18,7 +14,13 @@
 <section class="collections-page" data-section-type="collection">
   <div class="container l">
     <div class="banner">
-      <h1>{{ collection.title }}</h1>
+      {% if collection.image %}
+        <div class="img-container">
+          <img src="{{ collection.image | img_url:'master' }}" alt="{{ collection.image.alt }}">
+        </div>
+      {% else %}
+        <h1>{{ collection.title }}</h1>
+      {% endif %}
     </div>
     <div class="row">
       <div class="column l3 m3 s12">
@@ -79,7 +81,63 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
 
+  var collection_tags = [];
+  {%- for tag in collection.all_tags -%}
+    {%- if tag contains 'color_' or 'item-type_' or 'collection_' or 'style_' or 'suggested-use_' or 'brand_' -%}
+      {% assign collection_tag = tag %}
+      collection_tags.push("{{ collection_tag | handleize }}");
+    {%- endif -%}
+  {%- endfor -%}
+
+  var search = document.querySelector('form.search');
+  search.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var input = document.getElementById("inputVal").value;
+    var url = window.location.href;
+    if (url.endsWith('/')) {
+      url = url.slice(0, -1);
+      url += '/';
+    } else if (url.endsWith('+')) {
+
+    } else {
+      url += '/';
+    }
+
+    for (var i = 0; i < collection_tags.length; i++) {
+      if (collection_tags[i].indexOf(input) !== -1) {
+        if (collection_tags[i].indexOf('color') !== -1) {
+          url += 'color_'+input+'+';
+          console.log(collection_tags[i]);
+        }
+        if (collection_tags[i].indexOf('item-type_') !== -1) {
+          url += 'item-type_'+input+'+';
+          console.log(collection_tags[i]);
+        }
+        if (collection_tags[i].indexOf('collection_') !== -1) {
+          url += 'collection_'+input+'+';
+          console.log(collection_tags[i]);
+        }
+        if (collection_tags[i].indexOf('style_') !== -1) {
+          url += 'style_'+input+'+';
+          console.log(collection_tags[i]);
+        }
+        if (collection_tags[i].indexOf('suggested-use_') !== -1) {
+          url += 'suggested-use_'+input+'+';
+          console.log(collection_tags[i]);
+        }
+        if (collection_tags[i].indexOf('brand_') !== -1) {
+          url += 'brand_'+input+'+';
+          console.log(collection_tags[i]);
+        }
+        break;
+      }
+    }
+    window.location.href = url;
+  });
+</script>
 {% schema %}
   {
     "name": "Collections",

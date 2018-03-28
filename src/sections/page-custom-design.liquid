@@ -1,13 +1,4 @@
 {% assign set = section.settings %}
-{% capture pillow1 %}
-{% if set.custom_1 == 'pillows-more' %}pillow{% endif %}
-{% endcapture %}
-{% capture pillow2 %}
-{% if set.custom_2 == 'pillows-more' %}pillow{% endif %}
-{% endcapture %}
-{% capture pillow3 %}
-{% if set.custom_3 == 'pillows-more' %}pillow{% endif %}
-{% endcapture %}
 <style>
   .main-banner {
     background: linear-gradient(
@@ -15,48 +6,43 @@
       rgba(0,0,0,0.4)
       ),
       url({{ set.main_banner | img_url:'master' }});
-    background-position: 50% 50%;
-    background-size: cover;
   }
-
   .bottom-banner {
     background: linear-gradient(
       rgba(0,0,0,0.4),
       rgba(0,0,0,0.4)
       ),
       url({{ set.bottom_banner | img_url:'master' }});
-    background-position: 50% 50%;
-    background-size: cover;
   }
-
   .box.one {
     background: linear-gradient(
-      rgba(0,0,0,0.4),
-      rgba(0,0,0,0.4)
+      rgba(0,0,0,0.1),
+      rgba(0,0,0,0.1)
       ),
       url({{ set.custom_1_img | img_url:'master' }});
-    background-position: 50% 50%;
-    background-size: cover;
   }
-
   .box.two {
     background: linear-gradient(
-      rgba(0,0,0,0.4),
-      rgba(0,0,0,0.4)
+      rgba(0,0,0,0.1),
+      rgba(0,0,0,0.1)
       ),
       url({{ set.custom_2_img | img_url:'master' }});
-    background-position: 50% 50%;
-    background-size: cover;
   }
-
   .box.three {
     background: linear-gradient(
-      rgba(0,0,0,0.4),
-      rgba(0,0,0,0.4)
+      rgba(0,0,0,0.1),
+      rgba(0,0,0,0.1)
       ),
       url({{ set.custom_3_img | img_url:'master' }});
+  }
+  .box.one,
+  .box.two,
+  .box.three,
+  .main-banner,
+  .bottom-banner {
     background-position: 50% 50%;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 105%;
   }
 </style>
 <section class="custom-design">
@@ -67,34 +53,40 @@
     <div class="custom-design-links">
       <h2>Custom Design Made to Order</h2>
       <div class="three-boxes">
-        <div class="box one {{ pillow1 }}">
+        <div class="box one">
           <a href="{{ set.custom_1 }}">
-            {% if set.custom_1 == 'pillows-more' %}
-              <h3>{{ set.custom_1 | replace: '-', ' & ' }}</h3>
-              <p>What's your pillow personality?</p>
-            {% else %}
-              <h3>{{ set.custom_1 | replace: '-', ' ' }}</h3>
-            {% endif %}
+            <div class="heading-container">
+              <h3>{{ set.custom_1_heading }}</h3>
+            </div>
+            <div class="lead-container">
+              <h3>{{ set.custom_1_hover_head }}</h3>
+              <div class="line-br"></div>
+              <p>{{ set.custom_1_hover_lead }}</p>
+            </div>
           </a>
         </div>
-        <div class="box two {{ pillow2 }}">
+        <div class="box two">
           <a href="{{ set.custom_2 }}">
-            {% if set.custom_2 == 'pillows-more' %}
-              <h3>{{ set.custom_2 | replace: '-', ' & ' }}</h3>
-              <p>What's your pillow personality?</p>
-            {% else %}
-              <h3>{{ set.custom_2 | replace: '-', ' ' }}</h3>
-            {% endif %}
+            <div class="heading-container">
+              <h3>{{ set.custom_2_heading }}</h3>
+            </div>
+            <div class="lead-container">
+              <h3>{{ set.custom_2_hover_head }}</h3>
+              <div class="line-br"></div>
+              <p>{{ set.custom_2_hover_lead }}</p>
+            </div>
           </a>
         </div>
-        <div class="box three {{ pillow3 }}">
+        <div class="box three">
           <a href="{{ set.custom_3 }}">
-            {% if set.custom_3 == 'pillows-more' %}
-              <h3>{{ set.custom_3 | replace: '-', ' & ' }}</h3>
-              <p>What's your pillow personality?</p>
-            {% else %}
-              <h3>{{ set.custom_3 | replace: '-', ' ' }}</h3>
-            {% endif %}
+            <div class="heading-container">
+              <h3>{{ set.custom_3_heading }}</h3>
+            </div>
+            <div class="lead-container">
+              <h3>{{ set.custom_3_hover_head }}</h3>
+              <div class="line-br"></div>
+              <p>{{ set.custom_3_hover_lead }}</p>
+            </div>
           </a>
         </div>
       </div>
@@ -107,6 +99,36 @@
     </div>
   </div>
 </section>
+<script>
+  var box = document.querySelectorAll('.box');
+  var duration = { duration: 300 };
+  var hide = { opacity: 0, visibility: 'hidden' };
+  var show = { opacity: 1, visibility: 'visible' };
+  var zoomIn = { backgroundSize: '115%' };
+  var zoomOut = { backgroundSize: '105%' };
+  for (var i = 0; i < box.length; i++) {
+    box[i].addEventListener('mouseenter', function(e) {
+      var target = e.target;
+      if (target) {
+        var heading = target.querySelector('.heading-container');
+        var lead = target.querySelector('.lead-container');
+        target.velocity(zoomIn, duration);
+        heading.velocity(hide, duration);
+        lead.velocity(show, duration);
+      }
+    });
+    box[i].addEventListener('mouseleave', function(e) {
+      var target = e.target;
+      if (target) {
+        var heading = target.querySelector('.heading-container');
+        var lead = target.querySelector('.lead-container');
+        target.velocity(zoomOut, duration);
+        heading.velocity(show, duration);
+        lead.velocity(hide, duration);
+      }
+    });
+  }
+</script>
 
 {% schema %}
 {
@@ -142,6 +164,21 @@
       "label": "Box 1 Background"
     },
     {
+      "type": "text",
+      "id": "custom_1_heading",
+      "label": "Box 1 Heading"
+    },
+    {
+      "type": "text",
+      "id": "custom_1_hover_head",
+      "label": "Box 1 Hover Heading"
+    },
+    {
+      "type": "text",
+      "id": "custom_1_hover_lead",
+      "label": "Box 1 Hover Lead"
+    },
+    {
       "type": "page",
       "id": "custom_2",
       "label": "Box 2"
@@ -152,6 +189,21 @@
       "label": "Box 2 Background"
     },
     {
+      "type": "text",
+      "id": "custom_2_heading",
+      "label": "Box 2 Heading"
+    },
+    {
+      "type": "text",
+      "id": "custom_2_hover_head",
+      "label": "Box 2 Hover Heading"
+    },
+    {
+      "type": "text",
+      "id": "custom_2_hover_lead",
+      "label": "Box 2 Hover Lead"
+    },
+    {
       "type": "page",
       "id": "custom_3",
       "label": "Box 3"
@@ -160,6 +212,22 @@
       "type": "image_picker",
       "id": "custom_3_img",
       "label": "Box 3 Background"
+    },
+    {
+      "type": "text",
+      "id": "custom_3_heading",
+      "label": "Box 3 Heading"
+    },
+    {
+      "type": "text",
+      "id": "custom_3_hover_head",
+      "label": "Box 3 Hover Heading"
+    },
+    {
+      "type": "text",
+      "id": "custom_3_hover_lead",
+      "label": "Box 3 Hover Lead",
+      "default": "The Language of Romance"
     },
     {
       "type": "header",

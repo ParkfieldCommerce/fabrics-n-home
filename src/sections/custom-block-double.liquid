@@ -31,7 +31,7 @@
 			{% for block in section.blocks %}
 				{% assign settings = block.settings %}
 				<div class="column l6 m6 s12">
-					<div class="block-{{ forloop.index }} main">
+					<div class="block-{{ forloop.index }} main block-style-{{ settings.block_style }}">
 						<div class="content-container style-{{ settings.block_style }}">
 
 							<h1 class="lead">{{ settings.block_heading }}</h1>

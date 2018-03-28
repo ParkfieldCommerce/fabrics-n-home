@@ -39,13 +39,20 @@
 
                 <div class="select-container">
                   <label for="ShamCoverSize">Choose Sham Cover Size</label>
-                  <select name="ShamCoverSize">
+                  <select name="contact[ShamCoverSize]">
                     <option selected disabled>Choose a size</option>
-                    <option value="26x20_standard">Standard 26" x 20"</option>
-                    <option value="30x20_queen">Queen 26" x 20"</option>
-                    <option value="36x20_king">King 26" x 20"</option>
-                    <option value="26x26_euro">Euro 26" x 20"</option>
+                    <option value="size_12x12">12x12</option>
+                    <option value="size_14x14">14x14</option>
+                    <option value="size_16x16">16x16</option>
+                    <option value="size_18x18">18x18</option>
+                    <option value="size_20x20">20x20</option>
+                    <option value="size_22x22">22x22</option>
+                    <option value="size_24x24">24x24</option>
                   </select>
+                </div>
+                <div class="input-container">
+                  <label for="qty"><strong>Quantity</strong></label>
+                  <input type="number" name="contact[qty]" min="0" step="1">
                 </div>
 
               </div>
@@ -124,4 +131,4 @@
 
   });
 </script>
-{%- include 'js-nav-activator' -%}
+{%- include 'js-nav-activator-custom' -%}

@@ -110,14 +110,10 @@
           "label": "Background"
         },
         {
-          "type": "select",
+          "type": "text",
           "id": "block_category",
           "label": "Category",
-          "options": [
-            { "value": "decorative_pillows", "label": "Decorative Pillows" },
-            { "value": "bedding_pillows", "label": "Bedding Pillows" },
-            { "value": "shower_curtains", "label": "Shower Curtains" }
-          ]
+          "info": "Must be exact spelling. Replace spaces with _"
         },
         {
           "type": "text",
@@ -127,7 +123,8 @@
         {
           "type": "url",
           "id": "block_url",
-          "label": "Link to Item"
+          "label": "Link to Item",
+          "info": "If it's a Pillow Sham, link to Pillow Sham Form. If its a Pillow, link to Pillow Form"
         }
       ]
     }
