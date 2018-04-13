@@ -197,6 +197,16 @@
           margin: 10px 1%;
         }
       }
+
+      .cont-shopping {
+        margin: 15px 5%;
+        -webkit-box-flex: 100%;
+            -ms-flex: 100%;
+                flex: 100%;
+        @include s() {
+          margin: 15px 0;
+        }
+      }
     }
   }
 

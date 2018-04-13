@@ -23,13 +23,13 @@
       </div>
       <div class="column l7 m7 s12">
         {% form 'contact' %}
-          <input type="hidden" value="Drapery Hardware Form" id="ContactFormDrapery"></input>
+          <input type="hidden" value="Drapery Hardware Form" id="ContactFormDrapery">
 
-          <input type="text" name="contact[name]" placeholder="Name" id="ContactFormName">
+          <input type="text" name="contact[name]" placeholder="Name" id="ContactFormName" required>
 
-          <input type="email" name="contact[email]" placeholder="Email" id="ContactFormEmail">
+          <input type="email" name="contact[email]" placeholder="Email" id="ContactFormEmail" required>
 
-          <textarea name="contact[comment]" placeholder="Comment" id="ContactFormComment"></textarea>
+          <textarea name="contact[comment]" placeholder="Comment" id="ContactFormComment" required></textarea>
 
           <button type="submit" name="contact[submit]" class="btn primary-btn">Send Us a Message</button>
         {% endform  %}

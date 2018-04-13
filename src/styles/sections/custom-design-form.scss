@@ -59,6 +59,11 @@
           -ms-flex-flow: row wrap;
               flex-flow: row wrap;
       padding: 5px 0 10px;
+      .input-container {
+        @include s() {
+          width: 31%!important;
+        }
+      }
       .select-container {
         width: 65%;
         margin-right: 5px;

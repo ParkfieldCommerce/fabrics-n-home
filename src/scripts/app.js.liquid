@@ -114,6 +114,11 @@ $(document).ready(function() {
     e.preventDefault();
     $(this).next('.dropdown-window').slideToggle();
   });
+  $('.mb-item-dropdown .mb-item-link').on('click', function(e) {
+    e.preventDefault();
+    $(this).next('.dropdown-window-ds').slideToggle();
+  });
+
 
   // Init Slick Slider for sections/hero-slider.liquid
   $('#hero-slider').slick({
@@ -260,6 +265,36 @@ $(document).ready(function() {
     $(" > .tab-panel", panelsContext).removeClass("active");
     $(".tab-panel:eq(" + index + ")", panelsContext).addClass("active");
   });
+
+  var designerBrands = $('.designer-brands');
+
+  if (designerBrands.length > 0) {
+    function getAnchor() {
+      return (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
+    }
+
+    function triggerEvent(el, type) {
+      if ('createEvent' in document) {
+        // modern browsers, IE9+
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent(type, false, true);
+        el.dispatchEvent(e);
+      } else {
+        // IE 8
+        var e = document.createEventObject();
+        e.eventType = type;
+        el.fireEvent('on' + e.eventType, e);
+      }
+    }
+
+    var url = window.location.href;
+    if (getAnchor(url) != null) {
+      var anchorVal = getAnchor(url);
+      var elem = document.querySelector('.tab-item[href="#' + anchorVal + '"]');
+      console.log(elem);
+      triggerEvent(elem, 'click');
+    }
+  }
 
   // Price Quote Form Clone
   $('#add-more-action').on('click', function() {

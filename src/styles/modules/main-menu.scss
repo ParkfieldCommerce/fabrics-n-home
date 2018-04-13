@@ -108,6 +108,11 @@ nav.secondary-menu {
 						z-index: 5;
 						@include transition();
 					}
+					.dropdown-window-ds {
+						opacity: 1;
+						z-index: 5;
+						@include transition();
+					}
 				}
 			}
 			a {

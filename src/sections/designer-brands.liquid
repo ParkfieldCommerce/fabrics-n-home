@@ -20,7 +20,7 @@
 		<div class="tabs">
 			<ul class="tab-navigation" data-tabgroup="designer-brands-tabs">
 				{% for brand in brand_filters %}
-					<li class="tab-item {% if forloop.first %}active{% endif %}">{{ brand }}</li>
+					<li class="tab-item {% if forloop.first %}active{% endif %}" href="#{{brand}}">{{ brand }}</li>
 				{% endfor %}
 			</ul>
 
@@ -59,7 +59,6 @@
 		</div>
 	</div>
 </section>
-
 {% schema %}
 {
 	"name": "Designer Brands",

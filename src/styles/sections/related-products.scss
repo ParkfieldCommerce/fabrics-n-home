@@ -97,6 +97,9 @@
 				pointer-events: none;
 				cursor: pointer;
 				@include s() {
+					visibility: visible;
+					z-index: 1;
+					background: rgba(0,0,0,0.3);
 					bottom: 15px;
 					width: 150px;
 					right: 0;

@@ -12,6 +12,10 @@
 		.title {
 			@include ptSerif(40px, 400, normal);
 			color: #fff;
+			text-align: center;
+			@include s() {
+				font-size: 30px;
+			}
 		}
 	}
 }

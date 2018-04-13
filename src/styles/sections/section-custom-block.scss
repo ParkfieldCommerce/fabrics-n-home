@@ -25,6 +25,9 @@
 			span {
 				@include dancingScript(45px, $fontBold, normal);
 			}
+			@include s() {
+				font-size: 40px;
+			}
 		}
 		.content {
 			@include ptSerif(20px, 400, normal);
@@ -115,11 +118,18 @@
 		}
 	} // &.single
 
-	&.double {
+	&.double,
+	&.double-dup {
 		.main {
 			height: 420px;
 			&.block-style-bottom {
 				height: 280px;
+			}
+			@include s() {
+				&.block-style-left,
+				&.block-style-right {
+					height: 274px;
+				}
 			}
 		}
 		.block-1,
@@ -170,7 +180,7 @@
 					}
 					@include s() {
 						font-size: 25px;
-						top: 40px;
+						top: 20px;
 					}
 				}
 				ul {
@@ -182,11 +192,11 @@
 						font-size: 12px;
 					}
 					@include s() {
-						padding: 0 20px;
-						font-size: 12px;
+						padding: 1em 20px 0;
+						font-size: 10px;
 					}
 					li {
-						padding: 10px 0;
+						padding: 5px 0;
 						border-bottom: 1px dashed #fff;
 						text-transform: uppercase;
 					}
@@ -198,6 +208,9 @@
 					left: 30px;
 					right: -150px;
 					text-align: left;
+					@include s() {
+						left: 20px;
+					}
 				}
 			}
 			&.style-right {
@@ -247,6 +260,13 @@
 					}
 					@include s() {
 						float: none;
+					}
+				}
+			}
+			&.style-center {
+				@include s() {
+					.lead {
+						font-size: 40px;
 					}
 				}
 			}

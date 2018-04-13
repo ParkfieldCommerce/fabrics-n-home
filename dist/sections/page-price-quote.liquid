@@ -7,25 +7,32 @@
 				<p class="lead">Enter your fabric or furniture request or call us. <a href="tel:{{ section.settings.phone_num }}">{{ section.settings.phone_num }}</a></p>
 
 				{% form 'contact' %}
-					<div class="price-quote-request-form">
 
-						<input type="hidden" id="ContactPriceQuoteForm" name="contact[PriceQuoteForm]" value="PriceQuoteRequestForm">
-						<input type="text" id="ContactEmail" name="contact[Email]" placeholder="E-mail">
+					<input type="hidden" id="ContactPriceQuoteForm" name="contact[PriceQuoteForm]" value="Price Quote Request Form">
+					<div class="price-quote-request-form">
+						{%- if form.posted_successfully? -%}
+              <p class="note form-success">
+                {{ 'form.contact.success' | t }}
+              </p>
+            {%- endif -%}
+            {{ form.errors | default_errors }}
+
+						<input type="email" id="email" class="email-contact" name="contact[email]" value="" placeholder="Email Address" required="required" />
 
 						<div class="input-row cloneForm">
 
 							<span class="request-num"></span>
 
 							<div class="input-wrapper">
-								<input type="text" id="ContactManufacturer" name="contact[Manufacturer]" placeholder="Manufacturer">
+								<input type="text" id="ContactManufacturer" name="contact[Manufacturer]" placeholder="Manufacturer" required>
 							</div>
 
 							<div class="input-wrapper">
-								<input type="text" id="ContactPatternName" name="contact[PatternName]" placeholder="Pattern Name or #">
+								<input type="text" id="ContactPatternName" name="contact[PatternName]" placeholder="Pattern Name or #" required>
 							</div>
 
 							<div class="input-wrapper">
-								<input type="text" id="ContactColorName" name="contact[ColorName]" placeholder="Color Name or Number">
+								<input type="text" id="ContactColorName" name="contact[ColorName]" placeholder="Color Name or Number" required>
 							</div>
 
 						</div>
@@ -39,7 +46,7 @@
 					</div>
 				{% endform %}
 			</div>
-			<div class="column l6 m6 s12">
+			<div class="column l6 m6 s-hide">
 				<img src="{{ section.settings.featured_img | img_url:'master' }}" alt="{{ section.settings.featured_img }}">
 			</div>
 		</div>

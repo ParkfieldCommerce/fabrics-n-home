@@ -8,6 +8,10 @@
 			height: 170px;
 			width: 170px;
 		}
+		@include s() {
+			width: 183px;
+			height: 154px;
+		}
 		.feature-title {
 			color: #fff;
 			text-align: right;
@@ -36,6 +40,9 @@
 		margin: 0;
 		color: #888888;
 		margin-bottom: 10px;
+		@include s() {
+			font-size: 12px;
+		}
 	}
 	.btn-container {
 		text-align: center;

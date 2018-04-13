@@ -1,5 +1,5 @@
 {% if childlink.links != empty %}
-	<div class="dropdown-window">
+	<div class="{% if childlink.title == 'Designer Secrets' %}dropdown-window-ds{% else %}dropdown-window{% endif %}">
 
 		{% for grandchild in childlink.links %}
 			<ul class="section {{ grandchild.handle }}" >

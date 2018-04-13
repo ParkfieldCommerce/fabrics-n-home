@@ -3,14 +3,23 @@
 	h1 {
 		@include ptSerif(30px, 400, normal);
 		color: #555;
+		@include s() {
+			font-size: 20px;
+			padding-left: 10px;
+		}
 	}
 	.lead {
 		@include ptSans(15px, 400, normal);
 		color: #888;
+		line-height: 18px;
 		a {
 			font-weight: 700;
 			color: #888;
 			text-decoration: none;
+		}
+		@include s() {
+			font-size: 14px;
+			padding-left: 10px;
 		}
 	}
 	form {
@@ -24,12 +33,22 @@
 			@include ptSans(15px, 400, normal);
 		}
 	}
+	.email-contact {
+		@include s() {
+			width: 95%;
+			margin: auto;
+			display: block;
+		}
+	}
 	.request-num {
 		display: block;
 		width: 100%;
 		@include ptSans(15px, 700, normal);
 		color: #888;
 		padding: 5px 0;
+		@include s() {
+			padding: 5px 10px;
+		}
 	}
 	.input-row {
 		padding: 1em 0;
@@ -46,6 +65,13 @@
 			    -ms-flex: 1;
 			        flex: 1;
 			margin-right: 5px;
+			@include s() {
+				-webkit-box-flex: 100%;
+				    -ms-flex: 100%;
+				        flex: 100%;
+				padding: 0 10px;
+				margin: 0 0 19px;
+			}
 			&:last-child {
 				margin: 0;
 			}
@@ -69,7 +95,10 @@
 		button {
 			height: auto;
 			border: 0;
-
+			@include s() {
+				margin-top: 35px;
+				width: 90%;
+			}
 		}
 	}
 }

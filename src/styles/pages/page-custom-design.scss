@@ -1,6 +1,8 @@
 .custom-design {
   .main-banner {
     height: 425px;
+    background-position: 50% 50%!important;
+    background-size: cover!important;
     @include flex();
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -17,6 +19,10 @@
       height: 350px;
       h1 {
         @include ptSerif(40px, 400, italic);
+        line-height: 42px;
+        background: #555;
+        margin: 0 5%;
+        padding: 5px;
       }
     }
   }
@@ -28,6 +34,7 @@
       text-align: center;
       @include s() {
         @include ptSerif(25px, 400, normal);
+        padding: 15px 0 10px;
       }
     }
     .three-boxes {
@@ -42,10 +49,24 @@
       -webkit-box-flex: 1;
           -ms-flex: 1;
               flex: 1;
+      @include m() {
+        &.one,
+        &.two,
+        &.three {
+          background-size: cover!important;
+        }
+      }
       @include s() {
         -webkit-box-flex: 100%;
             -ms-flex: 100%;
                 flex: 100%;
+
+        &.one,
+        &.two,
+        &.three {
+          background-size: cover!important;
+          margin-bottom: 15px;
+        }
       }
       a {
         position: relative;
@@ -130,9 +151,17 @@
       color: #fff;
       width: 100%;
     }
+    @include m() {
+      background-size: cover!important;
+    }
     @include s() {
       height: 240px;
       margin-bottom: 2em;
+      background-size: cover!important;
+
+      h1 {
+        line-height: 35px;
+      }
     }
   }
 }

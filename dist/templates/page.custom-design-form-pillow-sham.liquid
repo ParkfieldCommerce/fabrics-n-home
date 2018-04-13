@@ -1,4 +1,4 @@
-<section class="custom-forms">
+ required<section class="custom-forms">
   <div class="container l">
     <div class="crumbs">
       {%- include 'theme-breadcrumbs' -%}
@@ -31,7 +31,13 @@
         </p>
         <div class="form-container">
           {% form 'contact' %}
-            <input type="hidden" class="itemName" name="contact[windowTreatment]" value="">
+            {%- if form.posted_successfully? -%}
+              <p class="note form-success">
+                {{ 'form.contact.success' | t }}
+              </p>
+            {%- endif -%}
+            {{ form.errors | default_errors }}
+            <input type="hidden" class="itemName" name="contact[pillowShamForm]" value="Pillow Sham Form">
 
             <label for="WindowTreatmentSize" class="heading-label">Requested Size</label>
             <div class="size-inputs">
@@ -39,7 +45,7 @@
 
                 <div class="select-container">
                   <label for="ShamCoverSize">Choose Sham Cover Size</label>
-                  <select name="contact[ShamCoverSize]">
+                  <select name="contact[ShamCoverSize]" required>
                     <option selected disabled>Choose a size</option>
                     <option value="size_12x12">12x12</option>
                     <option value="size_14x14">14x14</option>
@@ -52,7 +58,7 @@
                 </div>
                 <div class="input-container">
                   <label for="qty"><strong>Quantity</strong></label>
-                  <input type="number" name="contact[qty]" min="0" step="1">
+                  <input type="number" name="contact[qty]" min="0" step="1" required>
                 </div>
 
               </div>
@@ -64,17 +70,17 @@
 
               <div class="input-container">
                 <label for="FirstName"><strong>First name</strong></label>
-                <input type="text" name="contact[FirstName]" placeholder="Your First Name">
+                <input type="text" name="contact[FirstName]" placeholder="Your First Name" required>
               </div>
 
               <div class="input-container">
                 <label for="LastName"><strong>Last name</strong></label>
-                <input type="text" placeholder="Your Last Name" name="contact[LastName]">
+                <input type="text" placeholder="Your Last Name" name="contact[LastName]" required>
               </div>
 
               <div class="input-container">
                 <label for="Email"><strong>Email</strong></label>
-                <input type="text" placeholder="Your email address" name="contact[Email]">
+                <input type="email" id="email" name="contact[email]" value="" placeholder="Email Address" required="required" />
               </div>
 
               <div class="input-container">

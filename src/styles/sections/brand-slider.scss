@@ -4,6 +4,10 @@
 		padding: 54px 0 .5em;
 		@include ptSerif(40px, $fontRegular, normal);
 		text-align: center;
+		@include s() {
+			padding-top: 25px;
+			font-size: 30px;
+		}
 	}
 	#brand-slider {
 		position: relative;

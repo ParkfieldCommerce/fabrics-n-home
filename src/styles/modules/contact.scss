@@ -2,9 +2,15 @@
   padding: 1em 0;
   .title {
     @include ptSerif(30px, 400, normal);
+    @include s() {
+      font-size: 20px;
+    }
   }
   .lead {
     @include ptSans(15px, 400, normal);
+    @include s() {
+      font-size: 14px;
+    }
   }
   .title,
   .lead {
@@ -24,6 +30,7 @@
     }
     @include s() {
       padding: 0 10px;
+      margin-bottom: 20px;
     }
   }
 

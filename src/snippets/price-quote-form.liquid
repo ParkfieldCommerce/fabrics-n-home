@@ -9,15 +9,15 @@
 
 				{% if form.posted_successfully? %}
 					<p class="note form-success">
-						{{ 'contact.form.post_success' }}
+						{{ 'form.contact.success' | t }}
 					</p>
 				{% endif %}
 
 				<input type="hidden" id="ContactPriceQuoteForm" name="contact[PriceQuoteForm]" value="PriceQuoteForm">
-				<input type="text" id="ContactManufacturer" name="contact[Manufacturer]" placeholder="Manufacturer">
-				<input type="text" id="ContactPatternName" name="contact[PatternName]" placeholder="Pattern Name or #">
-				<input type="text" id="ContactColorName" name="contact[ColorName]" placeholder="Color Name or Number">
-				<input type="text" id="ContactEmail" name="contact[Email]" placeholder="E-mail">
+				<input type="text" id="ContactManufacturer" name="contact[Manufacturer]" placeholder="Manufacturer" required>
+				<input type="text" id="ContactPatternName" name="contact[PatternName]" placeholder="Pattern Name or #" required>
+				<input type="text" id="ContactColorName" name="contact[ColorName]" placeholder="Color Name or Number" required>
+				<input type="email" id="email" name="contact[email]" value="" placeholder="Email Address" required="required" />
 
 				<div class="remove">
 					<a class="action"><i class="fa fa-minus"></i> Remove</a>
@@ -32,5 +32,5 @@
 				<button type="submit" class="btn primary-btn">Send Request</button>
 			</div>
 		{% endform %}
-	</div>	
+	</div>
 {% endif %}

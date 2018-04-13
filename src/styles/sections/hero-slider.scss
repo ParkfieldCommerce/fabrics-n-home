@@ -44,8 +44,12 @@
 			line-height: 1.1em;
 			margin-bottom: 0.7em;
 			color: #fff;
+			text-align: center;
 			@include m() {
 				font-size: 2em;
+			}
+			@include s() {
+				font-size: 40px;
 			}
 		}
 		.btn {
@@ -58,6 +62,9 @@
 		left: 0;
 		right: 0;
 		display: block;
+		@include s() {
+			bottom: 5%;
+		}
 		.slick-dots {
 			@include flex();
 			-webkit-box-orient: horizontal;
@@ -77,6 +84,9 @@
 				a {
 					color: #fff;
 					font-size: 24px;
+					@include s() {
+						font-size: 16px;
+					}
 				}
 				&.slick-active {
 					i {

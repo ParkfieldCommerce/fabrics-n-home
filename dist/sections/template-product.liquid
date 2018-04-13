@@ -203,7 +203,7 @@
             <p><strong>{{style[0]}}:</strong> {{style[1]}}</p>
           {% endif %}
           {% if color_exists %}
-            <p><strong>{{color[0] | replace: '-', ' '}}:</strong> {{color[1]}}</p>
+            <p><strong>{{color[0] | replace: '-', ' '}}:</strong> {{color[1] | replace: '|', ', '}}</p>
           {% endif %}
           {% if color_number_exists %}
             <p><strong>{{color_number[0] | replace: '-', ' '}}:</strong> {{color_number[1]}}</p>

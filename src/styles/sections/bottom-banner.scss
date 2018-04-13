@@ -6,7 +6,7 @@
   background-repeat: no-repeat;
   @include s() {
     margin-bottom: 3em;
-    height: 300px;
+    height: 180px;
   }
   .inner {
     padding: 20px;
@@ -18,14 +18,24 @@
             flex-flow: row wrap;
     -ms-flex-line-pack: center;
         align-content: center;
+    @include s() {
+      padding: 20px 0;
+    }
   }
   .heading {
     @include dancingScript(40px, 700, normal);
     color: #fff;
     padding-left: 15px;
     width: 80%;
+    text-align: center;
     span {
       border-bottom: 3px solid #fff;
+    }
+    @include s() {
+      font-size: 25px;
+      padding: 0;
+      margin: auto;
+      padding-bottom: 20px;
     }
   }
   .btn {

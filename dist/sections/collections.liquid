@@ -24,6 +24,85 @@ Just in case
     background-position: 50% 50%;
   }
 </style>
+{%- if collection.template_suffix == 'designer-brands' -%}
+<section class="collections-page" data-section-type="collection">
+  <div class="container l">
+    <div class="row">
+      <div class="column l3 m12 s12">
+        {% include 'sidebar' %}
+        {% include 'price-quote-form' %}
+      </div>
+      <div class="column l9 m12 s12">
+        <div class="banner">
+          {% if collection.image %}
+            <div class="img-container">
+              <img src="{{ collection.image | img_url:'master' }}" alt="{{ collection.image.alt }}">
+            </div>
+          {% else %}
+            <h1>{{ collection.title }}</h1>
+          {% endif %}
+        </div>
+        {%- if collection.description != blank -%}
+        <div class="column l12 m12 s12 empty-collection">
+          <div class="lead">{{ collection.description }}</div>
+          <div class="btns">
+            <a class="btn secondary-btn" href="{{ section.settings.btn_1_url }}">{{ section.settings.btn_1 }}</a>
+            <a class="btn secondary-btn" href="{{ section.settings.btn_2_url }}">{{ section.settings.btn_2 }}</a>
+          </div>
+        </div>
+        {%- endif -%}
+        <div class="actions">
+          <div class="search">
+            <form class="search">
+              <input type="text" id='inputVal' placeholder="Search..." value="{{ search.terms | escape }}"/>
+              <button class="fa fa-search" style="top:19px;" type="submit" />
+            </form>
+          </div>
+          <div class="sort">
+            {% include 'sort-options' %}
+          </div>
+          <div class="view-opts">
+            {% include 'collection-view' %}
+          </div>
+        </div>
+
+        <div class="collection-products">
+          <div class="row">
+            {% for product in collection.products %}
+              {% assign column_width = 'column l3 m6 s6' %}
+              {% include 'collection-product' %}
+            {% else %}
+              {% if collection.handle == 'all' and current_tags == '' %}
+                {% unless emptyState %}
+                  {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
+                  {% assign emptyState = true %}
+                {% endunless %}
+                {% include 'onboarding-empty-collection' %}
+              {% else %}
+                <div class="column l12 m12 s12 empty-collection">
+                  <p class="lead">{{ collection.description }}</p>
+                  <div class="btns">
+                    <a class="btn secondary-btn" href="{{ section.settings.btn_1_url }}">{{ section.settings.btn_1 }}</a>
+                    <a class="btn secondary-btn" href="{{ section.settings.btn_2_url }}">{{ section.settings.btn_2 }}</a>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% if paginate.pages > 1 %}
+          <div class="container l">
+            <div class="pagination">
+              {{ paginate | default_pagination }}
+            </div>
+          </div>
+        {% endif %}
+        {% comment %}{% include 'pagination-new' %}{% endcomment %}
+      </div>
+    </div>
+  </div>
+</section>
+{%- else -%}
 <section class="collections-page" data-section-type="collection">
   <div class="container l">
     <div class="banner">
@@ -89,13 +168,12 @@ Just in case
           </div>
         {% endif %}
         {% comment %}{% include 'pagination-new' %}{% endcomment %}
-
-        {% endpaginate %}
       </div>
     </div>
   </div>
 </section>
-
+{%- endif -%}
+{% endpaginate %}
 <script type="text/javascript">
 
   var collection_tags = [];

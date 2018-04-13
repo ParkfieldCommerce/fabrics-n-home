@@ -12,6 +12,7 @@
 		.title {
 			@include ptSerif(40px, 400, normal);
 			color: #fff;
+			text-align: center;
 		}
 	}
 	.tabs {
