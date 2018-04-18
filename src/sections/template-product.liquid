@@ -239,13 +239,13 @@
             <p><strong>{{collection[0]}}:</strong> {{collection[1] | replace: '-', ' '}}</p>
           {% endif %}
         </div>
+        {% if product.description != empty %}
         <div class="description">
-          {% if product.description != empty %}
             <span>Description: </span>
             <p class="truncate">{{ product.description }}</p>
             {% include 'icon' with 'chevron-down' %}
-          {% endif %}
         </div>
+        {% endif %}
       </div>
     </div> <!--row-->
   </div>

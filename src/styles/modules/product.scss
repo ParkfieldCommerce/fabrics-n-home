@@ -1,7 +1,7 @@
 /* Product ===================================================================*/
 
 .product-template {
-	padding: 35px 0;
+	padding: 0;
 	max-width: 980px;
 	margin: auto;
 	&.some-block {
@@ -43,8 +43,8 @@
 		}
 		img {
 			display: block;
-			width: 400px;
-			height: 400px;
+			max-width: 1000px;
+			// height: 400px;
 			margin-bottom: 10px;
 		}
 	}
@@ -55,7 +55,7 @@
 			width: 350px!important;
 			height: 350px;
 			display: block;
-			margin: auto;
+			margin: 10px auto;
 			float: none;
 		}
 		@include s() {

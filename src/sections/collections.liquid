@@ -30,7 +30,10 @@ Just in case
     <div class="row">
       <div class="column l3 m12 s12">
         {% include 'sidebar' %}
+        {% comment %}
         {% include 'price-quote-form' %}
+        
+        {% endcomment %}
       </div>
       <div class="column l9 m12 s12">
         <div class="banner">
@@ -48,6 +51,7 @@ Just in case
           <div class="btns">
             <a class="btn secondary-btn" href="{{ section.settings.btn_1_url }}">{{ section.settings.btn_1 }}</a>
             <a class="btn secondary-btn" href="{{ section.settings.btn_2_url }}">{{ section.settings.btn_2 }}</a>
+
           </div>
         </div>
         {%- endif -%}
@@ -105,7 +109,7 @@ Just in case
 {%- else -%}
 <section class="collections-page" data-section-type="collection">
   <div class="container l">
-    <div class="banner">
+    <!-- <div class="banner">
       {% if collection.image %}
         <div class="img-container">
           <img src="{{ collection.image | img_url:'master' }}" alt="{{ collection.image.alt }}">
@@ -113,11 +117,13 @@ Just in case
       {% else %}
         <h1>{{ collection.title }}</h1>
       {% endif %}
-    </div>
+    </div> -->
     <div class="row">
       <div class="column l3 m12 s12">
         {% include 'sidebar' %}
+        {% comment %}
         {% include 'price-quote-form' %}
+        {% endcomment %}
       </div>
       <div class="column l9 m12 s12">
 
@@ -149,13 +155,13 @@ Just in case
                 {% endunless %}
                 {% include 'onboarding-empty-collection' %}
               {% else %}
-                <div class="column l12 m12 s12 empty-collection">
+                <!-- <div class="column l12 m12 s12 empty-collection">
                   <p class="lead">{{ collection.description }}</p>
                   <div class="btns">
                     <a class="btn secondary-btn" href="{{ section.settings.btn_1_url }}">{{ section.settings.btn_1 }}</a>
                     <a class="btn secondary-btn" href="{{ section.settings.btn_2_url }}">{{ section.settings.btn_2 }}</a>
                   </div>
-                </div>
+                </div> -->
               {% endif %}
             {% endfor %}
           </div>
